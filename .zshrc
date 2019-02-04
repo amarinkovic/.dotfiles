@@ -59,7 +59,9 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git kubectl
+  git 
+  kubectl
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -100,8 +102,6 @@ alias yarnplz="rm yarn.lock && rm -rf node_modules && yarn"
 alias dc="docker-compose"
 alias gw="./gradlew"
 alias mw="./mvnw"
-
-plugins=(git zsh-completions kubectl)
 
 autoload -U colors; colors
 source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
