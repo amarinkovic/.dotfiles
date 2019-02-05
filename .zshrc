@@ -112,3 +112,5 @@ complete -o nospace -C /Users/amarinkovic/dev/tools/vault/vault vault
 if [ $commands[helm] ]; then
   source <(helm completion zsh)
 fi
+
+eval "$(jenv init -)"
