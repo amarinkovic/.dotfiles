@@ -103,7 +103,7 @@ alias dc="docker-compose"
 alias gw="./gradlew"
 alias mw="./mvnw"
 alias cmx="cmatrix -absC cyan"
-alias pg="pgcli -h localhost -U polus"
+alias pg="pgcli -h localhost -U admin"
 
 autoload -U colors; colors
 source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
