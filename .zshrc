@@ -97,6 +97,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias k="kubectl"
 alias kx="kubectl config use-context"
+alias kxc="kubectl config current-context"
 alias kf="kubectl port-forward"
 alias yarnplz="rm yarn.lock && rm -rf node_modules && yarn"
 alias dc="docker-compose"
