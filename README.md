@@ -1,7 +1,7 @@
 # dotfiles
 
-Add following to the `~/.zshrc` to define aliases
+Add to your shell config by executing this command:
 
 ```bash
-source ~/.dotfiles/alias.conf
+echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 ```
