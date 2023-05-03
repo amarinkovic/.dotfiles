@@ -7,7 +7,7 @@
 [branch]
 	autosetuprebase = always
 [core]
-	excludesfile = /home/aleksandar/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [remote "origin"]
 	prune = true
 [rebase]
