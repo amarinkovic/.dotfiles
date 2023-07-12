@@ -2,6 +2,6 @@
 
 Add to your shell config by executing this command:
 
-```bash
+```zsh
 echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 ```
