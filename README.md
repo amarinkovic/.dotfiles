@@ -6,6 +6,24 @@ Add to your shell config by executing this command:
 echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 ```
 
+## tmux setup
+
+After installing, run the following commands for `tmux` setup, from your home folder execute:
+
+```zsh
+ln -s .dotfiles/.tmux.conf .
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Then in tmux, press `<prefix> + I` to install plugins defined in `.tmux.conf`
+
+Also make sure to have a proper font installed, for example if you are on mac:
+
+```zsh
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+```
+
 ## tmux shortcuts
 
 Some common _tmux_ shortcuts, so that I don't forget them
