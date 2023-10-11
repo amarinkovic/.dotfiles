@@ -6,6 +6,14 @@ Add to your shell config by executing this command:
 echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 ```
 
+## ssh-agent setup
+
+Add `ssh-agent` to zsh as a plugin, edit `.zshrc` and make sure you have this:
+
+```zsh
+plugins=(git ssh-agent)
+```
+
 ## tmux setup
 
 After installing, run the following commands for `tmux` setup, from your home folder execute:
