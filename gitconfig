@@ -1,5 +1,5 @@
 [alias]
-	lg = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' # --al
+	lg = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
 	assumed = !git ls-files -v | grep ^h | cut -c 3-
