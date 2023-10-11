@@ -6,7 +6,7 @@ Add to your shell config by executing this command:
 echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 ```
 
-## ssh-agent setup
+## `ssh-agent` setup
 
 Add `ssh-agent` to `zsh` as a plugin, edit `.zshrc` and make sure you have this:
 
@@ -14,7 +14,7 @@ Add `ssh-agent` to `zsh` as a plugin, edit `.zshrc` and make sure you have this:
 plugins=(git ssh-agent)
 ```
 
-## tmux setup
+## `tmux` setup
 
 After installing, run the following commands for `tmux` setup, from your home folder execute:
 
@@ -32,7 +32,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 ```
 
-## tmux shortcuts
+## `tmux` shortcuts
 
 Some common _tmux_ shortcuts, so that I don't forget them
 
@@ -50,7 +50,7 @@ move between panes:         <prefix> + arrows
 list open sessions:         <prefix> + s
 ```
 
-## nvim shortcuts
+## `nvim` shortcuts
 
 Some common _nvim_ shortcuts, so that I don't forget them
 
