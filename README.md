@@ -8,7 +8,7 @@ echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
 
 ## ssh-agent setup
 
-Add `ssh-agent` to zsh as a plugin, edit `.zshrc` and make sure you have this:
+Add `ssh-agent` to `zsh` as a plugin, edit `.zshrc` and make sure you have this:
 
 ```zsh
 plugins=(git ssh-agent)
