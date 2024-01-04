@@ -84,3 +84,18 @@ delete between {}:      di{
 delete between ():      di(
 delete inside xml tag:  dit
 ```
+
+## `alacritty` setup
+
+First off you should install [themes](https://github.com/alacritty/alacritty-theme) by running:
+
+```zsh
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+```
+
+Then link the config file to the appropriate location
+
+```zsh
+ln -s .dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+```
