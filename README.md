@@ -1,9 +1,15 @@
-# dotfiles
+# .dotfiles
 
-Add to your shell config by executing this command:
+Add aliases to your shell config by executing this command:
 
 ```zsh
-echo "source ~/.dotfiles/alias.conf" >> ~/.zshrc
+echo "source ~/.dotfiles/.alias.conf" >> ~/.zshrc
+```
+
+Add the contents of `.gitconfig` to the current config
+
+```zsh
+cat ~/.dotfiles/.gitconfig >> ~/.gitconfig
 ```
 
 ## `ssh-agent` setup

@@ -1,9 +1,5 @@
 [alias]
 	lg = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
-	assume = update-index --assume-unchanged
-	unassume = update-index --no-assume-unchanged
-	assumed = !git ls-files -v | grep ^h | cut -c 3-
-	unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
 [branch]
 	autosetuprebase = always
 [core]
