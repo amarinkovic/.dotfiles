@@ -97,5 +97,5 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 Then link the config file to the appropriate location
 
 ```zsh
-ln -s .dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+ln .dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 ```

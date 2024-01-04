@@ -3,10 +3,10 @@ import = [
     "~/.config/alacritty/themes/themes/.catppuccin_frappe.toml"
 ]
 
-live_config_reload = false
+live_config_reload = true
 
 [window]
-dimensions = { columns = 120, lines = 35 }
+dimensions = { columns = 160, lines = 35 }
 decorations_theme_variant = "Dark"
 padding = { x = 3, y = 3 }
 dynamic_padding = true
@@ -14,3 +14,6 @@ opacity = 0.9
 
 [cursor]
 style = { shape = "Beam" }
+
+[font]
+size = 8.0
