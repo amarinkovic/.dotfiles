@@ -14,7 +14,8 @@ opacity = 1
 style = { shape = "Beam" }
 
 [font]
-size = 8.0
+size = 12.0
 
 [font.normal]
-family = "RobotoMono Nerd Font"
+family = "Hack Nerd Font"
+style = "Regular"
