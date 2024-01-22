@@ -1,5 +1,7 @@
 [alias]
 	lg = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+	comet = commit -am "try this"
+	yolo = commit -am "`curl -s https://whatthecommit.com/index.txt`"
 [branch]
 	autosetuprebase = always
 [core]
