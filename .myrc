@@ -19,5 +19,10 @@ alias txa="tmux attach-session -t"
 alias txm="tmuxinator"
 alias vim="nvim"
 alias lg="lazygit"
-alias ez="nvim ~/.zshrc"
+alias ez="vim ~/.zshrc"
 alias src="source ~/.zshrc"
+
+function reinit() {
+  git submodule deinit --force .
+  git submodule update --init --recursive
+}

@@ -3,7 +3,7 @@
 Add aliases to your shell config by executing this command:
 
 ```zsh
-echo "source ~/.dotfiles/.alias.conf" >> ~/.zshrc
+echo "source ~/.dotfiles/.myrc" >> ~/.zshrc
 ```
 
 Add the contents of `.gitconfig` to the current config
