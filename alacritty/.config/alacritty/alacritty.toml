@@ -1,6 +1,7 @@
 
+# more themese: https://github.com/alacritty/alacritty-theme
 import = [
-    "~/.config/alacritty/themes/themes/one_dark.toml"
+    "~/.config/alacritty/one_dark.toml"
 ]
 
 [env]
