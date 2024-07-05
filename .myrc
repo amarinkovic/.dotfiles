@@ -20,7 +20,7 @@ alias txm="tmuxinator"
 alias vi="nvim"
 alias lg="lazygit"
 alias ld="lazydocker"
-alias ez="vim ~/.zshrc"
+alias ez="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias fz="fzf --preview=\"bat --color=always {}\""
 alias fzn='nvim $(fzf --preview="bat --color=always {}")'
