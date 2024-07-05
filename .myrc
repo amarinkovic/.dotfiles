@@ -29,3 +29,6 @@ function reinit() {
   git submodule deinit --force .
   git submodule update --init --recursive
 }
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
