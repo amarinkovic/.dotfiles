@@ -17,12 +17,12 @@ alias sc="scala-cli"
 alias tx="tmux"
 alias txa="tmux attach-session -t"
 alias txm="tmuxinator"
-alias vim="nvim"
-alias n="nvim"
+alias vi="nvim"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias ez="vim ~/.zshrc"
 alias src="source ~/.zshrc"
+alias fz="fzf --preview=\"bat --color=always {}\""
 
 function reinit() {
   git submodule deinit --force .
