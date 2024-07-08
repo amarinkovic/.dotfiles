@@ -40,20 +40,28 @@ brew install --cask font-hack-nerd-font
 
 ## `tmux` shortcuts
 
-Some common _tmux_ shortcuts, so that I don't forget them
+Some common _tmux_ shortcuts, so that I don't forget them. Current prefix is `<Ctrl-z>`.
 
 ```zsh
-zoom pane:                  <prefix> + z
+pane zoom:                  <prefix> + z
+
+pane resize up:             <prefix> + <M-up>
+pane resize down:           <prefix> + <M-down>
+pane resize left:           <prefix> + <M-left>
+pane resize right:          <prefix> + <M-right>
+
+move between panes:         <prefix> + arrows
 
 sync panes ON:              <prefix> + e
 sync panes OFF:             <prefix> + E
 
-split pane verticaly:       <prefix> + v
-split pane horizontally:    <prefix> + h
-
-move between panes:         <prefix> + arrows
+pane split verticaly:       <prefix> + v
+pane split horizontally:    <prefix> + h
 
 list open sessions:         <prefix> + s
+
+reload tmux config:         <prefix> + r
+source tmux config:         <prefix> + R
 ```
 
 ## `nvim` shortcuts
