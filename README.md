@@ -6,7 +6,7 @@ First off, include some common aliases and functions.
 echo "source ~/.dotfiles/.myrc" >> ~/.zshrc
 ```
 
-Everything else in this repo is setup laid out to be used with [GNU Stow](https://www.gnu.org/software/stow/). Following tools can be configured using `stow` command:
+Everything else in this repo is laid out to be used with [GNU Stow](https://www.gnu.org/software/stow/). Following tools can be configured using `stow` command:
 
 - Allacrity: `stow alacritty`
 - Git: `stow git`
@@ -36,6 +36,12 @@ Also make sure to have a proper font installed, for example if you are on mac:
 ```zsh
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
+```
+
+If you use Arch by the way, you can install the fonts from [here](https://archlinux.org/groups/any/nerd-fonts/), like this:
+
+```zsh
+sudo pacman -S ttf-hack-nerd
 ```
 
 ## `tmux` shortcuts
