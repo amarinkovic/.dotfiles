@@ -20,6 +20,6 @@ style = { shape = "Beam" }
 [font]
 size = 10.0
 
-# [font.normal]
-# family = "Hack Nerd Font"
-# style = "Regular"
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
