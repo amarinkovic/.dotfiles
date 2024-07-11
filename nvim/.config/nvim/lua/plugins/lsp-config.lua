@@ -20,7 +20,9 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-      lspconfig.metals.setup({})
+      lspconfig.metals.setup({
+				capabilities = capabilities,
+      })
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
