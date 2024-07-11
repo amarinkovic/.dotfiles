@@ -1,5 +1,5 @@
 
-# more themese: https://github.com/alacritty/alacritty-theme
+# more themes: https://github.com/alacritty/alacritty-theme
 import = [
     "~/.config/alacritty/one_dark.toml"
 ]

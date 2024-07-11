@@ -77,29 +77,24 @@ Some common _nvim_ shortcuts, so that I don't forget them
 ```zsh
 <leader> key:   SPACE
 <C> key:        CTRL
-<M> key:        Option
+<M> key:        Option/Alt
 <S> key:        Shift
 
 show treeview:          <C-n>
 find file by name:      <C-p>
 
-// focus treeview:         <leader>  e
-// close current file:     <leader>  x
-// change theme:           <leader>  th
-// find file (by name):    <leader>  ff
+grep files:             <leader> fg
+format file with:       <leader> gf
+
+go to definition:       gd
+go to implementation:   go
 
 next word:              w
 
-// top line of window:     <S>  H
-// last line of window:    <S>  L
-last line of file:      G
 first line of file:     gg
+last line of file:      G
 begining of file:       [[
 end of file:            ]]
-
-// horizontal term:        <M> h   or  <leader> h
-// vertical term:          <M> v   or  <leader> v
-// floating term:          <M> i
 ```
 
 When in _normal_ mode:
