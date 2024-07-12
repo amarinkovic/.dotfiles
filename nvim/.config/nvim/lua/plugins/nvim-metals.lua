@@ -21,5 +21,6 @@ return {
 			end,
 			group = nvim_metals_group,
 		})
+    vim.keymap.set('n', '<leader>gm', ':Telescope metals commands<CR>', {})
 	end,
 }

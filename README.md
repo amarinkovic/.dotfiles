@@ -85,6 +85,7 @@ find file by name:      <C-p>
 
 grep files:             <leader> fg
 format file with:       <leader> gf
+metals commands:        <leader> gm
 
 go to definition:       gd
 go to implementation:   go
