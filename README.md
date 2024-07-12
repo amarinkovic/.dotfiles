@@ -13,14 +13,6 @@ Everything else in this repo is laid out to be used with [GNU Stow](https://www.
 - Neovim: `stow nvim`
 - Tmux: `stow tmux`
 
-## `ssh-agent` setup
-
-Add `ssh-agent` to `zsh` as a plugin, edit `.zshrc` and make sure you have this:
-
-```zsh
-plugins=(git ssh-agent)
-```
-
 ## `tmux` setup
 
 After stowing, run the following commands for `tmux` plugin manager setup. From your home folder execute:
