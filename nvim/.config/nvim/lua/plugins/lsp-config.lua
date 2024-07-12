@@ -11,6 +11,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = { "lua_ls", "tsserver", "solidity", "rust_analyzer", "metals" },
+				automatic_installation = true,
 			})
 		end,
 	},
@@ -20,9 +21,9 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-      lspconfig.metals.setup({
+			lspconfig.metals.setup({
 				capabilities = capabilities,
-      })
+			})
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -55,8 +56,8 @@ return {
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-			vim.keymap.set('n', 'go', vim.lsp.buf.implementation, {})
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			vim.keymap.set("n", "go", vim.lsp.buf.implementation, {})
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
