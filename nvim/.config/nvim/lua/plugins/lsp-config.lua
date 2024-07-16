@@ -1,60 +1,64 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "tsserver", "solidity", "rust_analyzer" },
-				automatic_installation = true,
-			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
+  {
+    "williamboman/mason.nvim",
+    lazy = false,
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "tsserver", "solidity", "rust_analyzer", "jdtls" },
+        automatic_installation = true,
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
 
-			lspconfig.tsserver.setup({
-				capabilities = capabilities,
-			})
+      lspconfig.tsserver.setup({
+        capabilities = capabilities,
+      })
 
-			lspconfig.solidity.setup({
-				capabilities = capabilities,
-				settings = {
-					solidity = {
-						includePath = "",
-						-- remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' },
-						allowPaths = {},
-					},
-				},
-			})
+      lspconfig.jdtls.setup({
+        capabilities = capabilities,
+      })
 
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-				settings = {
-					["rust-analyzer"] = {
-						diagnostics = {
-							enable = false,
-						},
-					},
-				},
-			})
+      lspconfig.solidity.setup({
+        capabilities = capabilities,
+        settings = {
+          solidity = {
+            includePath = "",
+            -- remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' },
+            allowPaths = {},
+          },
+        },
+      })
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "go", vim.lsp.buf.implementation, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-		end,
-	},
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            diagnostics = {
+              enable = false,
+            },
+          },
+        },
+      })
+
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "go", vim.lsp.buf.implementation, {})
+      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+    end,
+  },
 }
