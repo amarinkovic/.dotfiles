@@ -82,6 +82,9 @@ metals commands:        <leader> gm
 go to definition:       gd
 go to implementation:   go
 
+go back:                <C-o>
+go forward:             <C-i>
+
 next word:              w
 
 first line of file:     gg
