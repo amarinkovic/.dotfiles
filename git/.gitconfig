@@ -8,6 +8,7 @@
 	autosetuprebase = always
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = nvim
 [remote "origin"]
 	prune = true
 [rebase]
