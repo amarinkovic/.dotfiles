@@ -9,12 +9,12 @@ return {
       "rafamadriz/friendly-snippets",
     },
   },
-  {
-    "supermaven-inc/supermaven-nvim",
-    config = function()
-      require("supermaven-nvim").setup({})
-    end,
-  },
+--  {
+--    "supermaven-inc/supermaven-nvim",
+--    config = function()
+--      require("supermaven-nvim").setup({})
+--    end,
+--  },
   {
     "hrsh7th/nvim-cmp",
     config = function()
@@ -42,7 +42,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
-          { name = "supermaven" },
+--          { name = "supermaven" },
         }, {
           { name = "buffer" },
         }),
