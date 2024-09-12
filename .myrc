@@ -2,7 +2,6 @@ alias k="kubectl"
 alias kx="kubectl config use-context"
 alias kxc="kubectl config current-context"
 alias kf="kubectl port-forward"
-alias yarnplz="rm yarn.lock && rm -rf node_modules && yarn"
 alias dc="docker-compose"
 alias gw="./gradlew"
 alias mw="./mvnw"
@@ -24,6 +23,7 @@ alias ez="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias fz="fzf --preview=\"bat --color=always {}\""
 alias fzn='nvim $(fzf --preview="bat --color=always {}")'
+alias ff="fastfetch"
 
 function reinit() {
   git submodule deinit --force .
