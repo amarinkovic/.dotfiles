@@ -32,3 +32,7 @@ function reinit() {
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# enable mouse scroll for less (i.e. git log)
+export LESS='-R --mouse'
+
