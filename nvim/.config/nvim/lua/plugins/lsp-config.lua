@@ -10,7 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "solidity", "rust_analyzer", "jdtls" },
+        ensure_installed = { "lua_ls", "ts_ls", "solidity", "rust_analyzer", "jdtls" },
         automatic_installation = true,
       })
     end,
@@ -25,7 +25,7 @@ return {
         capabilities = capabilities,
       })
 
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
       })
 
