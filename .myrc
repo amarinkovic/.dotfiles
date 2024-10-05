@@ -35,4 +35,5 @@ source <(fzf --zsh)
 
 # enable mouse scroll for less (i.e. git log)
 export LESS='-R --mouse'
+export GIT_PAGER=less
 
