@@ -86,11 +86,28 @@ go back:                <C-o>
 go forward:             <C-i>
 
 next word:              w
+previous word:          b
+end of word:            e
+
+find char:              f
+till char:              t
+
+mach bracket (,[ or {   %
 
 first line of file:     gg
 last line of file:      G
+go to line X            X + G
 begining of file:       [[
 end of file:            ]]
+
+next current word:      *
+prev current word:      #
+
+increment number:       <C> + a
+decrement number:       <C> + x
+
+join lines:             <S> + j
+repeat last action:     .
 ```
 
 When in _normal_ mode:
