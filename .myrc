@@ -36,5 +36,3 @@ source <(fzf --zsh)
 export LESS='-R --mouse'
 export GIT_PAGER=less
 
-# hyprland
-export ELECTRON_OZONE_PLATFORM_HINT=auto
