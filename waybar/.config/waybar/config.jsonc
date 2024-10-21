@@ -14,6 +14,7 @@
     "modules-right": [
         "mpd",
         "idle_inhibitor",
+        "custom/spotify",
         "pulseaudio",
         "network",
         "cpu",
@@ -50,7 +51,6 @@
         }
     },
     "mpd": {
-//        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format": "  {title} - {artist} {stateIcon} [{elapsedTime:%M:%S}/{totalTime:%M:%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]",
         "format-disconnected": " Disconnected",
         "format-stopped": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
@@ -112,11 +112,6 @@
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", ""]
     },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
@@ -150,6 +145,15 @@
         "format": " ⏻ ",
         "tooltip": false,
         "on-click": "wlogout --protocol layer-shell"
+    },
+    // https://lib.rs/crates/waybar_media_display
+    "custom/spotify": {
+       "interval": 1,
+       "return-type": "json",
+       "exec": "waybar_media_display",
+       "exec-if": "pgrep spotify",
+       "on-click":"playerctl --player=spotify play-pause",
+       "escape": true
     }
 }
 
