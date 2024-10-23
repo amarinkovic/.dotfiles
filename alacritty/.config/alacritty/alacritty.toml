@@ -1,8 +1,10 @@
-
 # more themes: https://github.com/alacritty/alacritty-theme
+
 import = [
     "~/.config/alacritty/one_dark.toml"
 ]
+
+live_config_reload = true
 
 [env]
 TERM = "xterm-256color"
