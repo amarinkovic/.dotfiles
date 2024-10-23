@@ -23,5 +23,5 @@ style = { shape = "Beam" }
 size = 12.0
 
 [font.normal]
-family = "Hack Nerd Font"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"

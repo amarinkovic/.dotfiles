@@ -30,6 +30,13 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 ```
 
+You can use `FiraCode` by installing
+
+```zsh
+brew install --cask font-fira-code-nerd-font # macOS
+sudo pacman -S ttf-firacode-nerd             # arch btw
+```
+
 If you use Arch by the way, you can install the fonts from [here](https://archlinux.org/groups/any/nerd-fonts/), like this:
 
 ```zsh
