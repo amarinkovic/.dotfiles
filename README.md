@@ -82,6 +82,8 @@ Some common _nvim_ shortcuts, so that I don't forget them
 show treeview:          <C-n>
 find file by name:      <C-p>
 
+lazygit:                <leader> lg
+
 grep files:             <leader> fg
 format file with:       <leader> gf
 metals commands:        <leader> gm
