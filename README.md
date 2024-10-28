@@ -90,6 +90,7 @@ metals commands:        <leader> gm
 
 go to definition:       gd
 go to implementation:   go
+show docs:              <S> k
 
 go back:                <C-o>
 go forward:             <C-i>
