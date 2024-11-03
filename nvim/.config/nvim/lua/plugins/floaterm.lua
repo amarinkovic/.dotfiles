@@ -12,7 +12,7 @@ return {
       vim.g.floaterm_title = 'Terminal ($1/$2)'
 
       -- Key mappings
-      vim.api.nvim_set_keymap('n', '<F12>', ':FloatermToggle<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('t', '<F12>', '<C-\\><C-n>:FloatermToggle<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<F12>', ':FloatermToggle<CR>', { noremap = true, silent = true , desc = "Floating terminal"})
+      vim.api.nvim_set_keymap('t', '<F12>', '<C-\\><C-n>:FloatermToggle<CR>', { noremap = true, silent = true , desc = "Floating terminal"})
   end
  }
