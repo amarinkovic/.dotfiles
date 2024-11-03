@@ -119,12 +119,3 @@ decrement number:       <C> + x
 join lines:             <S> + j
 repeat last action:     .
 ```
-
-When in _normal_ mode:
-
-```zsh
-delete between "":      di"
-delete between {}:      di{
-delete between ():      di(
-delete inside xml tag:  dit
-```
