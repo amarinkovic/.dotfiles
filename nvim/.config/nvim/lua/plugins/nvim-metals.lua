@@ -21,6 +21,6 @@ return {
 			end,
 			group = nvim_metals_group,
 		})
-    vim.keymap.set('n', '<leader>mc', ':Telescope metals commands<CR>', { desc = "Metals commands"})
+		vim.keymap.set("n", "<leader>mc", ":Telescope metals commands<CR>", { desc = "Metals commands" })
 	end,
 }
