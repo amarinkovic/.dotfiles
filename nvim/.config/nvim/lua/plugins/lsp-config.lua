@@ -55,6 +55,17 @@ return {
 				},
 			})
 
+			-- Save the original go-to-definition handler
+			local original_definition_handler = vim.lsp.handlers["textDocument/definition"]
+
+			-- Redefine the handler
+			vim.lsp.handlers["textDocument/definition"] = function(err, result, ctx, config)
+				-- Call the original handler
+				original_definition_handler(err, result, ctx, config)
+				-- Recenters the screen to the cursor
+				vim.cmd("normal! zz")
+			end
+
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 			vim.keymap.set("n", "go", vim.lsp.buf.implementation, { desc = "Go to implementation" })
