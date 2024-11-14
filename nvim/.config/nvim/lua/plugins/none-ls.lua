@@ -12,7 +12,15 @@ return {
 				null_ls.builtins.formatting.prettier.with({
 					extra_filetypes = { "solidity" },
 				}),
-				null_ls.builtins.diagnostics.solhint,
+				null_ls.builtins.diagnostics.solhint.with({
+					condition = function(utils)
+						return utils.root_has_file({
+							".solhint.json",
+							".solhint.yaml",
+							".solhint.yml",
+						})
+					end,
+				}),
 				require("none-ls.code_actions.eslint_d"),
 				null_ls.builtins.completion.spell,
 			},
