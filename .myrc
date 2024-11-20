@@ -36,3 +36,4 @@ source <(fzf --zsh)
 export LESS='-R --mouse'
 export GIT_PAGER=less
 
+export EDITOR='nvim'
