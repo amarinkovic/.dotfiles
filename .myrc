@@ -23,6 +23,7 @@ alias src="source ~/.zshrc"
 alias fz="fzf --preview=\"bat --color=always {}\""
 alias fzn='nvim $(fzf --preview="bat --color=always {}")'
 alias ff="fastfetch"
+alias ffc="fastfetch -c ~/.config/fastfetch/config.json"
 
 function reinit() {
   git submodule deinit --force .
