@@ -7,7 +7,7 @@
 [branch]
 	autosetuprebase = always
 [core]
-	excludesfile = ~/.gitignore.global
+	excludesFile = ~/.gitignore.global
 	editor = nvim
 [remote "origin"]
 	prune = true

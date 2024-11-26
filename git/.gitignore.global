@@ -1,0 +1,8 @@
+.yalc/
+yalc.lock
+
+.supermaven/
+
+.bloop/
+.bsp/
+.metals/
