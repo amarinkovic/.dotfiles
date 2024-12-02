@@ -16,6 +16,8 @@ return {
 					"solidity",
 					"rust_analyzer",
 					"jdtls",
+					"yamlls",
+					"bashls",
 				},
 				automatic_installation = true,
 			})
@@ -41,13 +43,6 @@ return {
 
 			lspconfig.solidity.setup({
 				capabilities = capabilities,
-				settings = {
-					solidity = {
-						includePath = "",
-						-- remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' },
-						allowPaths = {},
-					},
-				},
 			})
 
 			lspconfig.rust_analyzer.setup({
@@ -59,6 +54,14 @@ return {
 						},
 					},
 				},
+			})
+
+			lspconfig.yamlls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
 			})
 
 			-- Center screen to cursor when going to definition
@@ -74,9 +77,9 @@ return {
 					vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
 				end,
 			})
-			vim.diagnostic.config({	virtual_text = true, float = {	border = "rounded" }})
+			vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
-      -- general LSP key mappings
+			-- general LSP key mappings
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 			vim.keymap.set("n", "go", vim.lsp.buf.implementation, { desc = "Go to implementation" })
