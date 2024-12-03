@@ -6,5 +6,7 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.g.mapleader = " "
 
-vim.opt.updatetime = 300
+-- clear search highlighting
+vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, silent = true})
 
+vim.opt.updatetime = 300
