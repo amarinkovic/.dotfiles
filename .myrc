@@ -37,6 +37,12 @@ function reinit() {
   git submodule update --init --recursive
 }
 
+function hyprplz() {
+  hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+  killall -9 hyprlock
+  hyprctl --instance 0 'dispatch exec hyprlock'
+}
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
