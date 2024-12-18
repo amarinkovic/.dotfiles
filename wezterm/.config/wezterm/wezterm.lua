@@ -16,18 +16,10 @@ config.window_padding = {
   top = 5,
   bottom = 0,
 }
+
 config.initial_rows = 50
 config.initial_cols = 200
 
-config.enable_wayland = true
-
 config.term = 'wezterm'
-
-
-config.keys = {
-    { key = 'v', mods = 'CMD|CTRL', action = wezterm.action.PasteFrom 'Clipboard', },
-    { key = 'c', mods = 'CMD|CTRL', action = wezterm.action.CopyTo 'Clipboard', },
-}
-
 
 return config
