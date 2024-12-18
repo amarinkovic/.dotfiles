@@ -21,8 +21,8 @@ alias ez="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias fz="fzf --preview=\"bat --color=always {}\""
 alias fze='nvim $(fzf --preview="bat --color=always {}")'
-alias ff="fastfetch"
-alias ffc="fastfetch -c ~/.config/fastfetch/config.json"
+alias ffc="fastfetch"
+alias ff="fastfetch -c ~/.config/fastfetch/config.json"
 alias cmx="cmatrix -absC cyan"
 alias grep='grep --color=auto'
 
