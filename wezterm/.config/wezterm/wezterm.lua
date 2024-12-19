@@ -1,25 +1,33 @@
+-- Pull in the wezterm API
 local wezterm = require 'wezterm'
+
+-- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.color_scheme = "Catppuccin Mocha" -- or Macchiato, Frappe, Latte
+-- This is where you actually apply your config choices
+config = {
 
-config.font = wezterm.font('JetBrains Mono')
--- config.font = wezterm.font('JetBrains Mono', { weight = 'Bold', italic = true })
+  color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
 
-config.window_close_confirmation = 'NeverPrompt'
+  font = wezterm.font('JetBrains Mono'),
 
--- GUI
-config.hide_tab_bar_if_only_one_tab = true
-config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 5,
-  bottom = 0,
+  window_close_confirmation = 'NeverPrompt',
+
+  hide_tab_bar_if_only_one_tab = true,
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 5,
+    bottom = 0,
+  },
+
+  initial_rows = 50,
+  initial_cols = 200,
+
+  max_fps = 120,
+
+  term = 'wezterm',
 }
 
-config.initial_rows = 50
-config.initial_cols = 200
-
-config.term = 'wezterm'
-
+-- return the configuration to wezterm
 return config
