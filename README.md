@@ -80,6 +80,7 @@ Some common _nvim_ shortcuts, so that I don't forget them
 <S> key:        Shift
 
 show treeview:          <C-n>
+show hidden:            <S-h>
 find file by name:      <C-p>
 
 lazygit:                <leader> lg
