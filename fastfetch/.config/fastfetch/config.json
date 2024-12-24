@@ -59,7 +59,7 @@
           "keyColor": "32",
       },
       {
-          "type": "terminalfont",
+          "type": "font",
           "key": " └  ",
           "keyColor": "32", 
       },
