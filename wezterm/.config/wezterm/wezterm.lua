@@ -7,7 +7,8 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 config = {
 
-  color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
+  -- color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
+  -- color_scheme = "Tokyo Night",
 
   font = wezterm.font('JetBrains Mono'),
 
