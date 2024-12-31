@@ -43,6 +43,14 @@ If you use Arch by the way, you can install the fonts from [here](https://archli
 sudo pacman -S ttf-hack-nerd
 ```
 
+### Config Troubleshooting
+
+In case you have problems with config changes being applied, i.e. setting a different theme, try deleting the following folder, and then reinstalling the plugins with `<prefix> + I` 
+
+```zsh
+rm -rf ~/.tmux/plugins/tmux 
+```
+
 ## `tmux` shortcuts
 
 Some common _tmux_ shortcuts, so that I don't forget them. Current prefix is `<Ctrl-z>`.
