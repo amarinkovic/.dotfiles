@@ -1,89 +1,97 @@
 {
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
-    "modules-left": [ "custom/apps", "hyprland/workspaces" ],
-    "modules-center": [ "hyprland/window" ],
-    "modules-right": [
-        "idle_inhibitor",
-        "custom/spotify",
-        "pulseaudio",
-        "network",
-        "clock",
-        "custom/power"
-    ],
-    // custom app
-    "custom/apps": {
-      "format": "  ",
-      "tooltip": false,
-      "on-click": "wofi --show drun"
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 24, // Waybar height (to be removed for auto height)
+  "spacing": 4, // Gaps between modules (4px)
+  "reload_style_on_change": true,
+  "modules-left": ["custom/apps", "hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "custom/spotify",
+    "idle_inhibitor",
+    "tray",
+    "pulseaudio",
+    "network",
+    "clock",
+    "custom/power",
+  ],
+  "hyprland/window": {
+    "format": "{title}",
+  },
+  // custom app
+  "custom/apps": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "wofi --show drun",
+  },
+  // Modules configuration
+  "hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "on-click": "activate",
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": "",
     },
-    // Modules configuration
-    "hyprland/workspaces": {
-        "on-scroll-up": "hyprctl dispatch workspace r-1",
-        "on-scroll-down": "hyprctl dispatch workspace r+1",
-        "on-click": "activate",
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
-    },    
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
     },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10,
+  },
+  "clock": {
+    // "timezone": "America/New_York",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}",
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": " {ifname}",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "Disconnected ⚠ {ifname}",
+    "format-alt": " {ifname}: {ipaddr}/{cidr}",
+  },
+  "pulseaudio": {
+    "scroll-step": 5, // %, can be a float
+    "format": "{icon} {volume}%", // {format_source}
+    "format-bluetooth": " {icon} {volume}% {format_source}",
+    "format-bluetooth-muted": "  {icon} {format_source}",
+    "format-muted": "  {format_source}",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
     },
-   "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": " {ifname}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠ {ifname}",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%", // {format_source}
-        "format-bluetooth": " {icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  {icon} {format_source}",
-        "format-muted": "  {format_source}",
-        "format-icons": {
-           "headphone": "",
-           "hands-free": "",
-           "headset": "",
-           "phone": "",
-           "portable": "",
-           "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol",
-    },
-    "custom/power": {
-        "format": " ⏻ ",
-        "tooltip": false,
-        "on-click": "wlogout --protocol layer-shell"
-    },
-    // https://lib.rs/crates/waybar_media_display
-    "custom/spotify": {
-       "interval": 1,
-       "return-type": "json",
-       "exec": "waybar_media_display",
-       "exec-if": "pgrep spotify",
-       "on-click":"playerctl --player=spotify play-pause",
-       "escape": true
-    }
+    "on-click": "pavucontrol",
+  },
+  "custom/power": {
+    "format": " ⏻ ",
+    "tooltip": false,
+    "on-click": "wlogout --protocol layer-shell",
+  },
+  // https://lib.rs/crates/waybar_media_display
+  "custom/spotify": {
+    "interval": 1,
+    "return-type": "json",
+    "exec": "waybar_media_display",
+    "exec-if": "pgrep spotify",
+    "on-click": "playerctl --player=spotify play-pause",
+    "escape": true,
+  },
 }
-
