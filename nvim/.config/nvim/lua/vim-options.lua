@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 -- clear search highlighting
 vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, silent = true})
 
--- TODO figure this out (move lines up/down)
+-- TODO: figure this out (move lines up/down)
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
