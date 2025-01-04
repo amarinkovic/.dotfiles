@@ -94,6 +94,12 @@ find file by name:      <C-p>
 lazygit:                <leader> lg
 
 grep files:             <leader> fg
+feed to quickfix:       <C-q>
+show  quickfix list:    <leader>qf
+close quickfix list:    <leader>qq
+next quickfix item:     <C-k>
+prev quickfix item:     <C-j>
+
 format file with:       <leader> gf
 metals commands:        <leader> gm
 
