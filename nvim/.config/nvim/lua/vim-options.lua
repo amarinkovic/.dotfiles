@@ -12,9 +12,8 @@ vim.g.have_nerd_font = true
 -- clear search highlighting
 vim.api.nvim_set_keymap('n', '<Esc>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true})
 
--- TODO: figure this out (move lines up/down)
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 vim.opt.updatetime = 300
 vim.opt.termguicolors = true
