@@ -12,6 +12,10 @@ return {
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Files grep live" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+      vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick fix list" })
+      vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick fix list" })
+      vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Go to next in quick fix list" })
+      vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Go to previous in quick fix list" })
     end,
   },
   {
