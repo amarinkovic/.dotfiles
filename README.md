@@ -120,6 +120,9 @@ end of word:            e
 find char:              f
 till char:              t
 
+paste over:             <leader> p
+substitute word:        <leader> s
+
 mach bracket (,[ or {   %
 
 first line of file:     gg
