@@ -109,7 +109,6 @@ show docs:              <S> k
 
 next diagnostic         ]d
 previous diagostic      [d
-show diagnostic popup   <leader>d
 
 go back:                <C-o>
 go forward:             <C-i>
