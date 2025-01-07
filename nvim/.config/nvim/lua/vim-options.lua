@@ -23,7 +23,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
@@ -37,12 +37,21 @@ vim.opt.scrolloff = 10
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.api.nvim_set_keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
 
--- move selected lines up/down
+-- Move selected lines up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selection"})
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute current word"})
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selection" })
+vim.keymap.set(
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Substitute current word" }
+)
+
+-- Comment lines out
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 vim.opt.updatetime = 300
 vim.opt.termguicolors = true

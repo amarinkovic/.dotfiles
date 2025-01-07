@@ -122,6 +122,7 @@ till char:              t
 
 paste over:             <leader> p
 substitute word:        <leader> s
+comment out:            <leader> /
 
 mach bracket (,[ or {   %
 
