@@ -1,7 +1,7 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.cmd("set expandtab")     -- Use spaces instead of tabs
+vim.cmd("set shiftwidth=2")  -- Number of spaces per indentation level
+vim.cmd("set tabstop=2")     -- Number of spaces for a tab
+vim.cmd("set softtabstop=2") -- Number of spaces for editing tabs
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 
