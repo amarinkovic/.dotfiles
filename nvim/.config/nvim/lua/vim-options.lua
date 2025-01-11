@@ -1,9 +1,11 @@
+-- stylua: ignore start
 vim.cmd("set expandtab")     -- Use spaces instead of tabs
 vim.cmd("set shiftwidth=2")  -- Number of spaces per indentation level
 vim.cmd("set tabstop=2")     -- Number of spaces for a tab
 vim.cmd("set softtabstop=2") -- Number of spaces for editing tabs
 vim.cmd("set number")
 vim.cmd("set relativenumber")
+-- stylua: ignore end
 
 vim.g.mapleader = " "
 
@@ -41,13 +43,11 @@ vim.api.nvim_set_keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, s
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
+-- stylua: ignore start
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selection" })
-vim.keymap.set(
-  "n",
-  "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Substitute current word" }
-)
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Substitute current word" })
+-- stylua: ignore end
 
 -- Comment lines out
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
