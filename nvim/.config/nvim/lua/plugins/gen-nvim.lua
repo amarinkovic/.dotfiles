@@ -2,8 +2,6 @@ local ollama_host = os.getenv("OLLAMA_HOST") or "localhost"
 local ollama_port = os.getenv("OLLAMA_PORT") or "11434"
 local ollama_model = os.getenv("OLLAMA_MODEL") or "deepseek-coder-v2:16b"
 
-print("Connecting Ollama: " .. ollama_host)
-
 -- stylua: ignore start
 return {
   "David-Kunz/gen.nvim",
