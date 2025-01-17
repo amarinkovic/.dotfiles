@@ -12,5 +12,10 @@ return {
     vim.filetype.add({
       pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
     })
+
+    vim.filetype.add({
+      extension = { mdx = "mdx" },
+    })
+    vim.treesitter.language.register("markdown", "mdx")
   end,
 }
