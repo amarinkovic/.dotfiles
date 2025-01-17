@@ -1,18 +1,18 @@
--- Pull in the wezterm API
-local wezterm = require 'wezterm'
-
--- This will hold the configuration.
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
+local my_opacity = 0.9
+
 config = {
 
-  -- color_scheme = "Catppuccin Mocha", -- or Macchiato, Frappe, Latte
-  color_scheme = "Tokyo Night",
+  color_scheme = "Catppuccin Mocha",
 
-  font = wezterm.font('JetBrains Mono'),
+  font = wezterm.font("JetBrains Mono"),
 
-  window_close_confirmation = 'NeverPrompt',
+  window_close_confirmation = "NeverPrompt",
+  window_background_opacity = my_opacity,
+
+  text_background_opacity = my_opacity,
 
   hide_tab_bar_if_only_one_tab = true,
   window_padding = {
@@ -27,8 +27,7 @@ config = {
 
   max_fps = 120,
 
-  term = 'wezterm',
+  term = "wezterm",
 }
 
--- return the configuration to wezterm
 return config

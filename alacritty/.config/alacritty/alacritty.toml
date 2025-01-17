@@ -7,7 +7,7 @@ dimensions = { columns = 160, lines = 45 }
 decorations_theme_variant = "Dark"
 padding = { x = 3, y = 3 }
 dynamic_padding = true
-opacity = 1
+opacity = 0.9
 
 [cursor]
 style = { shape = "Beam" }

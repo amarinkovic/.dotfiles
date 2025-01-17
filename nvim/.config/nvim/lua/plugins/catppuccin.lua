@@ -4,6 +4,24 @@ return {
   name = "catppuccin",
   priority = 1000,
   config = function()
+    require("catppuccin").setup({
+      transparent_background = true, -- Enable transparency
+      integrations = {
+        -- Integrate with various plugins if needed
+        treesitter = true,
+        lsp_trouble = true,
+        cmp = true,
+        gitsigns = true,
+        telescope = true,
+        nvimtree = true,
+        which_key = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = false,
+        },
+      },
+    })
+
     vim.cmd.colorscheme("catppuccin")
   end,
 }
