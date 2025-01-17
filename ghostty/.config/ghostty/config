@@ -8,7 +8,7 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 window-decoration = true
-background-opacity = 0.9
+background-opacity = 0.95
 
 window-height = 50
 window-width = 200
