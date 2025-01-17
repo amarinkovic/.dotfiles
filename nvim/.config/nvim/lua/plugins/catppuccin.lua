@@ -5,11 +5,11 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      transparent_background = true, -- Enable transparency
+      transparent_background = true,
       integrations = {
-        -- Integrate with various plugins if needed
         treesitter = true,
         lsp_trouble = true,
+        fidget = true,
         cmp = true,
         gitsigns = true,
         telescope = true,
