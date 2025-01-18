@@ -73,6 +73,9 @@ pane split horizontally:    <prefix> + h
 
 list open sessions:         <prefix> + s
 
+rename window:              <prefix> + ,
+rename session:             <prefix> + $
+
 reload tmux config:         <prefix> + r
 source tmux config:         <prefix> + R
 ```
