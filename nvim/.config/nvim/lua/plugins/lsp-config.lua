@@ -26,6 +26,7 @@ return {
           "jdtls",
           "yamlls",
           "bashls",
+          "lemminx",
         },
         automatic_installation = true,
       })
@@ -72,6 +73,10 @@ return {
       })
 
       lspconfig.bashls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.lemminx.setup({
         capabilities = capabilities,
       })
 
