@@ -1,7 +1,10 @@
+local presenceEnabled = os.getenv("NVIM_DISCORD_PRESENCE") == "true"
+
 return {
   "vyfor/cord.nvim",
   build = "./build || .\\build",
   event = "VeryLazy",
+  enabled = presenceEnabled,
   opts = {},
   config = function()
     require("cord").setup({
