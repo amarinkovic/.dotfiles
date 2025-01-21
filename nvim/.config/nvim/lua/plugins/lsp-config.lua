@@ -5,7 +5,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim",       opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
@@ -81,6 +81,11 @@ return {
         original_definition_handler(err, result, ctx, config)
         vim.cmd("normal! zz")
       end
+
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+        focusable = false, -- Make the window non-focusable
+      })
 
       -- Auto popup diagnostic
       vim.api.nvim_create_autocmd("CursorHold", {
