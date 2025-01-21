@@ -53,6 +53,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 vim.keymap.set("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
+-- Redo
+vim.keymap.set("n", "U", "<c-r>", { noremap = true })
+
 -- Noice dismiss
 vim.api.nvim_set_keymap("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
 

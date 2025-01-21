@@ -5,7 +5,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
+      { "j-hui/fidget.nvim",       opts = {} },
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
@@ -17,6 +17,13 @@ return {
           },
         },
       })
+
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+        },
+      })
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
@@ -108,6 +115,7 @@ return {
       vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
       vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+      vim.keymap.set({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
     end,
   },
 }
