@@ -97,8 +97,6 @@ return {
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
         focusable = false, -- Make the window non-focusable
-        width = 60,
-        height = 10,
       })
 
       -- Auto popup diagnostic
@@ -110,7 +108,6 @@ return {
       vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
       -- general LSP key mappings
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
       vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
       vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
