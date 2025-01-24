@@ -24,17 +24,19 @@ return {
         },
       })
 
+      local servers = {
+        "lua_ls",
+        "ts_ls",
+        "solidity",
+        "rust_analyzer",
+        "jdtls",
+        "yamlls",
+        "bashls",
+        "lemminx",
+      }
+
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "ts_ls",
-          "solidity",
-          "rust_analyzer",
-          "jdtls",
-          "yamlls",
-          "bashls",
-          "lemminx",
-        },
+        ensure_installed = servers,
         automatic_installation = true,
       })
 
@@ -45,24 +47,15 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+      require("java").setup()
+
       local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-      })
-
-      require("java").setup()
-      lspconfig.jdtls.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.solidity.setup({
-        capabilities = capabilities,
-      })
+      for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup({
+          capabilities = capabilities,
+        })
+      end
 
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
@@ -73,18 +66,6 @@ return {
             },
           },
         },
-      })
-
-      lspconfig.yamlls.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.bashls.setup({
-        capabilities = capabilities,
-      })
-
-      lspconfig.lemminx.setup({
-        capabilities = capabilities,
       })
 
       -- Center screen to cursor when going to definition
