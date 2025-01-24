@@ -1,4 +1,5 @@
-local ollama_host = os.getenv("OLLAMA_HOST") or "http://localhost:11434"
+local ollama_host = os.getenv("OLLAMA_HOST") or "localhost"
+local ollama_port = os.getenv("OLLAMA_PORT") or "11434"
 local ollama_model = os.getenv("OLLAMA_MODEL") or "deepseek-coder-v2:16b"
 
 return {
@@ -43,7 +44,7 @@ return {
       ollama = {
         __inherited_from = "openai",
         api_key_name = "",
-        endpoint = ollama_host .. "/v1",
+        endpoint = "http://" .. ollama_host .. ":" .. ollama_port .. "/v1",
         model = ollama_model,
       },
     },
