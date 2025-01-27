@@ -33,6 +33,7 @@ return {
         "yamlls",
         "bashls",
         "lemminx",
+        "zls",
       }
 
       require("mason-lspconfig").setup({

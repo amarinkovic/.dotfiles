@@ -5,6 +5,7 @@ local ollama_model = os.getenv("OLLAMA_MODEL") or "deepseek-coder-v2:16b"
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
+  enabled = false,
   lazy = false,
   version = false,
   build = "make",
