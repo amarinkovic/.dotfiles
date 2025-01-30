@@ -6,10 +6,10 @@
   "modules-left": ["custom/apps", "hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "custom/spotify",
     "idle_inhibitor",
-    "tray",
+    "custom/spotify",
     "pulseaudio",
+    "tray",
     "network",
     "clock",
     "custom/power",
@@ -31,7 +31,7 @@
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
-    "format": "{name}: {icon}",
+    "format": "{icon} {name}",
     "format-icons": {
       "urgent": "",
       "active": "",
@@ -88,8 +88,10 @@
   // https://lib.rs/crates/waybar_media_display
   "custom/spotify": {
     "interval": 1,
-    "return-type": "json",
-    "exec": "waybar_media_display",
+    "format": "{}",
+    "max-length": 256,
+    "interval": 1, // Remove this if your script is endless and write in loop
+    "exec": "~/.config/waybar/player.sh", // Script in resources folder
     "exec-if": "pgrep spotify",
     "on-click": "playerctl --player=spotify play-pause",
     "escape": true,
