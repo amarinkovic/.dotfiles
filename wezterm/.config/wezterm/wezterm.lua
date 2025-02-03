@@ -22,6 +22,10 @@ config = {
 		bottom = 0,
 	},
 
+	keys = {
+		{ key = "k", mods = "SUPER", action = wezterm.action.ClearScrollback("ScrollbackAndViewport") },
+	},
+
 	initial_rows = 50,
 	initial_cols = 200,
 
