@@ -19,7 +19,7 @@
   },
   // custom app
   "custom/apps": {
-    "format": "  ",
+    "format": " 󰣇 ",
     "tooltip": false,
     "on-click": "wofi --show drun",
   },
