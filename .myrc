@@ -24,7 +24,7 @@ alias fze='nvim $(fzf --preview="bat --color=always {}")'
 alias ffc="fastfetch"
 alias ff="fastfetch -c ~/.config/fastfetch/config.json"
 alias cmx="cmatrix -absC cyan"
-alias grep='grep --color=auto'
+alias grep='grep --color=auto --exclude-dir=.git'
 
 # To deal with "unknown terminal type" issues
 alias ssh='TERM=xterm-256color ssh'
