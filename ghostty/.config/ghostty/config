@@ -14,5 +14,14 @@ background-opacity = 0.95
 window-height = 50
 window-width = 200
 
-custom-shader = "shaders/bloom.glsl"
+# -- https://github.com/hackr-sh/ghostty-shaders
+# custom-shader = "shaders/bloom.glsl"
+# custom-shader = "shaders/galaxy.glsl"
+# custom-shader = "shaders/gears.glsl"
+# custom-shader = "shaders/glitchy.glsl"
+# custom-shader = "shaders/matrix.glsl"
+# custom-shader = "shaders/retro.glsl"
+# custom-shader = "shaders/sparks.glsl"
+# custom-shader = "shaders/underwater.glsl"
+# custom-shader = "shaders/water.glsl"
 
