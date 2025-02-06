@@ -1,5 +1,6 @@
 # ghostty +list-themes
 # theme = catppuccin-frappe
+theme = rose-pine 
 
 # ghostty +list-fonts
 font-family = FiraCode Nerd Font Mono Reg
@@ -12,3 +13,6 @@ background-opacity = 0.95
 
 window-height = 50
 window-width = 200
+
+custom-shader = "shaders/bloom.glsl"
+
