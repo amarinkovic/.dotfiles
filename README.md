@@ -72,6 +72,10 @@ pane split verticaly:       <prefix> + v
 pane split horizontally:    <prefix> + h
 
 list open sessions:         <prefix> + s
+list key bindings:          <prefix> + ?
+
+enter copy mode:            <prefix> + [
+paste the most recent:      <prefix> + ]
 
 rename window:              <prefix> + ,
 rename session:             <prefix> + $
