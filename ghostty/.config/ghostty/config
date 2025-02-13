@@ -1,6 +1,6 @@
 # ghostty +list-themes
-# theme = catppuccin-frappe
-theme = rose-pine 
+theme = catppuccin-mocha
+# theme = rose-pine
 
 # ghostty +list-fonts
 font-family = FiraCode Nerd Font Mono Reg
@@ -9,7 +9,7 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 window-decoration = true
-background-opacity = 0.95
+# background-opacity = 0.95
 
 window-height = 50
 window-width = 200
