@@ -14,7 +14,7 @@ return {
         tooltip = "The Superior Text Editor",
       },
       display = {
-        theme = "pastel", -- onyx or pastel
+        theme = "onyx", -- onyx or pastel
         show_repository = false,
       },
       lsp = {
@@ -34,6 +34,11 @@ return {
         solidity = {
           -- icon = "https://images.seeklogo.com/logo-png/42/1/solidity-logo-png_seeklogo-426731.png?v=1957664661399450704",
           tooltip = "Solidity Smart Contract",
+          -- text = "Writing in Solidity",
+        },
+        zig = {
+          icon = "https://raw.githubusercontent.com/ziglang/logo/refs/heads/master/zig-mark.svg",
+          tooltip = "Zig",
           -- text = "Writing in Solidity",
         },
       },
