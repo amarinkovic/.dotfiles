@@ -123,6 +123,11 @@ previous diagostic      [d
 go back:                <C-o>
 go forward:             <C-i>
 
+decrease pane width     -
+increase pane width     =
+decrease pane height    _
+increase pane height    +
+
 next word:              w
 previous word:          b
 end of word:            e
