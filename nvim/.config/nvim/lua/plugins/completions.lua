@@ -23,8 +23,8 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "minuet" },
-          { name = "buffer" },
+          -- { name = "minuet" },
+          -- { name = "buffer" },
         }),
       })
     end,

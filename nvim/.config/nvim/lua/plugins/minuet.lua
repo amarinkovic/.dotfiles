@@ -3,6 +3,7 @@ local OLLAMA_MODEL = os.getenv("OLLAMA_MODEL") or "qwen2.5-coder:7b"
 
 return {
   "milanglacier/minuet-ai.nvim",
+  enabled = false,
   config = function()
     require("minuet").setup({
       provider = "openai_fim_compatible",
