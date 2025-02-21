@@ -28,11 +28,11 @@ return {
     vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format (none-ls)" })
 
     -- trigger buffer format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = { "*.lua", "*.sol", "*.scala", "*.rs", "*.go", "*.py", "*.js", "*.ts", "*.json" },
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   pattern = { "*.lua", "*.sol", "*.scala", "*.rs", "*.go", "*.py", "*.js", "*.ts", "*.json" },
+    --   callback = function()
+    --     vim.lsp.buf.format({ async = false })
+    --   end,
+    -- })
   end,
 }
