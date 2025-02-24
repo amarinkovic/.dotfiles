@@ -34,6 +34,7 @@ return {
         "bashls",
         "lemminx",
         "zls",
+        "glsl_analyzer"
       }
 
       require("mason-lspconfig").setup({
