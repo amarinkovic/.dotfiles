@@ -2,6 +2,8 @@
 theme = catppuccin-mocha
 # theme = rose-pine
 
+keybind = cmd+k=text:\x0c
+
 # ghostty +list-fonts
 font-family = FiraCode Nerd Font Mono Reg
 
