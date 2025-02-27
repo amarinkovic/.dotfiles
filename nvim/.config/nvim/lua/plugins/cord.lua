@@ -34,12 +34,12 @@ return {
         solidity = {
           -- icon = "https://images.seeklogo.com/logo-png/42/1/solidity-logo-png_seeklogo-426731.png?v=1957664661399450704",
           tooltip = "Solidity Smart Contract",
-          -- text = "Writing in Solidity",
+          -- text = "Writing Solidity",
         },
         zig = {
           icon = "https://raw.githubusercontent.com/ziglang/logo/refs/heads/master/zig-mark.svg",
           tooltip = "Zig",
-          -- text = "Writing in Solidity",
+          -- text = "Writing Zig",
         },
       },
     })
