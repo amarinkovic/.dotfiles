@@ -32,12 +32,12 @@ return {
       },
       assets = {
         solidity = {
-          -- icon = "https://images.seeklogo.com/logo-png/42/1/solidity-logo-png_seeklogo-426731.png?v=1957664661399450704",
+          icon = "https://procoders.tech/wp-content/uploads/2022/12/How_to_Find_a_Solidity_Developer_for_Hire_Comprehensive_Guide.png",
           tooltip = "Solidity Smart Contract",
           -- text = "Writing Solidity",
         },
         zig = {
-          icon = "https://raw.githubusercontent.com/ziglang/logo/refs/heads/master/zig-mark.svg",
+          icon = "https://programming.dev/pictrs/image/d9362f3f-d7a2-4837-8fef-47bc92ccc91e.png",
           tooltip = "Zig",
           -- text = "Writing Zig",
         },
