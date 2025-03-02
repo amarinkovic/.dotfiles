@@ -1,5 +1,6 @@
 return {
   "voldikss/vim-floaterm",
+  event = "VeryLazy",
   config = function()
     -- Appearance
     vim.g.floaterm_width = 0.8
