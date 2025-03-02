@@ -22,7 +22,6 @@ return {
           end,
         }),
         require("none-ls.code_actions.eslint_d"),
-        null_ls.builtins.completion.spell,
       },
     })
     vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format (none-ls)" })
