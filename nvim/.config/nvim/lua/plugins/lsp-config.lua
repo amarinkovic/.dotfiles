@@ -28,7 +28,6 @@ return {
         "lua_ls",
         "ts_ls",
         "solidity",
-        "rust_analyzer",
         "jdtls",
         "yamlls",
         "bashls",
@@ -58,17 +57,6 @@ return {
           capabilities = capabilities,
         })
       end
-
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-        settings = {
-          ["rust-analyzer"] = {
-            diagnostics = {
-              enable = false,
-            },
-          },
-        },
-      })
 
       -- Center screen to cursor when going to definition
       local original_definition_handler = vim.lsp.handlers["textDocument/definition"]
