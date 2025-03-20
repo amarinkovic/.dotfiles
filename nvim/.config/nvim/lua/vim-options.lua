@@ -1,12 +1,3 @@
--- stylua: ignore start
-vim.cmd("set expandtab")     -- Use spaces instead of tabs
-vim.cmd("set shiftwidth=2")  -- Number of spaces per indentation level
-vim.cmd("set tabstop=2")     -- Number of spaces for a tab
-vim.cmd("set softtabstop=2") -- Number of spaces for editing tabs
-vim.cmd("set number")
-vim.cmd("set relativenumber")
--- stylua: ignore end
-
 vim.g.mapleader = " "
 
 vim.g.have_nerd_font = true
@@ -17,27 +8,29 @@ vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 
--- turn off line wrapping
-vim.opt.wrap = false
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
+vim.opt.number = true         -- show line numbers
+vim.opt.relativenumber = true -- use relative line numbers
+vim.opt.wrap = false          -- turn off line wrapping
+vim.opt.ignorecase = true     -- case-insensitive searching
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
-
--- Decrease update time
-vim.opt.updatetime = 50
-
--- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.signcolumn = "yes"    -- Keep signcolumn on by default
+vim.opt.updatetime = 50       -- Decrease update time
+vim.opt.timeoutlen = 300      -- Decrease mapped sequence wait time
+vim.opt.inccommand = "split"  -- Preview substitutions live, as you type!
+vim.opt.scrolloff = 10        -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.updatetime = 300
+vim.opt.termguicolors = true
+vim.opt.expandtab = true      -- convert tabs to spaces
+vim.opt.shiftwidth = 2        -- amount to indent with << and >>
+vim.opt.tabstop = 2           -- spaces shown per tab
+vim.opt.smarttab = true       -- delete tab amount of whitespace at once
+vim.opt.smartindent = true    -- when going to a new line
+vim.opt.autoindent = true     -- keep indent from previous line
+vim.opt.cursorline = true     -- show line under cursor
+vim.opt.undofile = true       -- perist undos between sessions
+vim.opt.breakindent = true    -- keep indentation on broken down lines 
+vim.opt.splitright = true     -- add split to the right of the current buffer
+vim.opt.splitbelow = true     -- add split below the current buffer
 
 -- Center cursor when moving vertically
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -66,8 +59,6 @@ vim.keymap.set("n", "U", "<c-r>", { noremap = true })
 -- Noice dismiss
 vim.api.nvim_set_keymap("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
 
-vim.opt.updatetime = 300
-vim.opt.termguicolors = true
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
