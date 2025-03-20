@@ -2,10 +2,9 @@ local presenceEnabled = os.getenv("NVIM_DISCORD_PRESENCE") == "true"
 
 return {
   "vyfor/cord.nvim",
-  build = "./build || .\\build",
+  build = ':Cord update',
   event = "VeryLazy",
   enabled = presenceEnabled,
-  opts = {},
   config = function()
     require("cord").setup({
       usercmds = true,
@@ -14,7 +13,8 @@ return {
         tooltip = "The Superior Text Editor",
       },
       display = {
-        theme = "onyx",             -- onyx or pastel
+        theme = "default",
+        flavour = "dark",
         show_repository = false,
       },
       lsp = {
@@ -25,7 +25,7 @@ return {
       idle = {
         enabled = true,
         timeout = 300000,
-        details = "Thinking 🤔",
+        -- details = "Thinking 🤔",
       },
       buttons = {
         { label = "Github", url = "https://github.com/amarinkovic" },
