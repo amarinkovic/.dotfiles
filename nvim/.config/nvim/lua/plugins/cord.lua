@@ -34,16 +34,7 @@ return {
         solidity = {
           icon = "https://procoders.tech/wp-content/uploads/2022/12/How_to_Find_a_Solidity_Developer_for_Hire_Comprehensive_Guide.png",
           tooltip = "Solidity Smart Contract",
-          -- text = "Writing Solidity",
-        },
-        zig = {
-          icon = "https://programming.dev/pictrs/image/d9362f3f-d7a2-4837-8fef-47bc92ccc91e.png",
-          tooltip = "Zig",
-          -- text = "Writing Zig",
-        },
-        rust = {
-          icon = "https://www.techzine.eu/wp-content/uploads/2024/11/Rust_programming_language_black_logo.svg_.jpg",
-          tooltip = "Rust",
+          text = "Writing Solidity Smart Contracts",
         },
       },
     })
