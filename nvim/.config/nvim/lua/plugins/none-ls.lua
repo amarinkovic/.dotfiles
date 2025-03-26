@@ -8,10 +8,10 @@ return {
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier.with({
-          extra_filetypes = { "solidity" },
-        }),
+        -- null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.formatting.prettier.with({
+        --   extra_filetypes = { "solidity" },
+        -- }),
         null_ls.builtins.diagnostics.solhint.with({
           condition = function(utils)
             return utils.root_has_file({
@@ -24,7 +24,7 @@ return {
         require("none-ls.code_actions.eslint_d"),
       },
     })
-    vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format (none-ls)" })
+    -- vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Buffer format (none-ls)" })
 
     -- trigger buffer format on save
     -- vim.api.nvim_create_autocmd("BufWritePre", {
