@@ -2,6 +2,8 @@
 theme = catppuccin-mocha
 # theme = rose-pine
 
+macos-option-as-alt = true
+
 keybind = cmd+k=text:\x0c
 
 # ghostty +list-fonts
