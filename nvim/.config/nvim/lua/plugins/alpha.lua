@@ -8,6 +8,9 @@ return {
       local alpha = require("alpha")
       local theme = require("alpha.themes.startify")
 
+      local version = vim.version()
+      local version_str = string.format("v%d.%d.%d", version.major, version.minor, version.patch)
+
       theme.section.header.val = {
         [[                                                       ]],
         [[                                                       ]],
@@ -18,8 +21,8 @@ return {
         [[  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║   ]],
         [[  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║   ]],
         [[  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝   ]],
-        [[                                                       ]],
-        [[                                                       ]],
+        [[                                             ]] .. version_str,
+        [[                                                       ]]
       }
 
       -- disable global MRU
