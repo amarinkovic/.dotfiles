@@ -1,6 +1,6 @@
-
 ----------------- -=[ Auto-commands ]=- ------------------------------------------------------------
 
+-- highlight text briefly when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -9,5 +9,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- trigger buffer format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.lua", "*.sol", "*.scala", "*.rs", "*.go", "*.py", "*.js", "*.ts", "*.json" },
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
 ----------------------------------------------------------------------------------------------------
-

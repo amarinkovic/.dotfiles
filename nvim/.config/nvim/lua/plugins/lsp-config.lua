@@ -5,7 +5,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
+      { "j-hui/fidget.nvim",       opts = {} },
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()

@@ -30,11 +30,11 @@ return {
       virtualtext = {
         auto_trigger_ft = {},
         keymap = {
-          accept = "<A-A>",         -- accept whole completion
-          accept_line = "<A-a>",    -- accept one line
+          accept = "<A-A>", -- accept whole completion
+          accept_line = "<A-a>", -- accept one line
           accept_n_lines = "<A-z>", -- accept n lines (prompts for number)
-          prev = "<A-[>",           -- cycle to prev or manually invoke
-          next = "<A-]>",           -- cycle to next or manually invoke
+          prev = "<A-[>", -- cycle to prev or manually invoke
+          next = "<A-]>", -- cycle to next or manually invoke
           dismiss = "<A-e>",
         },
       },
