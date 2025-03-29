@@ -5,7 +5,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim",       opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
@@ -19,9 +19,7 @@ return {
       })
 
       require("mason").setup({
-        ui = {
-          border = "rounded",
-        },
+        ui = { border = "rounded" },
       })
 
       local servers = {
@@ -68,16 +66,8 @@ return {
 
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
-        focusable = false, -- Make the window non-focusable
+        focusable = false, -- Make the doc window non-focusable
       })
-
-      -- Auto popup diagnostic
-      vim.api.nvim_create_autocmd("CursorHold", {
-        callback = function()
-          vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
-        end,
-      })
-      vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
       -- Diagnostic Config, see :help vim.diagnostic.Opts
       vim.diagnostic.config({
