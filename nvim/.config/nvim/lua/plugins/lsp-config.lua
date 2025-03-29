@@ -27,7 +27,8 @@ return {
       local servers = {
         "lua_ls",
         "ts_ls",
-        "solidity",
+        -- "solidity",
+        "solidity_ls_nomicfoundation",
         "jdtls",
         "yamlls",
         "bashls",
