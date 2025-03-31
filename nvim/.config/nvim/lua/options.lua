@@ -34,9 +34,4 @@ vim.opt.breakindent = true -- keep indentation on broken down lines
 vim.opt.splitright = true -- add split to the right of the current buffer
 vim.opt.splitbelow = true -- add split below the current buffer
 
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
--- vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
--- vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
-
 ----------------------------------------------------------------------------------------------------
