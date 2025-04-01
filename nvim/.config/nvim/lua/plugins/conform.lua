@@ -10,6 +10,7 @@ return {
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
         python = { "isort", "black" },
+        java = { "checkstyle", lsp_format = "fallback" },
       },
     })
 
