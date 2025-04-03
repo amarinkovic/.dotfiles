@@ -32,7 +32,7 @@ return {
         }),
 
         formatting = {
-          fields = { "kind", "abbr", "menu" },
+          fields = { "abbr", "kind", "menu" },
           format = function(entry, item)
             local menu_icons = {
               nvim_lsp = "λ",
@@ -83,7 +83,7 @@ return {
               TypeParameter = " ",
             }
 
-            item.kind = (kind_icons[item.kind] or "") -- .. item.kind
+            item.kind = (kind_icons[item.kind] or "") .. item.kind
 
             -- CUSTOM TREESITTER BASED COLORFUL CMP MENU
             local highlights_info = require("colorful-menu").cmp_highlights(entry)
