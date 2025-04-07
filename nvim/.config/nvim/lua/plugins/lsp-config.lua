@@ -33,6 +33,7 @@ return {
         "lemminx",
         "zls",
         "glsl_analyzer",
+        "terraformls",
       }
 
       require("mason-lspconfig").setup({
