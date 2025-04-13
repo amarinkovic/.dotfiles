@@ -34,6 +34,7 @@ return {
         "zls",
         "glsl_analyzer",
         "terraformls",
+        "gradle_ls",
       }
 
       require("mason-lspconfig").setup({
