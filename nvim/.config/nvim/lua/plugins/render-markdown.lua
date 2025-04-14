@@ -6,6 +6,5 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   ---@module 'render-markdown'
-  ---@type render.md.UserConfig
   opts = {},
 }
