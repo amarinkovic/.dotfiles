@@ -18,6 +18,6 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<leader>bf", "<cmd>lua require('conform').format()<CR>", { desc = "Buffer format (none-ls)" })
+    vim.keymap.set({"n", "v"}, "<leader>bf", "<cmd>lua require('conform').format()<CR>", { desc = "Buffer format (none-ls)" })
   end,
 }
