@@ -10,13 +10,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- trigger buffer format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.lua", "*.sol", "*.scala", "*.rs", "*.go", "*.py", "*.js", "*.ts", "*.json" },
-  callback = function()
-    -- vim.lsp.buf.format({ async = false })
-    require("conform").format()
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.lua", "*.sol", "*.scala", "*.rs", "*.go", "*.py", "*.js", "*.ts", "*.json" },
+--   callback = function()
+--     -- vim.lsp.buf.format({ async = false })
+--     require("conform").format()
+--   end,
+-- })
 
 -- Auto popup diagnostic
 vim.api.nvim_create_autocmd("CursorHold", {
