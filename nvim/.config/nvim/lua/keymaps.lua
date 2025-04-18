@@ -31,4 +31,11 @@ vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window big
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
 -- vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
 -- vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+
+-- Quickfix list
+vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix list" })
+vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick-fix list" })
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next in quick-fix list" })
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous in quick-fix list" })
+
 -----------------------------------------------------------------------------------------------
