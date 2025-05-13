@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
+      { "williamboman/mason.nvim", opts = { ui = { border = "rounded" } } },
       "williamboman/mason-lspconfig.nvim",
       { "j-hui/fidget.nvim", opts = {} },
       "hrsh7th/cmp-nvim-lsp",
@@ -16,10 +16,6 @@ return {
             winblend = 0,
           },
         },
-      })
-
-      require("mason").setup({
-        ui = { border = "rounded" },
       })
 
       local servers = {
