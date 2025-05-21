@@ -3,6 +3,11 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lua',
+
+      'hrsh7th/cmp-path',
       "nvim-tree/nvim-web-devicons",
       "xzbdmw/colorful-menu.nvim",
     },
@@ -100,8 +105,10 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           -- { name = "minuet" },
-          -- { name = "luasnip" },
+          { name = "luasnip" },
           { name = "buffer" },
+          { name = 'nvim_lua' },
+          { name = 'treesitter' },
         }),
       })
     end,
