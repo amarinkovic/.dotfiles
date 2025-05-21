@@ -7,6 +7,9 @@ return {
         lua = { "stylua" },
         rust = { "rustfmt", lsp_format = "fallback" },
         solidity = { "prettierd", "prettier", stop_after_first = true },
+        css = { "prettierd", "prettier", stop_after_first = true },
+        html = { "prettierd", "prettier", stop_after_first = true },
+        json = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
@@ -18,6 +21,6 @@ return {
       },
     })
 
-    vim.keymap.set({"n", "v"}, "<leader>bf", "<cmd>lua require('conform').format()<CR>", { desc = "Buffer format (none-ls)" })
+    vim.keymap.set({ "n", "v" }, "<leader>bf", "<cmd>lua require('conform').format()<CR>", { desc = "Buffer format (none-ls)" })
   end,
 }
