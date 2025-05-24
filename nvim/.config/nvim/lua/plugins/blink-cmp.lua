@@ -18,41 +18,6 @@ return {
 
     appearance = {
       nerd_font_variant = "mono",
-
-      -- Blink does not expose its default kind icons so you must copy them all (or set your custom ones) and add Copilot
-      kind_icons = {
-        Copilot = "",
-        Text = "󰉿",
-        Method = "󰊕",
-        Function = "󰊕",
-        Constructor = "󰒓",
-
-        Field = "󰜢",
-        Variable = "󰆦",
-        Property = "󰖷",
-
-        Class = "󱡠",
-        Interface = "󱡠",
-        Struct = "󱡠",
-        Module = "󰅩",
-
-        Unit = "󰪚",
-        Value = "󰦨",
-        Enum = "󰦨",
-        EnumMember = "󰦨",
-
-        Keyword = "󰻾",
-        Constant = "󰏿",
-
-        Snippet = "󱄽",
-        Color = "󰏘",
-        File = "󰈔",
-        Reference = "󰬲",
-        Folder = "󰉋",
-        Event = "󱐋",
-        Operator = "󰪚",
-        TypeParameter = "󰬛",
-      },
     },
 
     completion = {
@@ -62,20 +27,80 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
-
         window = { border = "rounder" },
       },
       menu = {
         border = "rounded",
+        scrollbar = false,
         draw = {
           treesitter = { "lsp" },
-          --   columns = {
-          --     { "kind_icon", "label", gap = 1 },
-          --     { "label_description" },
-          --   },
+          columns = {
+            { "label", width = { fill = true } },
+            { "kind_icon", width = { min = 2 } },
+            { "kind", width = { min = 10 } },
+            { "source_name", width = { min = 12 } },
+            -- { "kind_icon" },
+            -- { "label", "label_description", gap = 1 },
+            -- { "label_description", gap = 1 },
+            -- { "kind", gap = 1 },
+            -- { "source_name", gap = 1 },
+          },
+          components = {
+            kind_icon = {
+              ellipsis = false,
+              width = { fill = true },
+              text = function(ctx)
+                local kind_icons = {
+                  Copilot = "",
+                  Text = "",
+                  Method = "󰆧",
+                  Function = "󰊕",
+                  Constructor = "",
+                  Field = "󰇽",
+                  Variable = "󰂡",
+                  Class = "󰠱",
+                  Interface = "",
+                  Module = "",
+                  Property = "󰜢",
+                  Unit = "",
+                  Value = "󰎠",
+                  Enum = "",
+                  Keyword = "󰌋",
+                  Snippet = "",
+                  Color = "󰏘",
+                  File = "󰈙",
+                  Reference = "",
+                  Folder = "󰉋",
+                  EnumMember = "",
+                  Constant = "󰏿",
+                  Struct = "",
+                  Event = "",
+                  Operator = "󰆕",
+                  TypeParameter = "󰅲",
+                }
+
+                local icon = kind_icons[ctx.kind]
+                if icon == nil then
+                  icon = ctx.kind_icon
+                end
+                return icon
+              end,
+            },
+            label = {
+              hl = function(ctx)
+                return ctx.is_selected and "CmpItemAbbrMatch" or "CmpItemAbbr"
+              end,
+            },
+            kind = {
+              hl = function(ctx)
+                return "CmpItemKind" .. ctx.kind
+              end,
+            },
+          },
         },
       },
     },
+
     signature = { window = { border = "rounded" } },
 
     -- Default list of enabled providers defined so that you can extend it
