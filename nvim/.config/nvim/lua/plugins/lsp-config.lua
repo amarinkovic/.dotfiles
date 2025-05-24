@@ -6,9 +6,26 @@ return {
       { "williamboman/mason.nvim", config = true, version = "^1.0.0", opts = { ui = { border = "rounded" } } },
       { "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
       { "j-hui/fidget.nvim", opts = {} },
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
+      { "saghen/blink.cmp" },
     },
-    config = function()
+    opts = {
+      servers = {
+        lua_ls = {},
+        ts_ls = {},
+        solidity_ls_nomicfoundation = {},
+        jdtls = {},
+        yamlls = {},
+        bashls = {},
+        lemminx = {},
+        zls = {},
+        glsl_analyzer = {},
+        terraformls = {},
+        gradle_ls = {},
+      },
+    },
+
+    config = function(_, opts)
       require("fidget").setup({
         -- fixes fidget output coloring
         notification = {
@@ -18,41 +35,21 @@ return {
         },
       })
 
-      local servers = {
-        "lua_ls",
-        "ts_ls",
-        -- "solidity",
-        "solidity_ls_nomicfoundation",
-        "jdtls",
-        "yamlls",
-        "bashls",
-        "lemminx",
-        "zls",
-        "glsl_analyzer",
-        "terraformls",
-        "gradle_ls",
-      }
-
-      require("mason-lspconfig").setup({
-        ensure_installed = servers,
-        automatic_installation = true,
-      })
-
-      --  LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      -- require("mason-lspconfig").setup({
+      --   ensure_installed = opts.servers,
+      --   automatic_installation = true,
+      -- })
 
       require("java").setup()
 
+      -- vim.api.nvim_set_hl(0, "BlinkCmpKind", { fg = "#FFFFFF", bg = "#000000" }) -- Example colors
+      -- vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { fg = "#FF5555" }) -- Specific kind
+      --
       local lspconfig = require("lspconfig")
 
-      for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup({
-          capabilities = capabilities,
-        })
+      for server, config in pairs(opts.servers) do
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
       end
 
       -- Center screen to cursor when going to definition
