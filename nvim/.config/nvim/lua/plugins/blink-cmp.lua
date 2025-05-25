@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   version = "1.*",
-  Lazy = true,
+  lazy = true,
   dependencies = {
     { "giuxtaposition/blink-cmp-copilot" },
   },
@@ -11,7 +11,7 @@ return {
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<Esc>"] = { "hide", "fallback" },
+      ["<Esc>"] = { "cancel", "fallback" },
       ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
       ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
     },
