@@ -33,59 +33,39 @@ return {
             { "kind", width = { min = 10 } },
             { "source_name", width = { min = 12 } },
           },
-          components = {
-            kind_icon = {
-              ellipsis = false,
-              width = { fill = true },
-              text = function(ctx)
-                local kind_icons = {
-                  Copilot = "",
-                  Text = "",
-                  Method = "󰆧",
-                  Function = "󰊕",
-                  Constructor = "",
-                  Field = "󰇽",
-                  Variable = "󰂡",
-                  Class = "󰠱",
-                  Interface = "",
-                  Module = "",
-                  Property = "󰜢",
-                  Unit = "",
-                  Value = "󰎠",
-                  Enum = "",
-                  Keyword = "󰌋",
-                  Snippet = "",
-                  Color = "󰏘",
-                  File = "󰈙",
-                  Reference = "",
-                  Folder = "󰉋",
-                  EnumMember = "",
-                  Constant = "󰏿",
-                  Struct = "",
-                  Event = "",
-                  Operator = "󰆕",
-                  TypeParameter = "󰅲",
-                }
-
-                local icon = kind_icons[ctx.kind]
-                if icon == nil then
-                  icon = ctx.kind_icon
-                end
-                return icon
-              end,
-            },
-            label = {
-              hl = function(ctx)
-                return ctx.is_selected and "CmpItemAbbrMatch" or "CmpItemAbbr"
-              end,
-            },
-            kind = {
-              hl = function(ctx)
-                return "CmpItemKind" .. ctx.kind
-              end,
-            },
-          },
         },
+      },
+    },
+
+    appearance = {
+      nerd_font_variant = "normal",
+      kind_icons = {
+        Copilot = " ",
+        Text = " ", -- "󰉿 ",
+        Method = "󰊕 ",
+        Function = "󰊕 ",
+        Constructor = " ",
+        Field = "󰜢 ",
+        Variable = " ",
+        Class = " ",
+        Interface = "󰜰 ", -- " ",
+        Module = " ", -- " ",
+        Property = " ", -- " ",
+        Unit = " ",
+        Value = "󰎠 ",
+        Enum = " ",
+        EnumMember = " ",
+        Keyword = "󰌆 ", -- " ",
+        Snippet = " ", -- " ",
+        Color = " ",
+        File = " ",
+        Folder = " ",
+        Reference = " ", -- " ",
+        Constant = "󰏿 ",
+        Struct = " ",
+        Event = " ",
+        Operator = " ",
+        TypeParameter = " ",
       },
     },
 
