@@ -35,16 +35,13 @@ return {
         },
       })
 
-      -- require("mason-lspconfig").setup({
-      --   ensure_installed = opts.servers,
-      --   automatic_installation = true,
-      -- })
+      require("mason-lspconfig").setup({
+        -- ensure_installed = opts.servers,
+        automatic_installation = true,
+      })
 
       require("java").setup()
 
-      -- vim.api.nvim_set_hl(0, "BlinkCmpKind", { fg = "#FFFFFF", bg = "#000000" }) -- Example colors
-      -- vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { fg = "#FF5555" }) -- Specific kind
-      --
       local lspconfig = require("lspconfig")
 
       for server, config in pairs(opts.servers) do
