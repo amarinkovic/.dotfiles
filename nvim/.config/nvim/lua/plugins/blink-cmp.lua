@@ -2,6 +2,9 @@ return {
   "saghen/blink.cmp",
   version = "1.*",
   Lazy = true,
+  dependencies = {
+    { "giuxtaposition/blink-cmp-copilot" },
+  },
   opts = {
     keymap = {
       preset = "default",
@@ -12,8 +15,6 @@ return {
       ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
       ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
     },
-
-    appearance = { nerd_font_variant = "HackNerdFont" },
 
     completion = {
       ghost_text = { enabled = true },
@@ -31,14 +32,15 @@ return {
             { "label", width = { fill = true } },
             { "kind_icon", width = { min = 2 } },
             { "kind", width = { min = 10 } },
-            { "source_name", width = { min = 12 } },
+            -- { "source_name", width = { min = 12 } },
           },
         },
       },
     },
 
     appearance = {
-      nerd_font_variant = "normal",
+      nerd_font_variant = "HackNerdFont",
+
       kind_icons = {
         Copilot = " ",
         Text = " ", -- "󰉿 ",
@@ -72,7 +74,17 @@ return {
     signature = { window = { border = "rounded" } },
 
     sources = {
-      default = { "lsp" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          kind = "Copilot",
+          score_offset = 100, --higher number, higher prioroty
+          async = true,
+        },
+      },
+      default = { "copilot", "lsp" },
+      -- default = { "lsp" },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
