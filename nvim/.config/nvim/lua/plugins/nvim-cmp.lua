@@ -1,13 +1,14 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lua',
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lua",
 
-      'hrsh7th/cmp-path',
+      "hrsh7th/cmp-path",
       "nvim-tree/nvim-web-devicons",
       "xzbdmw/colorful-menu.nvim",
     },
@@ -107,8 +108,8 @@ return {
           -- { name = "minuet" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = 'nvim_lua' },
-          { name = 'treesitter' },
+          { name = "nvim_lua" },
+          { name = "treesitter" },
         }),
       })
     end,
