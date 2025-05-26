@@ -8,7 +8,7 @@ echo "source ~/.dotfiles/.myrc" >> ~/.zshrc
 
 Everything else in this repo is laid out to be used with [GNU Stow](https://www.gnu.org/software/stow/). Following tools can be configured using `stow` command:
 
-- Allacrity: `stow alacritty`
+- Ghostty: `stow ghostty`
 - Git: `stow git`
 - Neovim: `stow nvim`
 - Tmux: `stow tmux`
