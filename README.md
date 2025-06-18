@@ -53,7 +53,7 @@ rm -rf ~/.tmux/plugins/tmux
 
 ## `tmux` shortcuts
 
-Some common _tmux_ shortcuts, so that I don't forget them. Current prefix is `<Ctrl-z>`.
+Some common _tmux_ shortcuts, so that I don't forget them. Current prefix is ` (backtick)
 
 ```zsh
 pane zoom:                  <prefix> + z
