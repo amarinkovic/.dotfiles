@@ -4,7 +4,7 @@
     "states": {
       "critical": 95
     },
-    "on-click": "kitty -e htop"
+    "on-click": "ghostty -e btop"
   },
   "memory": {
     "format": " {}%",
