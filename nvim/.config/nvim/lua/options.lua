@@ -33,5 +33,5 @@ vim.opt.undofile = true -- perist undos between sessions
 vim.opt.breakindent = true -- keep indentation on broken down lines
 vim.opt.splitright = true -- add split to the right of the current buffer
 vim.opt.splitbelow = true -- add split below the current buffer
-
+vim.opt.winborder = "rounded"
 ----------------------------------------------------------------------------------------------------

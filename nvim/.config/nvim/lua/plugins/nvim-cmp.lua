@@ -24,10 +24,6 @@ return {
           throttle = 0, -- 30ms
           -- max_view_entries = 30,
         },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
