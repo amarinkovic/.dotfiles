@@ -21,10 +21,9 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
-        window = { border = "rounded" },
       },
+
       menu = {
-        border = "rounded",
         scrollbar = false,
         draw = {
           treesitter = { "lsp" },
@@ -71,8 +70,6 @@ return {
       },
     },
 
-    signature = { window = { border = "rounded" } },
-
     sources = {
       providers = {
         copilot = {
@@ -83,7 +80,7 @@ return {
           async = true,
         },
       },
-      default = { "copilot", "lsp" },
+      default = { "copilot", "lsp", "path" },
       -- default = { "lsp" },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
