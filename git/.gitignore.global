@@ -1,7 +1,9 @@
 .yalc/
 yalc.lock
 
+# AI tools
 .supermaven/
+GEMINI.md
 
 # Scala tooling
 .bloop/
