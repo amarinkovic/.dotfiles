@@ -14,6 +14,7 @@ return {
       vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find references" })
       vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+      vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
       vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix list" })
       vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick-fix list" })
       vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next in quick-fix list" })
