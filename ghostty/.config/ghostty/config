@@ -9,6 +9,8 @@ keybind = cmd+k=text:\x0c
 # ghostty +list-fonts
 font-family = FiraCode Nerd Font Mono Reg
 
+cursor-invert-fg-bg = true
+
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
