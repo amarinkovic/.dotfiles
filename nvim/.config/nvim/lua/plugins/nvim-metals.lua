@@ -7,6 +7,22 @@ return {
   ft = { "scala", "sbt" },
   opts = function()
     local metals_config = require("metals").bare_config()
+    metals_config.settings = {
+      startMcpServer = true,
+      mcpClient = "gemini",
+      defaultBspToBuildTool = true,
+      enableSemanticHighlighting = false,
+      inlayHints = {
+        byNameParameters = { enable = true },
+        hintsInPatternMatch = { enable = true },
+        implicitArguments = { enable = true },
+        implicitConversions = { enable = true },
+        inferredTypes = { enable = true },
+        typeParameters = { enable = true },
+      },
+      serverVersion = "latest.snapshot",
+      excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+    }
     metals_config.on_attach = function(client, bufnr)
       -- your on_attach function
     end
