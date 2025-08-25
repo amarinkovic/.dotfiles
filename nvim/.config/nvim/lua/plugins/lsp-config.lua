@@ -3,8 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
-      { "williamboman/mason.nvim", config = true, version = "^1.0.0", opts = { ui = { border = "rounded" } } },
-      { "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
+      { "williamboman/mason.nvim", config = true, version = "^2.0.0", opts = { ui = { border = "rounded" } } },
+      { "williamboman/mason-lspconfig.nvim", version = "^2.0.0" },
       { "j-hui/fidget.nvim", opts = {} },
       -- "hrsh7th/cmp-nvim-lsp",
       { "saghen/blink.cmp" },
