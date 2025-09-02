@@ -4,9 +4,7 @@ return {
     lazy = false,
     dependencies = {
       { "williamboman/mason.nvim", config = true, version = "^2.0.0", opts = { ui = { border = "rounded" } } },
-      { "williamboman/mason-lspconfig.nvim", version = "^2.0.0" },
       { "j-hui/fidget.nvim", opts = {} },
-      -- "hrsh7th/cmp-nvim-lsp",
       { "saghen/blink.cmp" },
     },
     opts = {
@@ -33,11 +31,6 @@ return {
             winblend = 0,
           },
         },
-      })
-
-      require("mason-lspconfig").setup({
-        -- ensure_installed = opts.servers,
-        automatic_installation = true,
       })
 
       require("java").setup()

@@ -22,4 +22,18 @@ require("lazy").setup("plugins", {
   },
 })
 
+vim.lsp.enable({
+  "bashls",
+  "glsl_analyzer",
+  "gopls",
+  "gradle_ls",
+  -- "hyprls",
+  "jsonls",
+  "lemminx",
+  "lua_ls",
+  "solidity_ls_nomicfoundation",
+  "terraformls",
+  "ts_ls",
+  "yamlls",
+})
 ------------------------------------------------------------
