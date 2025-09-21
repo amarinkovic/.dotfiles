@@ -26,4 +26,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
+-- General LSP key mappings
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP Keybinds",
+  group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+  callback = function()
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+    vim.keymap.set({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+  end,
+})
 ----------------------------------------------------------------------------------------------------

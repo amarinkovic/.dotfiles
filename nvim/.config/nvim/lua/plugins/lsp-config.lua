@@ -80,13 +80,6 @@ return {
           end,
         },
       })
-
-      -- general LSP key mappings
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-      vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-      vim.keymap.set({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
     end,
   },
 }
