@@ -4,7 +4,6 @@ return {
     lazy = false,
     dependencies = {
       { "williamboman/mason.nvim", config = true, version = "^2.0.0", opts = { ui = { border = "rounded" } } },
-      { "j-hui/fidget.nvim", opts = {} },
       { "saghen/blink.cmp" },
     },
     opts = {
@@ -24,15 +23,6 @@ return {
     },
 
     config = function(_, opts)
-      require("fidget").setup({
-        -- fixes fidget output coloring
-        notification = {
-          window = {
-            winblend = 0,
-          },
-        },
-      })
-
       require("java").setup()
 
       local lspconfig = require("lspconfig")
