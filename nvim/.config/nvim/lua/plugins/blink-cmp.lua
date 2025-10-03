@@ -1,6 +1,5 @@
 return {
   "saghen/blink.cmp",
-  version = "1.*",
   lazy = true,
   dependencies = {
     { "giuxtaposition/blink-cmp-copilot" },
@@ -80,7 +79,9 @@ return {
       },
       default = { "copilot", "lsp", "path" },
     },
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    fuzzy = {
+      implementation = "prefer_rust_with_warning",
+    },
   },
   opts_extend = { "sources.default" },
 }
