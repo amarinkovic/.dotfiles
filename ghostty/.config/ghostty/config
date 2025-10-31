@@ -21,7 +21,6 @@ window-height = 50
 window-width = 200
 
 # -- https://github.com/hackr-sh/ghostty-shaders
-# custom-shader = "shaders/bloom.glsl"
 # custom-shader = "shaders/galaxy.glsl"
 # custom-shader = "shaders/gears.glsl"
 # custom-shader = "shaders/glitchy.glsl"
@@ -30,4 +29,6 @@ window-width = 200
 # custom-shader = "shaders/sparks.glsl"
 # custom-shader = "shaders/underwater.glsl"
 # custom-shader = "shaders/water.glsl"
+# custom-shader = "shaders/cursor_blaze_tapered.glsl"
+# custom-shader = "shaders/blaze_sparks.glsl"
 
