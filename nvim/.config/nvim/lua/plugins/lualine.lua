@@ -14,19 +14,15 @@ return {
         },
         lualine_x = {
           {
-            function()
-              local clients = vim.lsp.get_active_clients()
-              if #clients > 0 then
-                local client_names = {}
-                for _, client in ipairs(clients) do
-                  table.insert(client_names, client.name)
-                end
-                return "LSP: " .. table.concat(client_names, ", ")
-              end
-              return ""
-            end,
-            icon = " ",
-            color = { fg = "#ffffff" },
+            "lsp_status",
+            icon = " ", -- f013
+            symbols = {
+              spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+              done = "✓",
+              separator = ", ",
+            },
+            ignore_lsp = {},
+            show_name = true,
           },
           "encoding",
           "fileformat",
