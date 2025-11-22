@@ -121,6 +121,7 @@ return {
       vim.lsp.buf.code_action({
         context = {
           only = source_actions,
+          diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
         },
       })
     end, {})
