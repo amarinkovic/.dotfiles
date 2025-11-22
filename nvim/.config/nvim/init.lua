@@ -31,6 +31,7 @@ vim.lsp.enable({
   "gradle_ls",
   -- "hyprls",
   "jsonls",
+  "kotlin_lsp",
   "lemminx",
   "lua_ls",
   "solidity_ls_nomicfoundation",
