@@ -6,6 +6,17 @@ return {
         theme = "dracula",
       },
       sections = {
+        lualine_b = {
+          {
+            function()
+              local reg = vim.fn.reg_recording()
+              if reg == "" then
+                return ""
+              end
+              return "recording @" .. reg
+            end,
+          },
+        },
         lualine_c = {
           {
             "filename",
