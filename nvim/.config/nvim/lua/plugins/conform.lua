@@ -18,6 +18,7 @@ return {
         java = { "checkstyle", lsp_format = "fallback" },
         groovy = { "npm-groovy-lint", lsp_format = "fallback" },
         make = { "checkmake", lsp_format = "fallback" },
+        zig = { "zigfmt", lsp_format = "fallback" },
       },
     })
 
