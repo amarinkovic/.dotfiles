@@ -26,6 +26,7 @@ require("lazy").setup("plugins", {
 
 vim.lsp.enable({
   "bashls",
+  "docker-language-server",
   "glsl_analyzer",
   "gopls",
   "gradle_ls",
