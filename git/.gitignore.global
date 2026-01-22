@@ -6,6 +6,8 @@ yalc.lock
 # AI tools
 .supermaven/
 GEMINI.md
+.claude/
+CLAUDE.md
 
 # Scala tooling
 .bloop/
