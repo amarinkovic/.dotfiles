@@ -30,7 +30,7 @@ vim.lsp.enable({
   "glsl_analyzer",
   "gopls",
   "gradle_ls",
-  -- "hyprls",
+  "hyprls",
   "jsonls",
   "kotlin_lsp",
   "lemminx",
