@@ -35,6 +35,7 @@ vim.lsp.enable({
   "kotlin_lsp",
   "lemminx",
   "lua_ls",
+  "pylsp",
   "solidity_ls_nomicfoundation",
   "terraformls",
   "ts_ls",
