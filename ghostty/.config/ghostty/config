@@ -1,6 +1,6 @@
 # ghostty +list-themes
-theme = Catppuccin Mocha
-# theme = rose-pine
+# theme = Catppuccin Mocha
+theme = Rose Pine
 
 macos-option-as-alt = true
 
