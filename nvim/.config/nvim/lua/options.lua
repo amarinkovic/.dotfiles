@@ -4,6 +4,19 @@ vim.g.mapleader = " "
 
 vim.g.have_nerd_font = true
 
+vim.filetype.add({
+  extension = {
+    fs = "glsl",
+    vs = "glsl",
+    vert = "glsl",
+    tesc = "glsl",
+    tese = "glsl",
+    frag = "glsl",
+    geom = "glsl",
+    comp = "glsl",
+  },
+})
+
 --  Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
