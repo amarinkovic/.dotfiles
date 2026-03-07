@@ -9,11 +9,8 @@ return {
     local jdtls_setup = require("jdtls.setup")
 
     -- Find root of project
-    local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-    local root_dir = jdtls_setup.find_root(root_markers)
-    if not root_dir then
-      return
-    end
+    local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "*.java" }
+    local root_dir = jdtls_setup.find_root(root_markers) or vim.fn.expand("%:p:h")
 
     -- Paths
     local home = os.getenv("HOME")
