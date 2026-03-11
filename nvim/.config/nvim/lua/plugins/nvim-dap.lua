@@ -1,10 +1,3 @@
-local js_based_languages = {
-  "typescript",
-  "javascript",
-  "typescriptreact",
-  "javascriptreact",
-}
-
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
@@ -40,7 +33,7 @@ return {
     vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "debugPC", numhl = "debugPC" })
 
     -- Setup virtual text to show variable values inline
-    require("nvim-dap-virtual-text").setup()
+    require("nvim-dap-virtual-text").setup({})
 
     dap.configurations.javascript = dap.configurations.typescript
   end,
