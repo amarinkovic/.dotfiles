@@ -29,7 +29,6 @@ vim.opt.wrap = false -- turn off line wrapping
 vim.opt.ignorecase = true -- case-insensitive searching
 vim.opt.smartcase = true
 vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
-vim.opt.updatetime = 50 -- Decrease update time
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.

@@ -24,23 +24,9 @@ require("lazy").setup("plugins", {
 
 ----------------=[ LSP ]=------------------------------------
 
-vim.lsp.enable({
-  "bashls",
-  "docker-language-server",
-  "glsl_analyzer",
-  "gopls",
-  "gradle_ls",
-  "hyprls",
-  "jsonls",
-  "kotlin_lsp",
-  "lemminx",
-  "lua_ls",
-  "pylsp",
-  "solidity_ls_nomicfoundation",
-  "terraformls",
-  "ts_ls",
-  "yamlls",
-  "zls",
-})
+local lsp_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua", false, true)
+vim.lsp.enable(vim.tbl_map(function(path)
+  return vim.fn.fnamemodify(path, ":t:r")
+end, lsp_files))
 
 ------------------------------------------------------------
