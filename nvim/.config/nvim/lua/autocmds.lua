@@ -18,28 +18,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Auto popup diagnostic
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
-  end,
-})
 vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
 -- General LSP key mappings
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP Keybinds",
   group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-  callback = function()
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-    vim.keymap.set({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+  callback = function(args)
+    local buf = args.buf
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "Go to Definition" })
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { buffer = buf, desc = "Go to Implementation" })
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "Go to References" })
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "Code Action" })
+    vim.keymap.set({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, { buffer = buf, desc = "Rename" })
     vim.keymap.set("n", "<leader>th", function()
-      local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
-      vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
-    end, { desc = "Toggle Inlay Hints" })
+      local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = buf })
+      vim.lsp.inlay_hint.enable(not enabled, { bufnr = buf })
+    end, { buffer = buf, desc = "Toggle Inlay Hints" })
   end,
 })
 
@@ -51,35 +46,35 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- ide like highlight when stopping cursor
-vim.api.nvim_create_autocmd("CursorMoved", {
-  group = vim.api.nvim_create_augroup("LspReferenceHighlight", { clear = true }),
-  desc = "Highlight references under cursor",
-  callback = function()
-    -- Only run if the cursor is not in insert mode
-    if vim.fn.mode() ~= "i" then
-      local clients = vim.lsp.get_clients({ bufnr = 0 })
-      local supports_highlight = false
-      for _, client in ipairs(clients) do
-        if client.server_capabilities.documentHighlightProvider then
-          supports_highlight = true
-          break -- Found a supporting client, no need to check others
-        end
-      end
+-- On idle: show diagnostic float + highlight LSP references under cursor
+local cursor_hold_group = vim.api.nvim_create_augroup("CursorHoldActions", { clear = true })
 
-      -- 3. Proceed only if an LSP is active AND supports the feature
-      if supports_highlight then
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = cursor_hold_group,
+  desc = "Show diagnostic float on idle",
+  callback = function()
+    vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
+  end,
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = cursor_hold_group,
+  desc = "Highlight LSP references under cursor on idle",
+  callback = function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    for _, client in ipairs(clients) do
+      if client.server_capabilities.documentHighlightProvider then
         vim.lsp.buf.clear_references()
         vim.lsp.buf.document_highlight()
+        break
       end
     end
   end,
 })
 
--- ide like highlight when stopping cursor
-vim.api.nvim_create_autocmd("CursorMovedI", {
-  group = "LspReferenceHighlight",
-  desc = "Clear highlights when entering insert mode",
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = cursor_hold_group,
+  desc = "Clear LSP reference highlights when entering insert mode",
   callback = function()
     vim.lsp.buf.clear_references()
   end,
