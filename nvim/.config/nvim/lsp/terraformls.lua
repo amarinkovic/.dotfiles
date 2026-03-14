@@ -35,6 +35,6 @@
 --- [as is required by terraform-ls](https://github.com/hashicorp/terraform-ls/blob/main/docs/SETTINGS.md#how-to-pass-settings).
 return {
   cmd = { "terraform-ls", "serve" },
-  filetypes = { "terraform", "terraform-vars" },
+  filetypes = { "terraform", "tf-vars" },
   root_markers = { ".terraform", ".git" },
 }
