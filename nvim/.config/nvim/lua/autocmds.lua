@@ -11,14 +11,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- trigger buffer format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
   pattern = { "*.lua", "*.json" },
   callback = function()
-    -- vim.lsp.buf.format({ async = false })
     require("conform").format()
   end,
 })
 
-vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
+-- vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
 -- General LSP key mappings
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- no auto commenting on new lines
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("no_auto_comment", {}),
+  group = vim.api.nvim_create_augroup("no_auto_comment", { clear = true }),
   callback = function()
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
@@ -51,16 +51,9 @@ local cursor_hold_group = vim.api.nvim_create_augroup("CursorHoldActions", { cle
 
 vim.api.nvim_create_autocmd("CursorHold", {
   group = cursor_hold_group,
-  desc = "Show diagnostic float on idle",
+  desc = "Show diagnostics and highlight LSP references on idle",
   callback = function()
     vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
-  end,
-})
-
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = cursor_hold_group,
-  desc = "Highlight LSP references under cursor on idle",
-  callback = function()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
     for _, client in ipairs(clients) do
       if client.server_capabilities.documentHighlightProvider then

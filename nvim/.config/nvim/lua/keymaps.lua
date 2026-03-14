@@ -1,11 +1,11 @@
- ----------------=[ Keymaps ]=- -----------------------------------------------------------
+----------------=[ Keymaps ]=- -----------------------------------------------------------
 
 -- Center cursor when moving vertically
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
-vim.api.nvim_set_keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
 
 -- Move selected lines up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
@@ -24,7 +24,7 @@ vim.keymap.set("v", "<leader>/", "gc", { desc = "toggle comment", remap = true }
 vim.keymap.set("n", "U", "<c-r>", { noremap = true })
 
 -- Noice dismiss
-vim.api.nvim_set_keymap("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
 
 -- Resize panes
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
