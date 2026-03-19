@@ -1,4 +1,24 @@
 ----------------=[ Keymaps ]=- -----------------------------------------------------------
+--
+-- <leader>/        toggle comment (line / visual)
+-- <leader>p        paste over selection without yanking
+-- <leader>s        substitute word under cursor (global, case-sensitive)
+-- <leader>nn       dismiss Noice notifications
+--
+-- Navigation
+--   <C-u> / <C-d>  half-page up/down, centered
+--   U              redo
+--   ]q / [q        next/prev quickfix item
+--
+-- Splits
+--   = / -          widen / narrow vertical split
+--
+-- Quickfix
+--   <leader>qf     open quickfix list
+--   <leader>qq     close quickfix list
+--   ]q / [q        next / prev item
+--
+-----------------------------------------------------------------------------------------------
 
 -- Center cursor when moving vertically
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -27,8 +47,8 @@ vim.keymap.set("n", "U", "<c-r>", { noremap = true })
 vim.keymap.set("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
 
 -- Resize panes
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "Widen split" })
+vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "Narrow split" })
 -- vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
 -- vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
