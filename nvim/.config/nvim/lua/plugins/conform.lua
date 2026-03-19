@@ -4,10 +4,7 @@ return {
     local prettier = { "prettierd", "prettier", stop_after_first = true }
 
     require("conform").setup({
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_format = "fallback",
-      },
+      format_on_save = false,
       formatters_by_ft = {
         lua             = { "stylua" },
         rust            = { "rustfmt", lsp_format = "fallback" },
