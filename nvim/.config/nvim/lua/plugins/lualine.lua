@@ -7,6 +7,7 @@ return {
       },
       sections = {
         lualine_b = {
+          "branch",
           {
             function()
               local reg = vim.fn.reg_recording()
