@@ -8,8 +8,11 @@ keybind = cmd+k=text:\x0c
 
 # ghostty +list-fonts
 font-family = FiraCode Nerd Font Mono Reg
+font-size = 13
+font-feature = calt
 
 cursor-invert-fg-bg = true
+cursor-style-blink = false
 
 confirm-close-surface = false
 quit-after-last-window-closed = true
@@ -19,6 +22,11 @@ window-decoration = true
 
 window-height = 50
 window-width = 200
+
+mouse-hide-while-typing = true
+scrollback-limit = 10000
+shell-integration = detect
+clipboard-trim-trailing-spaces = true
 
 # -- https://github.com/hackr-sh/ghostty-shaders
 # custom-shader = "shaders/galaxy.glsl"
