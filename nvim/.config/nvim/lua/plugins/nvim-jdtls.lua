@@ -14,7 +14,11 @@ return {
 
     -- Paths
     local home = os.getenv("HOME")
-    local workspace_dir = home .. "/.local/share/nvim/jdtls-workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+    -- Use a hash of the full path to avoid collisions between projects with the same directory name
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local project_hash = vim.fn.sha256(root_dir):sub(1, 8)
+    local workspace_base = home .. "/.local/share/nvim/jdtls-workspace/"
+    local workspace_dir = workspace_base .. project_name .. "-" .. project_hash
     local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
     local jdtls_path = mason_path .. "/jdtls"
     local lombok_path = jdtls_path .. "/lombok.jar"
@@ -131,6 +135,26 @@ return {
         ),
       },
     }
+
+    -- Command to list and clean up stale JDTLS workspaces
+    vim.api.nvim_create_user_command("JdtlsCleanWorkspaces", function()
+      local dirs = vim.fn.glob(workspace_base .. "*", false, true)
+      if #dirs == 0 then
+        vim.notify("No JDTLS workspaces found", vim.log.levels.INFO)
+        return
+      end
+      vim.ui.select(dirs, {
+        prompt = "Select workspace to delete (or close to cancel):",
+        format_item = function(path)
+          return vim.fn.fnamemodify(path, ":t")
+        end,
+      }, function(choice)
+        if choice then
+          vim.fn.delete(choice, "rf")
+          vim.notify("Deleted: " .. vim.fn.fnamemodify(choice, ":t"), vim.log.levels.INFO)
+        end
+      end)
+    end, { desc = "Clean up stale JDTLS workspaces" })
 
     -- Setup autocmd to start jdtls
     local jdtls_augroup = vim.api.nvim_create_augroup("nvim-jdtls", { clear = true })
