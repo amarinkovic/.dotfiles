@@ -78,11 +78,11 @@ window#waybar.empty #window {
 }
 
 #workspaces,
-#custom-appmenu,
+#custom-apps,
 #network,
 #clock,
-#bluetooth,
-#wireplumber {
+#pulseaudio,
+#idle-inhibitor {
   background-color: @surface;
   border-radius: 999px;
   box-shadow: 0px 0px 6px 3px @shadow inset;
@@ -90,9 +90,9 @@ window#waybar.empty #window {
 }
 
 #network,
-#wireplumber,
-#bluetooth,
-#clock {
+#clock,
+#pulseaudio,
+#idle-inhibitor {
   padding: 0 8px;
 }
 
@@ -107,7 +107,7 @@ window#waybar.empty #window {
   text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
 }
 
-#custom-appmenu {
+#custom-apps {
   font-size: 1.2rem;
   min-width: 32px;
   min-height: 32px;

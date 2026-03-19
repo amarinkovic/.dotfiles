@@ -61,17 +61,20 @@
   },
   "clock": {
     // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": " {:%H:%M}",
     "format-alt": "{:%Y-%m-%d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "min-width": 80,
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": " {ifname}",
-    "tooltip-format": " {ifname} via {gwaddr}",
-    "format-linked": " {ifname} (No IP)",
-    "format-disconnected": "Disconnected ⚠ {ifname}",
-    "format-alt": " {ifname}: {ipaddr}/{cidr}",
+    "format-wifi": "{icon} {essid} {signalStrength}%",
+    "format-ethernet": " {ifname}",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "⚠ Disconnected",
+    "format-alt": " {ifname}: {ipaddr}/{cidr}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
   },
   "pulseaudio": {
     "scroll-step": 5, // %, can be a float
@@ -91,18 +94,16 @@
     "on-click": "pavucontrol",
   },
   "custom/power": {
-    "format": " ⏻ ",
+    "format": " 󰐥 ",
     "tooltip": false,
     "on-click": "wlogout --protocol layer-shell",
   },
   // https://lib.rs/crates/waybar_media_display
   "custom/spotify": {
-    "interval": 1,
     "format": "{}",
     "max-length": 256,
-    "interval": 1, // Remove this if your script is endless and write in loop
-    "exec": "~/.config/waybar/player.sh", // Script in resources folder
-    "exec-if": "pgrep spotify",
+    "exec": "~/.config/waybar/player.sh",
+    "exec-if": "playerctl -l | grep -q spotify",
     "on-click": "playerctl --player=spotify play-pause",
     "escape": true,
   },
