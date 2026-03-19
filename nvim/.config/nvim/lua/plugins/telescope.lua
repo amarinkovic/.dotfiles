@@ -39,8 +39,6 @@ return {
       vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
       vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix list" })
       vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick-fix list" })
-      vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next in quick-fix list" })
-      vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous in quick-fix list" })
     end,
   },
   {
