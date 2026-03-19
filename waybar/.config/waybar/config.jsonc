@@ -102,6 +102,7 @@
   "custom/spotify": {
     "format": "{}",
     "max-length": 256,
+    "restart-interval": 5,
     "exec": "~/.config/waybar/player.sh",
     "exec-if": "playerctl -l | grep -q spotify",
     "on-click": "playerctl --player=spotify play-pause",
