@@ -8,7 +8,6 @@ return {
   opts = {
     keymap = {
       preset = "default",
-      ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Tab>"] = {
         "select_next",
