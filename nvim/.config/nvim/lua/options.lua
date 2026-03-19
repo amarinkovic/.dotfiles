@@ -34,6 +34,7 @@ vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.updatetime = 300
 vim.opt.termguicolors = true
+-- Fallback indent defaults — vim-sleuth will override these per-file based on detected style
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- amount to indent with << and >>
 vim.opt.tabstop = 2 -- spaces shown per tab
@@ -41,7 +42,8 @@ vim.opt.smarttab = true -- delete tab amount of whitespace at once
 vim.opt.smartindent = true -- when going to a new line
 vim.opt.autoindent = true -- keep indent from previous line
 vim.opt.cursorline = true -- show line under cursor
-vim.opt.undofile = true -- perist undos between sessions
+vim.opt.undofile = true -- persist undos between sessions
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo" -- store undo files in a central location
 vim.opt.breakindent = true -- keep indentation on broken down lines
 vim.opt.splitright = true -- add split to the right of the current buffer
 vim.opt.splitbelow = true -- add split below the current buffer

@@ -1,10 +1,10 @@
-local presenceEnabled = os.getenv("NVIM_DISCORD_PRESENCE") == "true"
-
 return {
   "vyfor/cord.nvim",
   build = ":Cord update",
   event = "VeryLazy",
-  enabled = presenceEnabled,
+  cond = function()
+    return os.getenv("NVIM_DISCORD_PRESENCE") == "true"
+  end,
   config = function()
     require("cord").setup({
       editor = {

@@ -9,15 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- trigger buffer format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
-  pattern = { "*.lua", "*.json" },
-  callback = function()
-    require("conform").format()
-  end,
-})
-
 -- vim.diagnostic.config({ virtual_text = true, float = { border = "rounded" } })
 
 -- General LSP key mappings
