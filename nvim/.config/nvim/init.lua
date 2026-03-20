@@ -30,3 +30,5 @@ vim.lsp.enable(vim.tbl_map(function(path)
 end, lsp_files))
 
 ------------------------------------------------------------
+
+require("quicktype") -- must be after lazy setup
