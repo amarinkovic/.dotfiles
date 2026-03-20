@@ -9,7 +9,16 @@ return {
     keymap = {
       preset = "default",
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<Tab>"] = {
+        "select_next",
+        "snippet_forward",
+        function(cmp)
+          if cmp.is_ghost_text_visible() then
+            return cmp.select_and_accept()
+          end
+        end,
+        "fallback",
+      },
       ["<CR>"] = { "accept", "fallback" },
       ["<Esc>"] = { "cancel", "fallback" },
       ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
@@ -17,13 +26,14 @@ return {
     },
 
     completion = {
-      ghost_text = { enabled = false },
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 200,
+      ghost_text = {
+        enabled = true,
+        show_with_menu = false,
+        show_without_menu = true,
+        show_without_selection = true,
       },
-
       menu = {
+        auto_show = false,
         scrollbar = false,
         draw = {
           treesitter = { "lsp" },
@@ -33,6 +43,10 @@ return {
             { "kind", width = { min = 10 } },
           },
         },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
       },
     },
 

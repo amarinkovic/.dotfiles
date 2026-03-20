@@ -1,9 +1,18 @@
 return {
   "zbirenbaum/copilot.lua",
-  config = function()
-    require("copilot").setup({
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    })
-  end,
+  event = "VeryLazy",
+  opts = {
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+    filetypes = {
+      ["*"] = true,
+      -- disable for certain filetypes
+      gitcommit = false,
+      gitrebase = false,
+      TelescopePrompt = false,
+      help = false,
+      svn = false,
+      hgcommit = false,
+    },
+  },
 }
