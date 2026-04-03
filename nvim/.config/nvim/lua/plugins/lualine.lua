@@ -19,19 +19,14 @@ return {
           },
         },
         lualine_c = {
-          {
-            "filename",
-            path = 1, -- relative path
-          },
+          { "filename", path = 1, },  -- relative path
         },
         lualine_x = {
           {
             "lsp_status",
-            icon = "  ", -- f013
+            icon = " ", -- f013
             symbols = {
-              spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-              done = "✓",
-              separator = ", ",
+              separator = "/",
             },
             ignore_lsp = {},
             show_name = true,
