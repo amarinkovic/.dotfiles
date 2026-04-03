@@ -27,7 +27,7 @@ return {
         lualine_x = {
           {
             "lsp_status",
-            icon = " ", -- f013
+            icon = "  ", -- f013
             symbols = {
               spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
               done = "✓",
@@ -36,9 +36,7 @@ return {
             ignore_lsp = {},
             show_name = true,
           },
-          "encoding",
-          "fileformat",
-          "filetype",
+          { "filetype", icon_only = true }
         },
       },
     })
