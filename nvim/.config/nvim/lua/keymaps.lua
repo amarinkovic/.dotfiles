@@ -43,9 +43,6 @@ vim.keymap.set("v", "<leader>/", "gc", { desc = "toggle comment", remap = true }
 -- Redo
 vim.keymap.set("n", "U", "<c-r>", { noremap = true })
 
--- Noice dismiss
-vim.keymap.set("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
-
 -- Resize panes
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "Widen split" })
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "Narrow split" })
