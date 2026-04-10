@@ -48,10 +48,11 @@ return {
           local elapsed = (vim.uv.hrtime() - vim.g.start_time) / 1e6
           local startup_text = {
             type = "text",
-            val = string.format("Neovim loaded in %.2f ms", elapsed),
-            opts = { hl = "Comment", position = "left" },
+            val = string.format(" Neovim loaded in %.2f ms", elapsed),
+            opts = { hl = "NonText", position = "left" },
           }
-          theme.section.footer.val[2] = startup_text
+          theme.section.footer.val[2] = { type = "padding", val = 1 }
+          theme.section.footer.val[3] = startup_text
           pcall(vim.cmd.AlphaRedraw)
         end,
       })
