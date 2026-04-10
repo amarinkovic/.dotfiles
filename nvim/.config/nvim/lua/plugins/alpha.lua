@@ -42,6 +42,20 @@ return {
         },
       }
 
+      -- show startup time in footer after VimEnter
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          local elapsed = (vim.uv.hrtime() - vim.g.start_time) / 1e6
+          local startup_text = {
+            type = "text",
+            val = string.format("Neovim loaded in %.2f ms", elapsed),
+            opts = { hl = "Comment", position = "left" },
+          }
+          theme.section.footer.val[2] = startup_text
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
+
       alpha.setup(theme.config)
     end,
   },

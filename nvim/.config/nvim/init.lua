@@ -1,3 +1,5 @@
+vim.g.start_time = vim.uv.hrtime()
+
 ----------------=[ Imports ]=---------------------------------
 
 require("options")
