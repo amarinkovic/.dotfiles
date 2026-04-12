@@ -63,4 +63,14 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     vim.lsp.buf.clear_references()
   end,
 })
+
+vim.api.nvim_create_user_command("DiffClipboard", function()
+  vim.cmd("vnew")
+  vim.cmd("setlocal buftype=nofile bufhidden=wipe noswapfile")
+  vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+end, {})
+
 --------------------------------------------------------------------------------------------------
