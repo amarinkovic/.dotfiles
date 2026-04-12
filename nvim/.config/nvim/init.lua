@@ -33,4 +33,3 @@ end, lsp_files))
 
 ------------------------------------------------------------
 
-require("quicktype") -- must be after lazy setup
