@@ -22,14 +22,15 @@ return {
     local dap = require("dap")
 
     -- Signs
-    for _, group in pairs({
-      "DapBreakpoint",
-      "DapBreakpointCondition",
-      "DapBreakpointRejected",
-      "DapLogPoint",
-    }) do
-      vim.fn.sign_define(group, { text = "●", texthl = group })
-    end
+    vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#e51400" })
+    vim.api.nvim_set_hl(0, "DapBreakpointCondition", { fg = "#f1c40f" })
+    vim.api.nvim_set_hl(0, "DapBreakpointRejected", { fg = "#888888" })
+    vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
+
+    vim.fn.sign_define("DapBreakpoint", { text = "◉", texthl = "DapBreakpoint" })
+    vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "DapBreakpointCondition" })
+    vim.fn.sign_define("DapBreakpointRejected", { text = "◯", texthl = "DapBreakpointRejected" })
+    vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint" })
     vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "debugPC", numhl = "debugPC" })
 
     -- Setup virtual text to show variable values inline
