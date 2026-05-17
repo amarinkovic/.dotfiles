@@ -34,7 +34,13 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprctl setcursor macOS 24")
     hl.exec_cmd('tmux setenv -g HYPRLAND_INSTANCE_SIGNATURE "$HYPRLAND_INSTANCE_SIGNATURE"')
     hl.exec_cmd("~/.config/hypr/scripts/shuffle.sh")
-    hl.exec_cmd("discord")
+    hl.exec_cmd("discord", { workspace = "2" })
+
+    -- Discord activates after it finishes loading and steals focus to ws 2.
+    -- Force focus back to ws 1 once the autostart dust settles.
+    hl.timer(function()
+        hl.dispatch(hl.dsp.focus({ workspace = 1 }))
+    end, { timeout = 2000, type = "oneshot" })
 end)
 
 
@@ -223,7 +229,8 @@ hl.window_rule({
 
 hl.window_rule({ match = { title = "galculator" }, float = true })
 
-hl.window_rule({ match = { title = "Discord" },  workspace = 2 })
+hl.window_rule({ match = { initial_class = "discord" }, workspace = "2 silent" })
+
 hl.window_rule({ match = { title = "Slack" },    workspace = 2 })
 hl.window_rule({ match = { title = "Telegram" }, workspace = 2 })
 hl.window_rule({ match = { title = "Signal" },   workspace = 2 })
