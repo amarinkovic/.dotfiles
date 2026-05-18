@@ -31,5 +31,7 @@ vim.lsp.enable(vim.tbl_map(function(path)
   return vim.fn.fnamemodify(path, ":t:r")
 end, lsp_files))
 
+vim.lsp.enable('oxfmt')
+
 ------------------------------------------------------------
 

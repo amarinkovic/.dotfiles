@@ -1,7 +1,7 @@
 return {
   "stevearc/conform.nvim",
   config = function()
-    local prettier = { "prettierd", "prettier", stop_after_first = true }
+    local webFormatter = { "oxfmt", "oxfmt", stop_after_first = true }
 
     require("conform").setup({
       format_on_save = false,
@@ -13,14 +13,14 @@ return {
         groovy          = { "npm-groovy-lint", lsp_format = "fallback" },
         make            = { "checkmake", lsp_format = "fallback" },
         zig             = { "zigfmt", lsp_format = "fallback" },
-        solidity        = prettier,
-        css             = prettier,
-        html            = prettier,
-        json            = prettier,
-        javascript      = prettier,
-        javascriptreact = prettier,
-        typescript      = prettier,
-        typescriptreact = prettier,
+        solidity        = { "prettierd", "prettier", stop_after_first = true },
+        css             = webFormatter,
+        html            = webFormatter,
+        json            = webFormatter,
+        javascript      = webFormatter,
+        javascriptreact = webFormatter,
+        typescript      = webFormatter,
+        typescriptreact = webFormatter,
       },
     })
 
