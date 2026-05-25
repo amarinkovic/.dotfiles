@@ -46,6 +46,9 @@ vim.keymap.set("n", "U", "<c-r>", { noremap = true })
 -- Noice dismiss
 vim.keymap.set("n", "<leader>nn", ":Noice dismiss<CR>", { noremap = true })
 
+-- Toggle line wrap
+vim.keymap.set("n", "<M-z>", "<cmd>set wrap!<CR>", { desc = "Toggle wrap" })
+
 -- Resize panes
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "Widen split" })
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "Narrow split" })
