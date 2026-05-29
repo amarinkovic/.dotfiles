@@ -6,6 +6,7 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-live-grep-args.nvim" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       local builtin = require("telescope.builtin")
@@ -24,10 +25,14 @@ return {
               },
             },
           },
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+          },
         },
       })
 
-      require("telescope").load_extension("live_grep_args")
+      telescope.load_extension("live_grep_args")
+      telescope.load_extension("ui-select")
 
       vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find by file name" })
       -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find with grep live" })
@@ -37,21 +42,6 @@ return {
       vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
       vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
-      vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix list" })
-      vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick-fix list" })
-    end,
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      require("telescope").setup({
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
-      require("telescope").load_extension("ui-select")
     end,
   },
 }

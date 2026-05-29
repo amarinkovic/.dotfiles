@@ -1,7 +1,7 @@
 return {
   "stevearc/conform.nvim",
   config = function()
-    local webFormatter = { "oxfmt", "oxfmt", stop_after_first = true }
+    local webFormatter = { "oxfmt" }
 
     require("conform").setup({
       format_on_save = false,

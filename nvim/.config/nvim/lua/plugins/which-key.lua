@@ -2,13 +2,8 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    -- your configuration comes here
+    preset = "helix", -- classic, modern, helix
   },
-  config = function()
-    require("which-key").setup({
-      preset = "helix", -- classic, modern, helix
-    })
-  end,
   keys = {
     {
       "<leader>?",
