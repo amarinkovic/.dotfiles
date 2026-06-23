@@ -19,7 +19,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias vi="nvim"
 alias ez="nvim ~/.zshrc"
-alias src="source ~/.zshrc"
+alias src="source ~/.zshrc && source ~/.zshenv"
 alias fz="fzf --preview=\"bat --color=always {}\""
 alias fze='nvim $(fzf --preview="bat --color=always {}")'
 alias ffc="fastfetch"
