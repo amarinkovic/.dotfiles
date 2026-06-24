@@ -14,6 +14,8 @@ CLAUDE.md
 .bsp/
 .metals/
 
+.kotlin/
+
 # Folder view configuration files
 .DS_Store
 Desktop.ini
