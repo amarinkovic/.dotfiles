@@ -11,6 +11,7 @@
 [core]
 	excludesFile = ~/.gitignore.global
 	editor = nvim
+	pager = less -F
 [remote "origin"]
 	prune = true
 [rebase]
