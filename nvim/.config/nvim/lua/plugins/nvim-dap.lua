@@ -36,6 +36,12 @@ return {
     -- Setup virtual text to show variable values inline
     require("nvim-dap-virtual-text").setup({})
 
+    -- Auto-register adapters for whatever debuggers are installed via Mason
+    require("mason-nvim-dap").setup({
+      automatic_installation = true,
+      handlers = {},
+    })
+
     dap.configurations.javascript = dap.configurations.typescript
   end,
 }
