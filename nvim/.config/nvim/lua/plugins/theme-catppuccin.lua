@@ -20,6 +20,14 @@ return {
           colored_indent_levels = false,
         },
       },
+      custom_highlights = function(colors)
+        return {
+          GitSignsCurrentLineBlame = { fg = colors.overlay1 },
+          NonText = { fg = colors.overlay1 },
+          LspInlayHint = { fg = colors.overlay1 },
+          LspCodeLens = { fg = colors.overlay1 },
+        }
+      end,
     })
 
     vim.cmd.colorscheme("catppuccin")
