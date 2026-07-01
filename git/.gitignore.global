@@ -29,3 +29,5 @@ node_modules
 .codegraph/
 .rtk/
 
+
+**/.claude/settings.local.json
