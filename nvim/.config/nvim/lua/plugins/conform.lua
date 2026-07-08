@@ -13,7 +13,7 @@ return {
         groovy          = { "npm-groovy-lint", lsp_format = "fallback" },
         make            = { "checkmake", lsp_format = "fallback" },
         zig             = { "zigfmt", lsp_format = "fallback" },
-        solidity        = { "prettierd", "prettier", stop_after_first = true },
+        solidity        = { "forge_fmt" },
         terraform       = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
         css             = webFormatter,
