@@ -104,16 +104,14 @@ grep files:             <leader> fg
 run terminal command:   :term <command>
 
 feed to quickfix:       <C-q>
+
 show  quickfix list:    <leader>qf
 close quickfix list:    <leader>qq
-next quickfix item:     <C-k>
-prev quickfix item:     <C-j>
+
+next quickfix item:     ]q
+prev quickfix item:     [q
 
 buffer format:          <leader> bf
-metals commands:        <leader> gm
-
-scroll docs down:       <C-f>
-scroll dosc up:         <C-b>
 
 go to definition:       gd
 go to implementation:   gI
@@ -137,17 +135,12 @@ end of word:            e
 find char:              f
 till char:              t
 
-paste over:             <leader> p
 substitute word:        <leader> s
 comment out:            <leader> /
-
-mach bracket (,[ or {   %
 
 first line of file:     gg
 last line of file:      G
 go to line X            X + G
-begining of file:       [[
-end of file:            ]]
 
 next current word:      *
 prev current word:      #
