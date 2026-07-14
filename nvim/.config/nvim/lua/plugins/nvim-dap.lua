@@ -40,6 +40,33 @@ return {
       handlers = {},
     })
 
-    dap.configurations.javascript = dap.configurations.typescript
+    -- mason-nvim-dap has no default setup for js-debug-adapter, wire it up manually
+    dap.adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      executable = {
+        command = "js-debug-adapter",
+        args = { "${port}" },
+      },
+    }
+    for _, ft in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+      dap.configurations[ft] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach to process",
+          processId = require("dap.utils").pick_process,
+          cwd = "${workspaceFolder}",
+        },
+      }
+    end
   end,
 }
