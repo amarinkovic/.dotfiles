@@ -15,6 +15,25 @@ return {
       local lga_actions = require("telescope-live-grep-args.actions")
 
       telescope.setup({
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            -- vimgrep_arguments defaults — must repeat them since setting this overrides defaults
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            -- end defaults, append custom exclusions
+            "--glob=!**/node_modules/*",
+            "--glob=!**/.git/*",
+            "--glob=!**/dist/*",
+            "--glob=!**/build/*",
+            "--glob=!**/out/*",
+            "--glob=!**/target/*",
+          },
+        },
         extensions = {
           live_grep_args = {
             auto_quoting = true,
