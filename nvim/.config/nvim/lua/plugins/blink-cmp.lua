@@ -51,7 +51,7 @@ return {
     },
 
     appearance = {
-      nerd_font_variant = "HackNerdFont",
+      nerd_font_variant = "mono",
 
       kind_icons = {
         Copilot = " ",

@@ -45,20 +45,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
   desc = "Show diagnostics and highlight LSP references on idle",
   callback = function()
     vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    for _, client in ipairs(clients) do
-      if client.server_capabilities.documentHighlightProvider then
-        vim.lsp.buf.clear_references()
-        vim.lsp.buf.document_highlight()
-        break
-      end
+    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/documentHighlight" })
+    if #clients > 0 then
+      vim.lsp.buf.document_highlight()
     end
   end,
 })
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
   group = cursor_hold_group,
-  desc = "Clear LSP reference highlights when entering insert mode",
+  desc = "Clear LSP reference highlights on cursor move or entering insert mode",
   callback = function()
     vim.lsp.buf.clear_references()
   end,

@@ -7,17 +7,15 @@ return {
     "theHamsta/nvim-dap-virtual-text",
     "igorlfs/nvim-dap-view",
   },
-  keys = function()
-    local dap = require("dap")
-    return {
-      { "<leader>DD", dap.disconnect, desc = "DAP Disconnect" },
-      { "<leader>DC", dap.continue, desc = "DAP Continue" },
-      { "<leader>DB", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
-      { "<F10>", dap.step_over, desc = "Step Over" },
-      { "<F11>", dap.step_into, desc = "Step Into" },
-      { "<F12>", dap.step_out, desc = "Step Out" },
-    }
-  end,
+  -- stylua: ignore
+  keys = {
+    { "<leader>DD", function() require("dap").disconnect() end, desc = "DAP Disconnect" },
+    { "<leader>DC", function() require("dap").continue() end, desc = "DAP Continue" },
+    { "<leader>DB", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+    { "<F10>", function() require("dap").step_over() end, desc = "Step Over" },
+    { "<F11>", function() require("dap").step_into() end, desc = "Step Into" },
+    { "<F12>", function() require("dap").step_out() end, desc = "Step Out" },
+  },
   config = function()
     local dap = require("dap")
 

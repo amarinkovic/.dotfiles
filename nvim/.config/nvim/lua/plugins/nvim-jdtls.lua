@@ -8,17 +8,9 @@ return {
     local jdtls = require("jdtls")
     local jdtls_setup = require("jdtls.setup")
 
-    -- Find root of project
-    local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "*.java" }
-    local root_dir = jdtls_setup.find_root(root_markers) or vim.fn.expand("%:p:h")
-
     -- Paths
     local home = os.getenv("HOME")
-    -- Use a hash of the full path to avoid collisions between projects with the same directory name
-    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-    local project_hash = vim.fn.sha256(root_dir):sub(1, 8)
     local workspace_base = home .. "/.local/share/nvim/jdtls-workspace/"
-    local workspace_dir = workspace_base .. project_name .. "-" .. project_hash
     local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
     local jdtls_path = mason_path .. "/jdtls"
     local lombok_path = jdtls_path .. "/lombok.jar"
@@ -38,103 +30,115 @@ return {
       java_cmd = java_home .. "/bin/java"
     end
 
-    -- JDTLS configuration
-    local config = {
-      cmd = {
-        java_cmd,
-        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-        "-Dosgi.bundles.defaultStartLevel=4",
-        "-Declipse.product=org.eclipse.jdt.ls.core.product",
-        "-Dlog.protocol=true",
-        "-Dlog.level=ALL",
-        "-Xmx1g",
-        "--add-modules=ALL-SYSTEM",
-        "--add-opens",
-        "java.base/java.util=ALL-UNNAMED",
-        "--add-opens",
-        "java.base/java.lang=ALL-UNNAMED",
-        "-javaagent:" .. lombok_path,
-        "-jar",
-        vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-        "-configuration",
-        jdtls_path .. "/config_" .. os_config,
-        "-data",
-        workspace_dir,
-      },
-      root_dir = root_dir,
-      settings = {
-        java = {
-          eclipse = {
-            downloadSources = true,
-          },
-          configuration = {
-            updateBuildConfiguration = "interactive",
-          },
-          maven = {
-            downloadSources = true,
-          },
-          implementationsCodeLens = {
-            enabled = true,
-          },
-          referencesCodeLens = {
-            enabled = true,
-          },
-          references = {
-            includeDecompiledSources = true,
-          },
-          format = {
-            enabled = true,
-          },
-          signatureHelp = { enabled = true },
-          contentProvider = { preferred = "fernflower" },
-          completion = {
-            favoriteStaticMembers = {
-              "org.hamcrest.MatcherAssert.assertThat",
-              "org.hamcrest.Matchers.*",
-              "org.hamcrest.CoreMatchers.*",
-              "org.junit.jupiter.api.Assertions.*",
-              "java.util.Objects.requireNonNull",
-              "java.util.Objects.requireNonNullElse",
-              "org.mockito.Mockito.*",
+    -- Build the config per buffer so each Java project gets its own root and workspace,
+    -- instead of reusing the root of whichever file loaded the plugin first.
+    local function make_config()
+      -- Find root of project
+      local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "*.java" }
+      local root_dir = jdtls_setup.find_root(root_markers) or vim.fn.expand("%:p:h")
+
+      -- Use a hash of the full path to avoid collisions between projects with the same directory name
+      local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+      local project_hash = vim.fn.sha256(root_dir):sub(1, 8)
+      local workspace_dir = workspace_base .. project_name .. "-" .. project_hash
+
+      return {
+        cmd = {
+          java_cmd,
+          "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+          "-Dosgi.bundles.defaultStartLevel=4",
+          "-Declipse.product=org.eclipse.jdt.ls.core.product",
+          "-Dlog.protocol=true",
+          "-Dlog.level=ALL",
+          "-Xmx1g",
+          "--add-modules=ALL-SYSTEM",
+          "--add-opens",
+          "java.base/java.util=ALL-UNNAMED",
+          "--add-opens",
+          "java.base/java.lang=ALL-UNNAMED",
+          "-javaagent:" .. lombok_path,
+          "-jar",
+          vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+          "-configuration",
+          jdtls_path .. "/config_" .. os_config,
+          "-data",
+          workspace_dir,
+        },
+        root_dir = root_dir,
+        settings = {
+          java = {
+            eclipse = {
+              downloadSources = true,
             },
-            filteredTypes = {
-              "com.sun.*",
-              "io.micrometer.shaded.*",
-              "java.awt.*",
-              "jdk.*",
-              "sun.*",
+            configuration = {
+              updateBuildConfiguration = "interactive",
             },
-            importOrder = {
-              "java",
-              "javax",
-              "com",
-              "org",
+            maven = {
+              downloadSources = true,
             },
-          },
-          sources = {
-            organizeImports = {
-              starThreshold = 9999,
-              staticStarThreshold = 9999,
+            implementationsCodeLens = {
+              enabled = true,
             },
-          },
-          codeGeneration = {
-            toString = {
-              template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+            referencesCodeLens = {
+              enabled = true,
             },
-            useBlocks = true,
+            references = {
+              includeDecompiledSources = true,
+            },
+            format = {
+              enabled = true,
+            },
+            signatureHelp = { enabled = true },
+            contentProvider = { preferred = "fernflower" },
+            completion = {
+              favoriteStaticMembers = {
+                "org.hamcrest.MatcherAssert.assertThat",
+                "org.hamcrest.Matchers.*",
+                "org.hamcrest.CoreMatchers.*",
+                "org.junit.jupiter.api.Assertions.*",
+                "java.util.Objects.requireNonNull",
+                "java.util.Objects.requireNonNullElse",
+                "org.mockito.Mockito.*",
+              },
+              filteredTypes = {
+                "com.sun.*",
+                "io.micrometer.shaded.*",
+                "java.awt.*",
+                "jdk.*",
+                "sun.*",
+              },
+              importOrder = {
+                "java",
+                "javax",
+                "com",
+                "org",
+              },
+            },
+            sources = {
+              organizeImports = {
+                starThreshold = 9999,
+                staticStarThreshold = 9999,
+              },
+            },
+            codeGeneration = {
+              toString = {
+                template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+              },
+              useBlocks = true,
+            },
           },
         },
-      },
-      flags = {
-        allow_incremental_sync = true,
-      },
-      init_options = {
-        bundles = vim.list_extend(
-          vim.split(vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/*.jar", true), "\n"),
-          vim.split(vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true), "\n")
-        ),
-      },
-    }
+        flags = {
+          allow_incremental_sync = true,
+        },
+        init_options = {
+          bundles = vim.list_extend(
+            vim.split(vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/*.jar", true), "\n"),
+            vim.split(vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true), "\n")
+          ),
+        },
+      }
+    end
 
     -- Command to list and clean up stale JDTLS workspaces
     vim.api.nvim_create_user_command("JdtlsCleanWorkspaces", function()
@@ -161,7 +165,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "java",
       callback = function()
-        jdtls.start_or_attach(config)
+        jdtls.start_or_attach(make_config())
       end,
       group = jdtls_augroup,
     })
