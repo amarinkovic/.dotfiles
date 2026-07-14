@@ -1,5 +1,10 @@
 return {
   "stevearc/conform.nvim",
+  cmd = { "ConformInfo" },
+  -- stylua: ignore
+  keys = {
+    { "<leader>bf", function() require("conform").format() end, mode = { "n", "v" }, desc = "Buffer format" },
+  },
   config = function()
     local webFormatter = { "oxfmt" }
 
@@ -24,7 +29,5 @@ return {
         typescriptreact = webFormatter,
       },
     })
-
-    vim.keymap.set({ "n", "v" }, "<leader>bf", "<cmd>lua require('conform').format()<CR>", { desc = "Buffer format" })
   end,
 }
