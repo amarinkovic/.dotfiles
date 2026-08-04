@@ -1,68 +1,85 @@
+/* Palette mirrors waybar/.config/waybar/style.css */
+@define-color magenta   #bd5eff;
+@define-color lavender  #d08fff;
+@define-color red       #ff6e5e;
+@define-color brightRed #ff9a8f;
+
+@define-color text      #ffe8e5;
+@define-color surface   alpha(#000000, 0.55);
+@define-color edge      alpha(@lavender, 0.22);
+@define-color glow      alpha(@lavender, 0.22);
+
 * {
 	background-image: none;
 	box-shadow: none;
+	font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
 }
 
+/* Kept fairly translucent so the compositor blur behind it reads —
+ * see the `blur-wlogout` layer rule in hypr/hyprland.lua. */
 window {
-	background-color: rgba(12, 12, 12, 0.8);
+	background-color: alpha(#0a0410, 0.55);
 }
 
+/* wlogout 1.2.2 ignores the layout's `width`/`height` text-position keys and
+ * pins every label bottom-right. The workaround is to leave no slack inside a
+ * button: no min-width/min-height, symmetric padding, and labels padded with
+ * spaces in `layout` to an equal monospace width so all six cells size
+ * identically. Card size is therefore padding + one line of text — tune the
+ * card by changing font-size and padding, and the gutter with margin. */
 button {
-	color: #FFFFFF;
-  font-size:20px;
+	margin: 130px 16px;
+	padding: 0 44px 82px 44px;
 
-  background-repeat: no-repeat;
-	background-position: center;
-	background-size: 20%;
+	color: @text;
+	font-size: 34px;
+	font-weight: 700;
 
-	border-style: solid;
-	background-color: rgba(12, 12, 12, 0.8);
-	border: 3px solid #33ccff;
+	background-color: @surface;
+	border: 2px solid @edge;
+	border-radius: 26px;
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 0 14px 5px @glow inset;
+	text-shadow: 0 0 6px alpha(@red, 0.4);
+
+	transition:
+		background-color 160ms ease-out,
+		border-color 160ms ease-out,
+		box-shadow 160ms ease-out,
+		color 160ms ease-out;
 }
 
-button:focus,
-button:active,
-button:hover {
-  color: @color11;
-	background-color: rgba(12, 12, 12, 0.5);
-	border: 3px solid @color8;
+button:hover,
+button:focus {
+	color: #ffffff;
+	background-color: alpha(@magenta, 0.16);
+	border-color: @magenta;
+	box-shadow:
+		0 0 20px 7px alpha(@magenta, 0.32) inset,
+		0 0 26px 2px alpha(@magenta, 0.3);
+	text-shadow: 0 0 10px @lavender, 0 0 22px alpha(@magenta, 0.7);
 }
 
-#lock {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/lock.png"));
+button:active {
+	background-color: alpha(@magenta, 0.3);
+	box-shadow: 0 0 26px 9px alpha(@magenta, 0.4) inset;
 }
 
-#logout {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/logout.png"));
+/* Destructive actions warn in red instead of the accent magenta. */
+#reboot:hover,
+#reboot:focus,
+#shutdown:hover,
+#shutdown:focus {
+	background-color: alpha(@red, 0.16);
+	border-color: @red;
+	box-shadow:
+		0 0 20px 7px alpha(@red, 0.3) inset,
+		0 0 26px 2px alpha(@red, 0.28);
+	text-shadow: 0 0 10px @brightRed, 0 0 22px alpha(@red, 0.7);
 }
 
-#suspend {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/suspend.png"));
+#reboot:active,
+#shutdown:active {
+	background-color: alpha(@red, 0.3);
+	box-shadow: 0 0 26px 9px alpha(@red, 0.4) inset;
 }
-
-#hibernate {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/hibernate.png"));
-}
-
-#shutdown {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/shutdown.png"));
-}
-
-#reboot {
-	margin: 10px;
-	border-radius: 20px;
-	background-image: image(url("icons/reboot.png"));
-}
-

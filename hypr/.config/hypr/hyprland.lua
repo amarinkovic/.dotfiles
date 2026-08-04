@@ -238,3 +238,15 @@ hl.window_rule({ match = { title = "Telegram" }, workspace = 2 })
 hl.window_rule({ match = { title = "Signal" },   workspace = 2 })
 
 hl.window_rule({ match = { class = "Spotify" },  workspace = 4 })
+
+
+---------------------
+---- LAYER RULES ----
+---------------------
+
+-- wlogout registers its overlay under the namespace "logout_dialog".
+hl.layer_rule({
+    name  = "blur-wlogout",
+    match = { namespace = "^logout_dialog$" },
+    blur  = true,
+})
