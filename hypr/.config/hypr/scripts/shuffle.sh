@@ -6,7 +6,7 @@ DEFAULT_WALLPAPER="/usr/share/hypr/wall0.png"
 
 if [ ! -d "$WALLZ_DIR" ]; then
     echo "Wallz directory not found: $WALLZ_DIR"
-    WALLPAPER = $DEFAULT_WALLPAPER
+    WALLPAPER="$DEFAULT_WALLPAPER"
 else
   RANDOM_WALLPAPER=$(find "$WALLZ_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) | shuf -n 1)
 
