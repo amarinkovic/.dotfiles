@@ -9,10 +9,30 @@
 @define-color edge      alpha(@lavender, 0.22);
 @define-color glow      alpha(@lavender, 0.22);
 
+/* Bracket arms. Near-opaque at rest, like the lockscreen's, so the six cards
+ * read as a grid of reticles; hover carries its state change through arm length,
+ * fill and glow rather than through arm color alone. */
+@define-color arm      alpha(@lavender, 0.8);
+@define-color armHot   @magenta;
+@define-color armWarn  @red;
+
+/* HUD treatment ported from hypr/.config/hypr/hyprlock.conf: square corners,
+ * corner brackets instead of a full border, letter-spaced caps, and a hard
+ * chromatic-aberration ghost behind the label. Colors are unchanged — this file
+ * stays on the waybar purple while the lockscreen stays on phosphor green.
+ *
+ * The lockscreen draws its brackets as eight `shape` blocks. GTK has no shape
+ * primitive, so each arm here is a solid two-stop linear-gradient background
+ * layer, sized and positioned per corner. Eight layers, in this order:
+ *   top-left H, top-left V, top-right H, top-right V,
+ *   bottom-left H, bottom-left V, bottom-right H, bottom-right V
+ * The four lists below are index-matched — edit them together. Arms are 26x2 on
+ * a ~333x127 card, scaled down from the lockscreen's 32x2 on 440x154. */
+
 * {
 	background-image: none;
 	box-shadow: none;
-	font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
+	font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
 }
 
 /* Kept fairly translucent so the compositor blur behind it reads —
@@ -26,38 +46,84 @@ window {
  * button: no min-width/min-height, symmetric padding, and labels padded with
  * spaces in `layout` to an equal monospace width so all six cells size
  * identically. Card size is therefore padding + one line of text — tune the
- * card by changing font-size and padding, and the gutter with margin. */
+ * card by changing font-size and padding, and the gutter with margin.
+ *
+ * That equal-width padding is why the labels stay monospaced: a proportional
+ * face would make "HIBERNATE" and "LOCK" pad to different widths and the cards
+ * would stop matching. It also mirrors the lockscreen, where mono marks the
+ * interactive layer and the condensed face is reserved for the clock and date.
+ *
+ * letter-spacing is safe here for the same reason — every label is exactly 12
+ * cells, so all six grow by the same 12px and the cards stay identical.
+ *
+ * No border at any state: like the lockscreen's auth panel, the frame IS the
+ * brackets. A border that appeared on hover both fought the reticle and, being
+ * part of the border box, was the one thing here that could reflow the grid.
+ * Padding absorbs the 2px the old border contributed, so the card is unchanged. */
 button {
 	margin: 130px 16px;
-	padding: 0 44px 82px 44px;
+	padding: 0 45px 86px 45px;
 
 	color: @text;
 	font-size: 34px;
 	font-weight: 700;
+	letter-spacing: 1px;
 
 	background-color: @surface;
-	border: 2px solid @edge;
-	border-radius: 26px;
+	border: none;
+	border-radius: 0;
+
+	background-image:
+		linear-gradient(@arm, @arm), linear-gradient(@arm, @arm),
+		linear-gradient(@arm, @arm), linear-gradient(@arm, @arm),
+		linear-gradient(@arm, @arm), linear-gradient(@arm, @arm),
+		linear-gradient(@arm, @arm), linear-gradient(@arm, @arm);
+	background-position:
+		top left, top left, top right, top right,
+		bottom left, bottom left, bottom right, bottom right;
+	background-size:
+		26px 2px, 2px 26px, 26px 2px, 2px 26px,
+		26px 2px, 2px 26px, 26px 2px, 2px 26px;
+	background-repeat: no-repeat;
 
 	box-shadow: 0 0 14px 5px @glow inset;
-	text-shadow: 0 0 6px alpha(@red, 0.4);
+
+	/* Hard 3px offset ghost, then a soft bloom. The offset copy is the
+	 * misconverged-CRT fringe from the lockscreen clock, scaled to label size. */
+	text-shadow:
+		3px 3px 0 alpha(@magenta, 0.4),
+		0 0 8px alpha(@lavender, 0.3);
 
 	transition:
 		background-color 160ms ease-out,
-		border-color 160ms ease-out,
 		box-shadow 160ms ease-out,
 		color 160ms ease-out;
 }
 
+/* Hover locks on: the arms jump from 26px to 44px and go full magenta. GTK3
+ * can't tween background-size, so the extension snaps — which suits a reticle
+ * acquiring a target better than an ease would. */
 button:hover,
 button:focus {
 	color: #ffffff;
 	background-color: alpha(@magenta, 0.16);
-	border-color: @magenta;
+
+	background-image:
+		linear-gradient(@armHot, @armHot), linear-gradient(@armHot, @armHot),
+		linear-gradient(@armHot, @armHot), linear-gradient(@armHot, @armHot),
+		linear-gradient(@armHot, @armHot), linear-gradient(@armHot, @armHot),
+		linear-gradient(@armHot, @armHot), linear-gradient(@armHot, @armHot);
+	background-size:
+		44px 2px, 2px 44px, 44px 2px, 2px 44px,
+		44px 2px, 2px 44px, 44px 2px, 2px 44px;
+
 	box-shadow:
 		0 0 20px 7px alpha(@magenta, 0.32) inset,
 		0 0 26px 2px alpha(@magenta, 0.3);
-	text-shadow: 0 0 10px @lavender, 0 0 22px alpha(@magenta, 0.7);
+	text-shadow:
+		3px 3px 0 alpha(@magenta, 0.55),
+		0 0 10px @lavender,
+		0 0 22px alpha(@magenta, 0.7);
 }
 
 button:active {
@@ -71,11 +137,20 @@ button:active {
 #shutdown:hover,
 #shutdown:focus {
 	background-color: alpha(@red, 0.16);
-	border-color: @red;
+
+	background-image:
+		linear-gradient(@armWarn, @armWarn), linear-gradient(@armWarn, @armWarn),
+		linear-gradient(@armWarn, @armWarn), linear-gradient(@armWarn, @armWarn),
+		linear-gradient(@armWarn, @armWarn), linear-gradient(@armWarn, @armWarn),
+		linear-gradient(@armWarn, @armWarn), linear-gradient(@armWarn, @armWarn);
+
 	box-shadow:
 		0 0 20px 7px alpha(@red, 0.3) inset,
 		0 0 26px 2px alpha(@red, 0.28);
-	text-shadow: 0 0 10px @brightRed, 0 0 22px alpha(@red, 0.7);
+	text-shadow:
+		3px 3px 0 alpha(@red, 0.5),
+		0 0 10px @brightRed,
+		0 0 22px alpha(@red, 0.7);
 }
 
 #reboot:active,
