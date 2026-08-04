@@ -16,6 +16,8 @@
   ],
   "modules-right": [
     "idle_inhibitor",
+    "custom/dnd",
+    "privacy",
     "custom/spotify",
     "pulseaudio",
     "tray",
@@ -26,6 +28,8 @@
   ],
   "hyprland/window": {
     "format": "{title}",
+    "max-length": 90,
+    "separate-outputs": true,
   },
   // custom app
   "custom/apps": {
@@ -54,6 +58,24 @@
       "activated": " ",
       "deactivated": " ",
     },
+  },
+  // Do-Not-Disturb toggle wired to dunst. signal 8 = SIGRTMIN+8, refreshed on click.
+  "custom/dnd": {
+    "exec": "dunstctl is-paused | grep -q true && echo '󰂛' || echo '󰂚'",
+    "on-click": "dunstctl set-paused toggle && pkill -RTMIN+8 waybar",
+    "signal": 8,
+    "interval": "once",
+    "tooltip": false,
+  },
+  // Shows an icon only while the mic, camera, or a screen-share is in use; auto-hides otherwise.
+  "privacy": {
+    "icon-size": 14,
+    "icon-spacing": 8,
+    "transition-duration": 200,
+    "modules": [
+      { "type": "screenshare" },
+      { "type": "audio-in" },
+    ],
   },
   "tray": {
     "icon-size": 20,

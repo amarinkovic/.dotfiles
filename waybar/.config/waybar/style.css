@@ -3,7 +3,6 @@
 @define-color lavender #d08fff;
 @define-color brightRed #ff9a8f;
 
-@define-color base alpha(#000000, 0.1);
 @define-color surface alpha(#000000, 0.6);
 @define-color text #ffe8e5;
 @define-color activeBg @magenta;
@@ -15,7 +14,8 @@
   font-size: 1rem;
   font-weight: 900;
   font-family:
-    InconsolataNerdFont,
+    "JetBrainsMono Nerd Font",
+    "Symbols Nerd Font",
     Roboto,
     Helvetica,
     Arial,
@@ -82,6 +82,7 @@ window#waybar.empty #window {
 #network,
 #clock,
 #pulseaudio,
+#custom-dnd,
 #idle-inhibitor {
   background-color: @surface;
   border-radius: 999px;
@@ -92,14 +93,16 @@ window#waybar.empty #window {
 #network,
 #clock,
 #pulseaudio,
+#custom-dnd,
+#privacy,
 #idle-inhibitor {
   padding: 0 8px;
 }
 
 #cpu,
 #memory,
-#battery,
-#disk {
+#disk,
+#battery {
   padding-right: 0.5rem;
 }
 
@@ -123,11 +126,6 @@ window#waybar.empty #window {
   margin-right: 0;
 }
 
-#taskbar {
-  font-weight: normal;
-  font-style: normal;
-}
-
 @keyframes blink {
   to {
     color: @text;
@@ -143,8 +141,4 @@ window#waybar.empty #window {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
-
-label:focus {
-  background-color: @activeBg;
 }
