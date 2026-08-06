@@ -14,6 +14,9 @@ CLAUDE.md
 .bsp/
 .metals/
 
+# Solidity tooling (solidity-language-server drops these in every foundry root it touches)
+.solidity-language-server/
+
 .kotlin/
 
 # Folder view configuration files
