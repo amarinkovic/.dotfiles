@@ -7,6 +7,30 @@ return {
   config = function()
     local null_ls = require("null-ls")
 
+    -- solhint honours .solhintignore only for paths it globs itself. Handed an ignored
+    -- file directly it exits 255 with "No files to lint!", which null-ls reports as a
+    -- failed generator, so ignored buffers have to be filtered out before spawning.
+    local function solhint_ignores(root, bufname)
+      local ignorefile = root .. "/.solhintignore"
+      if vim.fn.filereadable(ignorefile) == 0 then
+        return false
+      end
+      local relative = bufname:sub(#root + 2)
+      for _, line in ipairs(vim.fn.readfile(ignorefile)) do
+        local pattern = vim.trim(line):gsub("/+$", "")
+        if pattern ~= "" and not vim.startswith(pattern, "#") then
+          -- match the pattern itself for globs, plus /** so a bare directory entry
+          -- covers everything beneath it
+          local matches = vim.glob.to_lpeg(pattern):match(relative)
+            or vim.glob.to_lpeg(pattern .. "/**"):match(relative)
+          if matches then
+            return true
+          end
+        end
+      end
+      return false
+    end
+
     null_ls.setup({
       sources = {
         -- null_ls.builtins.diagnostics.checkstyle.with({
@@ -26,7 +50,8 @@ return {
             return vim.fs.root(params.bufname, ".solhint.json")
           end,
           runtime_condition = function(params)
-            return vim.fs.root(params.bufname, ".solhint.json") ~= nil
+            local root = vim.fs.root(params.bufname, ".solhint.json")
+            return root ~= nil and not solhint_ignores(root, params.bufname)
           end,
           -- solhint exits 1 whenever it reports a problem; without this null-ls
           -- treats its normal output as a crash.
