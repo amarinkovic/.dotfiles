@@ -18,7 +18,14 @@
 --- curl -fsSL https://asyncswap.org/lsp/install.sh | sh
 --- ```
 return {
-  cmd = { "solidity-language-server", "--stdio" },
+  -- Spawn in root_dir, not Neovim's cwd: the server drives solc through Foundry's
+  -- project machinery, which resolves out/ and cache/ against the process cwd. Opening
+  -- nvim above the foundry.toml would otherwise litter that parent with build artifacts.
+  cmd = function(dispatchers, config)
+    return vim.lsp.rpc.start({ "solidity-language-server", "--stdio" }, dispatchers, {
+      cwd = config.root_dir,
+    })
+  end,
   filetypes = { "solidity" },
   root_markers = {
     "foundry.toml",
