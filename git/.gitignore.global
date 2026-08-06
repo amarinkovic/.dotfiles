@@ -31,3 +31,8 @@ node_modules
 
 
 **/.claude/settings.local.json
+
+# Zig
+.zig-cache
+zig-out
+
