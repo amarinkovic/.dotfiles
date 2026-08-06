@@ -4,19 +4,6 @@ vim.g.mapleader = " "
 
 vim.g.have_nerd_font = true
 
-vim.filetype.add({
-  extension = {
-    fs = "glsl",
-    vs = "glsl",
-    vert = "glsl",
-    tesc = "glsl",
-    tese = "glsl",
-    frag = "glsl",
-    geom = "glsl",
-    comp = "glsl",
-  },
-})
-
 --  Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
@@ -34,6 +21,8 @@ vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.updatetime = 300
 vim.opt.termguicolors = true
+vim.opt.autoread = true -- automatically reload files changed outside of nvim
+
 -- Fallback indent defaults — vim-sleuth will override these per-file based on detected style
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- amount to indent with << and >>

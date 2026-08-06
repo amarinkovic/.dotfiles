@@ -20,7 +20,7 @@ return {
           },
         },
         lualine_c = {
-          { "filename", path = 1, },  -- relative path
+          { "filename", path = 1 }, -- relative path
         },
         lualine_x = {
           {
@@ -32,7 +32,11 @@ return {
             ignore_lsp = {},
             show_name = true,
           },
-          { "filetype", icon_only = true }
+          { "filetype", icon_only = true },
+          {
+            "diagnostics",
+            sources = { "nvim_workspace_diagnostic" },
+          },
         },
       },
     })
