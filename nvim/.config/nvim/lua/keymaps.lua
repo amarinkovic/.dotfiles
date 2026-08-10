@@ -16,6 +16,8 @@
 -- Quickfix
 --   <leader>qf     open quickfix list
 --   <leader>qq     close quickfix list
+--   <leader>qd     load workspace diagnostics (same set lualine counts)
+--   <leader>qe     load workspace diagnostics, errors only
 --   ]q / [q        next / prev item
 --
 -----------------------------------------------------------------------------------------------
@@ -60,6 +62,13 @@ vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix lis
 vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quick-fix list" })
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next in quick-fix list" })
 vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Previous in quick-fix list" })
+
+-- Diagnostics -> quickfix list. Pulls from the same store lualine's
+-- nvim_workspace_diagnostic counts, so the item count matches the statusline.
+vim.keymap.set("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "Diagnostics to quick-fix list" })
+vim.keymap.set("n", "<leader>qe", function()
+  vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Errors to quick-fix list" })
 
 -----------------------------------------------------------------------------------------------
 
