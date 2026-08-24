@@ -42,7 +42,12 @@ vim.api.nvim_create_autocmd("CursorHold", {
   group = cursor_hold_group,
   desc = "Show diagnostics and highlight LSP references on idle",
   callback = function()
-    vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
+    -- Only open the float when there's actually a diagnostic on this line,
+    -- otherwise CursorHold would spam an (empty) floating window every time
+    -- the cursor idles anywhere in the buffer.
+    if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) > 0 then
+      vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
+    end
     local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/documentHighlight" })
     if #clients > 0 then
       vim.lsp.buf.document_highlight()
