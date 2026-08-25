@@ -54,8 +54,8 @@ vim.keymap.set("n", "<M-z>", "<cmd>set wrap!<CR>", { desc = "Toggle wrap" })
 -- Resize panes
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "Widen split" })
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "Narrow split" })
--- vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
--- vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
+vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
 -- Quickfix list
 vim.keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Show quick-fix list" })
@@ -66,6 +66,7 @@ vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Previous in quick-fix li
 -- Diagnostics -> quickfix list. Pulls from the same store lualine's
 -- nvim_workspace_diagnostic counts, so the item count matches the statusline.
 vim.keymap.set("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "Diagnostics to quick-fix list" })
+
 vim.keymap.set("n", "<leader>qe", function()
   vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Errors to quick-fix list" })
