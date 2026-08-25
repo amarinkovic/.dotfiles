@@ -106,3 +106,27 @@ vim.keymap.set("n", "Y", function() copy_ref({}) end, { desc = "Copy file path" 
 vim.keymap.set("v", "Y", function() copy_ref({ visual = true }) end, { desc = "Copy file path with line range" })
 
 -----------------------------------------------------------------------------------------------
+
+-- TODO comments -> quickfix list. Same as :TodoQuickFix, except Foundry projects
+-- keep their dependencies as git submodules in lib/, so those TODOs belong to
+-- someone else. (node_modules-style deps are gitignored, which ripgrep already skips.)
+vim.keymap.set("n", "<leader>qt", function()
+  local root = vim.fs.root(vim.uv.cwd(), "foundry.toml")
+  local deps = root and (vim.fs.joinpath(root, "lib") .. "/") or nil
+
+  require("todo-comments.search").search(function(results)
+    if deps then
+      results = vim.tbl_filter(function(item)
+        return not vim.startswith(item.filename, deps)
+      end, results)
+    end
+    vim.fn.setqflist({}, " ", { title = "Todo", id = "$", items = results })
+    vim.cmd("copen")
+    local win = vim.fn.getqflist({ winid = true })
+    if win.winid ~= 0 then
+      require("todo-comments.highlight").attach(win.winid, true)
+    end
+  end)
+end, { desc = "TODO comments to quick-list" })
+
+-----------------------------------------------------------------------------------------------
