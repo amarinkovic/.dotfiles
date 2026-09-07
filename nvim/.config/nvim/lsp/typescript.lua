@@ -22,7 +22,7 @@
 
 ---@type vim.lsp.Config
 return {
-  cmd = { "tsgo", "--lsp", "--stdio" },
+  cmd = { "tsc", "--lsp", "--stdio" },
   capabilities = {
     workspace = {
       -- Declining dynamic registration makes tsgo use its own in-process Go watcher:
@@ -55,10 +55,8 @@ return {
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
   },
   root_markers = {
     "tsconfig.json",
