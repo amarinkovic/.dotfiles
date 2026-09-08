@@ -4,6 +4,7 @@
 -- <leader>p        paste over selection without yanking
 -- <leader>s        substitute word under cursor (global, case-sensitive)
 -- <leader>nn       dismiss Noice notifications
+-- <Esc>            clear search highlights + dismiss diagnostic float
 --
 -- Navigation
 --   <C-u> / <C-d>  half-page up/down, centered
@@ -26,8 +27,19 @@
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+-- Clear search highlights and dismiss the idle diagnostic float on <Esc>.
+-- The float is opened with focus = false, so <Esc> never reaches it; close it by
+-- window id instead and suppress the next CursorHold, which would otherwise
+-- reopen it after 'updatetime' without the cursor having moved.
+vim.keymap.set("n", "<Esc>", function()
+  vim.cmd.nohlsearch()
+  local win = vim.g.diagnostic_float_win
+  if win and vim.api.nvim_win_is_valid(win) then
+    vim.api.nvim_win_close(win, true)
+    vim.b.diagnostic_float_off = true
+  end
+  vim.g.diagnostic_float_win = nil
+end)
 
 -- Move selected lines up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

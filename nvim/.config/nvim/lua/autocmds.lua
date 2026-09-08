@@ -45,8 +45,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
     -- Only open the float when there's actually a diagnostic on this line,
     -- otherwise CursorHold would spam an (empty) floating window every time
     -- the cursor idles anywhere in the buffer.
-    if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) > 0 then
-      vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
+    if not vim.b.diagnostic_float_off and #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) > 0 then
+      -- Remember the window so <Esc> can close it, see lua/keymaps.lua
+      local _, win = vim.diagnostic.open_float(nil, { scope = "cursor", focus = false })
+      vim.g.diagnostic_float_win = win
     end
     local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/documentHighlight" })
     if #clients > 0 then
@@ -60,6 +62,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
   desc = "Clear LSP reference highlights on cursor move or entering insert mode",
   callback = function()
     vim.lsp.buf.clear_references()
+    vim.b.diagnostic_float_off = nil
   end,
 })
 
