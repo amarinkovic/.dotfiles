@@ -172,6 +172,8 @@ hl.bind(mainMod .. " + J",       hl.dsp.layout("togglesplit"))    -- dwindle
 hl.bind("Print",                 hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
 hl.bind(mainMod .. " + Print",   hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SHIFT + Print",         hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+-- MX Mechanical F8 (camera key) sends SUPER+SHIFT+S; make it snip a region.
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 
 -- Shuffle wallpapers
 hl.bind(mainMod .. " + W",       hl.dsp.exec_cmd("~/.config/hypr/scripts/shuffle.sh"))
@@ -190,8 +192,11 @@ for i = 1, 10 do
 end
 
 -- Special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+-- Deliberately NOT SUPER+SHIFT+S: the MX Mechanical's Screen Capture key (F8)
+-- emits that combo (Windows "Snipping Tool" shortcut), which sent the focused
+-- window to the scratchpad instead of taking a screenshot.
+-- hl.bind(mainMod .. " + S",       hl.dsp.workspace.toggle_special("magic"))
+-- hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Cycle workspaces with mouse wheel
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
