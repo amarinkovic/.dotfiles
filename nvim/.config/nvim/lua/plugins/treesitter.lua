@@ -21,6 +21,7 @@ return {
         "query",
         "markdown",
         "markdown_inline",
+        "latex",
         "bash",
         "json",
         "yaml",
