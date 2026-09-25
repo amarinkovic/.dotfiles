@@ -9,7 +9,6 @@ return {
   },
   ---@module 'render-markdown'
   opts = {
-    enabled = false,
     latex = {
       -- Formulas are converted to 2D monospace Unicode by utftex
       -- (`brew install utftex`), which stacks fractions and draws real ceiling
