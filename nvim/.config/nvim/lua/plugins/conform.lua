@@ -22,7 +22,7 @@ return {
         ["terraform-vars"] = { "terraform_fmt" },
         css             = webFormatter,
         html            = webFormatter,
-        json            = webFormatter,
+        json            = { "oxfmt", lsp_format = "fallback" },
         javascript      = webFormatter,
         javascriptreact = webFormatter,
         typescript      = webFormatter,
