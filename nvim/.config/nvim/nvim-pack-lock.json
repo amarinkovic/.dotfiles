@@ -124,9 +124,9 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
-      "rev": "e9c5aaba16fead831379d5f44617547a90b913c7",
+      "rev": "9cb125de42c0256ed1bc1f9ded8d8f0381317a17",
       "src": "https://github.com/mrcjkb/rustaceanvim",
-      "version": "5.0.0 - 6.0.0"
+      "version": "9.0.0 - 10.0.0"
     },
     "smear-cursor.nvim": {
       "rev": "9f42dd38bea7f00cee52544b168a81dc2fbf57c3",
