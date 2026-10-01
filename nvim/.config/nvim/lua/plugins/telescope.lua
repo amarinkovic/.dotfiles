@@ -48,6 +48,11 @@ telescope.setup({
   },
 })
 
+-- needs the compiled library (built on install/update in init.lua); fall back to
+-- telescope's default sorter instead of erroring at startup if it's missing
+if not pcall(telescope.load_extension, "fzf") then
+  vim.notify("telescope-fzf-native not built, using default sorter", vim.log.levels.WARN)
+end
 telescope.load_extension("live_grep_args")
 telescope.load_extension("ui-select")
 
