@@ -1,75 +1,76 @@
-return {
-  "rose-pine/neovim",
-  name = "rose-pine",
-  enabled = false,
-  config = function()
-    require("rose-pine").setup({
-      variant = "auto", -- auto, main, moon, or dawn
-      dark_variant = "main", -- main, moon, or dawn
-      dim_inactive_windows = false,
-      extend_background_behind_borders = true,
+-- disabled: flip to true (and set the colorscheme below) to use
+local enabled = false
+if not enabled then
+  return
+end
 
-      enable = {
-        terminal = true,
-        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-        migrations = true, -- Handle deprecated options automatically
-      },
+vim.pack.add({ { src = "https://github.com/rose-pine/neovim", name = "rose-pine" } })
 
-      styles = {
-        bold = true,
-        italic = true,
-        transparency = false,
-      },
+require("rose-pine").setup({
+  variant = "auto", -- auto, main, moon, or dawn
+  dark_variant = "main", -- main, moon, or dawn
+  dim_inactive_windows = false,
+  extend_background_behind_borders = true,
 
-      groups = {
-        border = "muted",
-        link = "iris",
-        panel = "surface",
+  enable = {
+    terminal = true,
+    legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+    migrations = true, -- Handle deprecated options automatically
+  },
 
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        note = "pine",
-        todo = "rose",
-        warn = "gold",
+  styles = {
+    bold = true,
+    italic = true,
+    transparency = false,
+  },
 
-        git_add = "foam",
-        git_change = "rose",
-        git_delete = "love",
-        git_dirty = "rose",
-        git_ignore = "muted",
-        git_merge = "iris",
-        git_rename = "pine",
-        git_stage = "iris",
-        git_text = "rose",
-        git_untracked = "subtle",
+  groups = {
+    border = "muted",
+    link = "iris",
+    panel = "surface",
 
-        h1 = "iris",
-        h2 = "foam",
-        h3 = "rose",
-        h4 = "gold",
-        h5 = "pine",
-        h6 = "foam",
-      },
+    error = "love",
+    hint = "iris",
+    info = "foam",
+    note = "pine",
+    todo = "rose",
+    warn = "gold",
 
-      highlight_groups = {
-        Comment = { fg = "#2ea542" },
-      },
+    git_add = "foam",
+    git_change = "rose",
+    git_delete = "love",
+    git_dirty = "rose",
+    git_ignore = "muted",
+    git_merge = "iris",
+    git_rename = "pine",
+    git_stage = "iris",
+    git_text = "rose",
+    git_untracked = "subtle",
 
-      before_highlight = function(group, highlight, palette)
-        if highlight.italic then
-          highlight.italic = false
-        end
-        if highlight.bold then
-          highlight.bold = false
-        end
-        --
-        -- Change palette colour
-        -- if highlight.fg == palette.pine then
-        --     highlight.fg = palette.foam
-        -- end
-      end,
-    })
-    -- vim.cmd.colorscheme("rose-pine")
+    h1 = "iris",
+    h2 = "foam",
+    h3 = "rose",
+    h4 = "gold",
+    h5 = "pine",
+    h6 = "foam",
+  },
+
+  highlight_groups = {
+    Comment = { fg = "#2ea542" },
+  },
+
+  before_highlight = function(group, highlight, palette)
+    if highlight.italic then
+      highlight.italic = false
+    end
+    if highlight.bold then
+      highlight.bold = false
+    end
+    --
+    -- Change palette colour
+    -- if highlight.fg == palette.pine then
+    --     highlight.fg = palette.foam
+    -- end
   end,
-}
+})
+-- vim.cmd.colorscheme("rose-pine")

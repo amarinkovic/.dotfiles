@@ -12,8 +12,8 @@
 ---
 --- Deliberately NOT named `tsc` or `tsgo`. nvim-lspconfig ships `lsp/tsc.lua` (plus a
 --- deprecated `lsp/tsgo.lua` alias), and configs from `lsp/*.lua` are merged in
---- runtimepath order with `tbl_deep_extend('force', ...)` -- nvim-lspconfig is a lazy
---- plugin and so comes AFTER this config dir, meaning its keys win. Its `cmd` is a
+--- runtimepath order with `tbl_deep_extend('force', ...)` -- nvim-lspconfig is a
+--- :packadd-ed plugin and so comes AFTER this config dir, meaning its keys win. Its `cmd` is a
 --- resolver that prefers a project-local `node_modules/.bin/tsc`, which only speaks
 --- LSP from TypeScript 7 on; against a TS 6 install it exits 1 immediately with
 ---   error TS5023: Unknown compiler option '--lsp'

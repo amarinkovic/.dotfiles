@@ -1,14 +1,7 @@
-return {
-  {
-    "sphamba/smear-cursor.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "karb94/neoscroll.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("neoscroll").setup({})
-    end,
-  },
-}
+vim.pack.add({
+  "https://github.com/sphamba/smear-cursor.nvim",
+  "https://github.com/karb94/neoscroll.nvim",
+})
+
+require("smear_cursor").setup({})
+require("neoscroll").setup({})
