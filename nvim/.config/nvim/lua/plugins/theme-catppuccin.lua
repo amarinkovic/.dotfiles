@@ -16,7 +16,6 @@ require("catppuccin").setup({
     render_markdown = true,
     treesitter = true,
     lsp_trouble = true,
-    fidget = true,
     cmp = true,
     gitsigns = true,
     telescope = true,
