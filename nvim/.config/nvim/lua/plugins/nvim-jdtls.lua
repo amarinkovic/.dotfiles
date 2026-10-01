@@ -9,22 +9,47 @@ local jdtls = require("jdtls")
 local home = os.getenv("HOME")
 local workspace_base = home .. "/.local/share/nvim/jdtls-workspace/"
 local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
-local jdtls_path = mason_path .. "/jdtls"
-local lombok_path = jdtls_path .. "/lombok.jar"
+local jdtls_bin = vim.fn.stdpath("data") .. "/mason/bin/jdtls"
+local lombok_path = mason_path .. "/jdtls/lombok.jar"
+local sdkman_java = (os.getenv("SDKMAN_DIR") or home .. "/.sdkman") .. "/candidates/java"
 
--- Determine OS
-local os_config = "linux"
-if vim.fn.has("mac") == 1 then
-  os_config = "mac"
-elseif vim.fn.has("win32") == 1 then
-  os_config = "win"
+-- JDKs installed through sdkman, newest first. Folder names look like "21.0.1-tem";
+-- for equal versions Temurin wins so the pick is deterministic.
+local function sdkman_jdks()
+  local jdks = {}
+  for name, type in vim.fs.dir(sdkman_java) do
+    local version = vim.version.parse(name:match("^[%d.]+") or "")
+    if name ~= "current" and type ~= "file" and version and vim.fn.executable(sdkman_java .. "/" .. name .. "/bin/java") == 1 then
+      table.insert(jdks, { path = sdkman_java .. "/" .. name, version = version, tem = name:match("%-tem$") ~= nil })
+    end
+  end
+  table.sort(jdks, function(a, b)
+    if a.version ~= b.version then
+      return a.version > b.version
+    end
+    return a.tem and not b.tem
+  end)
+  return jdks
 end
 
--- Java executable
-local java_cmd = "java"
-local java_home = os.getenv("JAVA_HOME")
-if java_home then
-  java_cmd = java_home .. "/bin/java"
+-- jdtls itself is pinned to the newest sdkman JDK >= 21 (its minimum), independent of
+-- `sdk use`/`sdk default`. Projects are compiled against the JDK matching the level in
+-- their build file (maven.compiler.release, Gradle toolchain, ...), picked from
+-- `runtimes` by execution environment name, e.g. JavaSE-17.
+local function java_setup()
+  local runtimes, seen, launcher = {}, {}, nil
+  for _, jdk in ipairs(sdkman_jdks()) do
+    local major = jdk.version.major
+    if major >= 21 and not launcher then
+      launcher = jdk
+    end
+    local env = major == 8 and "JavaSE-1.8" or "JavaSE-" .. major
+    if not seen[env] then
+      seen[env] = true
+      table.insert(runtimes, { name = env, path = jdk.path, default = (jdk == launcher) or nil })
+    end
+  end
+  return launcher, runtimes
 end
 
 -- Build the config per buffer so each Java project gets its own root and workspace,
@@ -39,23 +64,18 @@ local function make_config()
   local project_hash = vim.fn.sha256(root_dir):sub(1, 8)
   local workspace_dir = workspace_base .. project_name .. "-" .. project_hash
 
+  local launcher, runtimes = java_setup()
+  if not launcher then
+    vim.notify("jdtls: no JDK >= 21 found in " .. sdkman_java, vim.log.levels.ERROR)
+    return nil
+  end
+
   return {
     cmd = {
-      java_cmd,
-      "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-      "-Dosgi.bundles.defaultStartLevel=4",
-      "-Declipse.product=org.eclipse.jdt.ls.core.product",
-      "-Xmx1g",
-      "--add-modules=ALL-SYSTEM",
-      "--add-opens",
-      "java.base/java.util=ALL-UNNAMED",
-      "--add-opens",
-      "java.base/java.lang=ALL-UNNAMED",
-      "-javaagent:" .. lombok_path,
-      "-jar",
-      vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-      "-configuration",
-      jdtls_path .. "/config_" .. os_config,
+      jdtls_bin,
+      "--java-executable=" .. launcher.path .. "/bin/java",
+      "--jvm-arg=-Xmx1g",
+      "--jvm-arg=-javaagent:" .. lombok_path,
       "-data",
       workspace_dir,
     },
@@ -67,6 +87,7 @@ local function make_config()
         },
         configuration = {
           updateBuildConfiguration = "interactive",
+          runtimes = runtimes,
         },
         maven = {
           downloadSources = true,
@@ -129,7 +150,12 @@ local function make_config()
     init_options = {
       bundles = vim.list_extend(
         vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/*.jar", true, true),
-        vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true, true)
+        -- Skip jars jdtls can't install as bundles: two that aren't OSGi bundles at all
+        -- (see nvim-jdtls README), and ones jdtls already ships in the same version.
+        vim.tbl_filter(function(jar)
+          local name = vim.fs.basename(jar)
+          return name ~= "com.microsoft.java.test.runner-jar-with-dependencies.jar" and name ~= "jacocoagent.jar" and not vim.uv.fs_stat(mason_path .. "/jdtls/plugins/" .. name)
+        end, vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true, true))
       ),
     },
   }
@@ -160,7 +186,10 @@ local jdtls_augroup = vim.api.nvim_create_augroup("nvim-jdtls", { clear = true }
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
   callback = function()
-    jdtls.start_or_attach(make_config())
+    local config = make_config()
+    if config then
+      jdtls.start_or_attach(config)
+    end
   end,
   group = jdtls_augroup,
 })
