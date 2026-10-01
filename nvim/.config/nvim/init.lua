@@ -17,7 +17,11 @@ vim.api.nvim_create_autocmd("PackChanged", {
       return
     end
     if name == "telescope-fzf-native.nvim" then
-      vim.system({ "make" }, { cwd = ev.data.path })
+      -- wait so the library exists before telescope.lua loads the extension
+      local res = vim.system({ "make" }, { cwd = ev.data.path }):wait()
+      if res.code ~= 0 then
+        vim.notify("telescope-fzf-native: make failed\n" .. res.stderr, vim.log.levels.ERROR)
+      end
     elseif name == "cord.nvim" then
       if not ev.data.active then
         vim.cmd.packadd("cord.nvim")
