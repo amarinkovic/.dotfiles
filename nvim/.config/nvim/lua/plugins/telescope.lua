@@ -1,66 +1,61 @@
-return {
-  {
-    "nvim-telescope/telescope.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "nvim-telescope/telescope-live-grep-args.nvim" },
-      { "nvim-telescope/telescope-ui-select.nvim" },
+-- telescope-fzf-native is built by the PackChanged hook in init.lua
+vim.pack.add({
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+  "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
+  "https://github.com/nvim-telescope/telescope-ui-select.nvim",
+  "https://github.com/nvim-telescope/telescope.nvim",
+})
+
+local builtin = require("telescope.builtin")
+
+local telescope = require("telescope")
+local lga_actions = require("telescope-live-grep-args.actions")
+
+telescope.setup({
+  defaults = {
+    vimgrep_arguments = {
+      "rg",
+      -- vimgrep_arguments defaults — must repeat them since setting this overrides defaults
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      -- end defaults, append custom exclusions
+      "--glob=!**/node_modules/*",
+      "--glob=!**/.git/*",
+      "--glob=!**/dist/*",
+      "--glob=!**/build/*",
+      "--glob=!**/out/*",
+      "--glob=!**/target/*",
     },
-    config = function()
-      local builtin = require("telescope.builtin")
-
-      local telescope = require("telescope")
-      local lga_actions = require("telescope-live-grep-args.actions")
-
-      telescope.setup({
-        defaults = {
-          vimgrep_arguments = {
-            "rg",
-            -- vimgrep_arguments defaults — must repeat them since setting this overrides defaults
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            -- end defaults, append custom exclusions
-            "--glob=!**/node_modules/*",
-            "--glob=!**/.git/*",
-            "--glob=!**/dist/*",
-            "--glob=!**/build/*",
-            "--glob=!**/out/*",
-            "--glob=!**/target/*",
-          },
-        },
-        extensions = {
-          live_grep_args = {
-            auto_quoting = true,
-            mappings = {
-              i = {
-                ["<C-k>"] = lga_actions.quote_prompt(),
-                ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-              },
-            },
-          },
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
-
-      telescope.load_extension("live_grep_args")
-      telescope.load_extension("ui-select")
-
-      vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find by file name" })
-      -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find with grep live" })
-      vim.keymap.set("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args, { desc = "Find with grep live" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find open buffers" })
-      vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find references" })
-      vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
-      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
-      vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })
-    end,
   },
-}
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true,
+      mappings = {
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        },
+      },
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({}),
+    },
+  },
+})
+
+telescope.load_extension("live_grep_args")
+telescope.load_extension("ui-select")
+
+vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find by file name" })
+-- vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find with grep live" })
+vim.keymap.set("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args, { desc = "Find with grep live" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find open buffers" })
+vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find references" })
+vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" })

@@ -8,7 +8,7 @@
 ---
 --- Deliberately NOT named `lemminx`. nvim-lspconfig ships `lsp/lemminx.lua`, and configs
 --- from `lsp/*.lua` are merged in runtimepath order with `tbl_deep_extend('force', ...)`
---- -- nvim-lspconfig is a lazy plugin and so comes AFTER this config dir, meaning its
+--- -- nvim-lspconfig is a :packadd-ed plugin and so comes AFTER this config dir, meaning its
 --- keys win. Its `filetypes` lists "xsl", which is a filename extension, not a filetype
 --- (`.xsl` files get filetype "xslt"), and ":checkhealth vim.lsp" warns about it. Because
 --- tbl_deep_extend merges lists index-wise, dropping the entry here was not enough: the
