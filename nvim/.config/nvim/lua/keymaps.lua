@@ -7,7 +7,6 @@
 -- <Esc>            clear search highlights + dismiss diagnostic float
 --
 -- Navigation
---   <C-u> / <C-d>  half-page up/down, centered
 --   U              redo
 --   ]q / [q        next/prev quickfix item
 --
@@ -22,10 +21,6 @@
 --   ]q / [q        next / prev item
 --
 -----------------------------------------------------------------------------------------------
-
--- Center cursor when moving vertically
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 -- Clear search highlights and dismiss the idle diagnostic float on <Esc>.
 -- The float is opened with focus = false, so <Esc> never reaches it; close it by
