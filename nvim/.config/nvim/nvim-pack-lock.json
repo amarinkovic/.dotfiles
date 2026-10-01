@@ -29,10 +29,6 @@
       "rev": "9c8b172570105d31ff707cb0d62897f79c2ddb1f",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
-    "fidget.nvim": {
-      "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
-      "src": "https://github.com/j-hui/fidget.nvim"
-    },
     "gitsigns.nvim": {
       "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
