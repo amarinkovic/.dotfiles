@@ -4,7 +4,6 @@ vim.pack.add({
 })
 
 local jdtls = require("jdtls")
-local jdtls_setup = require("jdtls.setup")
 
 -- Paths
 local home = os.getenv("HOME")
@@ -32,8 +31,8 @@ end
 -- instead of reusing the root of whichever file loaded the plugin first.
 local function make_config()
   -- Find root of project
-  local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "*.java" }
-  local root_dir = jdtls_setup.find_root(root_markers) or vim.fn.expand("%:p:h")
+  local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+  local root_dir = vim.fs.root(0, root_markers) or vim.fn.expand("%:p:h")
 
   -- Use a hash of the full path to avoid collisions between projects with the same directory name
   local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
@@ -46,8 +45,6 @@ local function make_config()
       "-Declipse.application=org.eclipse.jdt.ls.core.id1",
       "-Dosgi.bundles.defaultStartLevel=4",
       "-Declipse.product=org.eclipse.jdt.ls.core.product",
-      "-Dlog.protocol=true",
-      "-Dlog.level=ALL",
       "-Xmx1g",
       "--add-modules=ALL-SYSTEM",
       "--add-opens",
@@ -131,8 +128,8 @@ local function make_config()
     },
     init_options = {
       bundles = vim.list_extend(
-        vim.split(vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/*.jar", true), "\n"),
-        vim.split(vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true), "\n")
+        vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/*.jar", true, true),
+        vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", true, true)
       ),
     },
   }
@@ -170,6 +167,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Keymaps (will be set when attached to Java files)
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = jdtls_augroup,
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client.name == "jdtls" then
