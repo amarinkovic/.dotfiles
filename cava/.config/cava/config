@@ -23,8 +23,8 @@
 # The number of bars (0-512). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
 ; bars = 0
-; bar_width = 2
-; bar_spacing = 1
+bar_width = 1
+bar_spacing = 1
 # bar_height is only used for output in "noritake" format
 ; bar_height = 32
 
@@ -148,7 +148,7 @@
 # Default is 'bottom'. Other orientations are only supported on sdl and ncruses
 # output. Note: many fonts have weird glyphs for 'top' and 'right' characters,
 # which can make ncurses not look right.
-; orientation = bottom
+orientation = horizontal
 
 # Visual channels. Can be 'stereo' or 'mono'.
 # 'stereo' mirrors both channels with low frequencies in center.
@@ -194,6 +194,8 @@
 ; alacritty_sync = 0
 
 # Shaders for sdl_glsl, located in $HOME/.config/cava/shaders
+# Available: bar_spectrum, winamp_line_style_spectrum, spectrogram, northern_lights,
+# eye_of_phi, orion_circle, orion_circle_rotate, orion_saturn_core, orion_saturn_subring
 ; vertex_shader = pass_through.vert
 ; fragment_shader = bar_spectrum.frag
 
@@ -205,7 +207,7 @@
 ; disable_blanking = 0
 
 # show a flat bar at the bottom of the screen when idle, 1 = on, 0 = off
-; show_idle_bar_heads = 1
+show_idle_bar_heads = 0
 
 # show waveform instead of frequency spectrum, 1 = on, 0 = off
 ; waveform = 0
@@ -228,19 +230,25 @@
 # background must also be defined in hex or remain commented out. 1 = on, 0 = off.
 # You can define as many as 8 different colors. They range from bottom to top of screen
 
-# captuccin macciato transparent
-# https://github.com/catppuccin/cava/blob/main/themes/macchiato-transparent.cava
+# catppuccin macchiato
+# horizontal gradient across the width (mirrored so stereo looks symmetric),
+# vertical gradient blended in so the peaks fade to pale lavender/rosewater
 gradient = 1
+gradient_color_1 = '#b7bdf8'
+gradient_color_2 = '#f4dbd6'
 
-gradient_color_1 = '#8bd5ca'
-gradient_color_2 = '#91d7e3'
-gradient_color_3 = '#7dc4e4'
-gradient_color_4 = '#8aadf4'
-gradient_color_5 = '#c6a0f6'
-gradient_color_6 = '#f5bde6'
-gradient_color_7 = '#ee99a0'
-gradient_color_8 = '#ed8796'
- 
+horizontal_gradient = 1
+horizontal_gradient_color_1 = '#ed8796'
+horizontal_gradient_color_2 = '#f5bde6'
+horizontal_gradient_color_3 = '#c6a0f6'
+horizontal_gradient_color_4 = '#8aadf4'
+horizontal_gradient_color_5 = '#8bd5ca'
+horizontal_gradient_color_6 = '#8aadf4'
+horizontal_gradient_color_7 = '#c6a0f6'
+horizontal_gradient_color_8 = '#ed8796'
+
+blend_direction = 'up'
+
 [smoothing]
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.
@@ -249,8 +257,8 @@ gradient_color_8 = '#ed8796'
 ; integral = 77
 
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable.
-; monstercat = 0
-; waves = 0
+monstercat = 1
+waves = 0
 
 # Set gravity percentage for "drop off". Higher values means bars will drop faster.
 # Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".
@@ -265,7 +273,7 @@ gradient_color_8 = '#ed8796'
 # Noise reduction, int 0 - 100. default 77
 # the raw visualization is very noisy, this factor adjusts the integral and gravity filters to keep the signal smooth
 # 100 will be very slow and smooth, 0 will be fast but noisy.
-; noise_reduction = 77
+noise_reduction = 70
 
 
 [eq]
