@@ -12,15 +12,14 @@ Pill {
 
     implicitWidth: Theme.pillHeight + 4
     clickable: true
-    color: hovered ? Theme.activeBg : Theme.surface
+    accentHover: true
     onClicked: Quickshell.execDetached(["sh", "-c", command])
-
-    Behavior on color { ColorAnimation { duration: 150 } }
 
     Label {
         text: root.text
         font.pixelSize: root.fontSize
         color: root.hovered ? Theme.activeFg : Theme.text
         glow: !root.hovered
+        Behavior on color { ColorAnimation { duration: 150 } }
     }
 }

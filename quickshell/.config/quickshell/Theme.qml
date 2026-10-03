@@ -16,6 +16,7 @@ Singleton {
     readonly property color activeFg: "#000000"
     readonly property color shadow: Qt.rgba(0.816, 0.561, 1, 0.45)
     readonly property color tooltipBg: Qt.rgba(0, 0, 0, 0.8)
+    readonly property color hoverBg: Qt.rgba(0.741, 0.369, 1, 0.25)
 
     readonly property string font: "JetBrainsMono Nerd Font"
     readonly property int fontSize: 14

@@ -14,6 +14,15 @@ Pill {
     background: false
     padding: 0
 
+    // Breathe while anything is capturing.
+    SequentialAnimation on opacity {
+        running: root.visible
+        loops: Animation.Infinite
+        onRunningChanged: if (!running) root.opacity = 1
+        NumberAnimation { to: 0.4; duration: 900; easing.type: Easing.InOutSine }
+        NumberAnimation { to: 1; duration: 900; easing.type: Easing.InOutSine }
+    }
+
     Label {
         visible: root.screenInUse
         text: Theme.icons.screen

@@ -75,9 +75,31 @@ Pill {
     component Stat: Pill {
         property alias text: label.text
         property bool critical: false
+        // 0..1 usage drawn as a thin bar under the text; < 0 hides it.
+        property real level: -1
 
         background: false
         padding: 0
+
+        underlay: Rectangle {
+            visible: level >= 0
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: -3
+            height: 2
+            radius: 1
+            color: Qt.rgba(1, 1, 1, 0.12)
+
+            Rectangle {
+                height: parent.height
+                radius: 1
+                width: parent.width * Math.max(0, Math.min(1, level))
+                color: level >= 0.8 ? Theme.red : Theme.magenta
+                Behavior on width { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
+                Behavior on color { ColorAnimation { duration: 300 } }
+            }
+        }
         Label {
             id: label
             color: Theme.text
@@ -97,21 +119,25 @@ Pill {
     Stat {
         text: `${Theme.icons.cpu} ${Math.round(root.cpu)}%`
         critical: root.cpu >= 95
+        level: root.cpu / 100
         clickable: true
         onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
     }
     Stat {
         text: `${Theme.icons.memory} ${Math.round(root.mem)}%`
         tooltip: root.memTip
+        level: root.mem / 100
     }
     Stat {
         text: `${Theme.icons.disk} ${Math.round(root.disk)}%`
         tooltip: root.diskTip
+        level: root.disk / 100
     }
     Stat {
         readonly property var icons: Theme.icons.temp
         text: `${icons[Math.min(2, Math.floor(root.temp / 40))]} ${Math.round(root.temp)}°C`
         critical: root.temp >= 80
+        level: root.temp / 100
     }
     Stat {
         visible: root.hasBattery
@@ -120,5 +146,6 @@ Pill {
         readonly property bool charging: root.battery?.state === UPowerDeviceState.Charging
         text: `${icons[Math.min(4, Math.floor(pct / 20))]} ${Math.round(pct)}%${charging ? Theme.icons.charging : ""}`
         critical: pct <= 20 && !charging
+        level: pct / 100
     }
 }
