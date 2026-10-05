@@ -16,6 +16,7 @@ Singleton {
     readonly property color activeFg: "#000000"
     readonly property color shadow: Qt.rgba(0.816, 0.561, 1, 0.45)
     readonly property color tooltipBg: Qt.rgba(0, 0, 0, 0.8)
+    readonly property color panelBg: Qt.rgba(0.05, 0.03, 0.07, 0.94)
     readonly property color hoverBg: Qt.rgba(0.741, 0.369, 1, 0.25)
 
     readonly property string font: "JetBrainsMono Nerd Font"
@@ -41,6 +42,23 @@ Singleton {
         bluetooth: g(0xF294),
         btOff: g(0xF00B2),
         btConnected: g(0xF00B1),
+        adapter: g(0xF0553),
+        wifiOff: g(0xF05AA),
+        lock: g(0xF033E),
+        speaker: g(0xF04C3),
+        mouse: g(0xF037D),
+        keyboard: g(0xF030C),
+        gamepad: g(0xF0297),
+        phone: g(0xF011C),
+        laptop: g(0xF0322),
+        refresh: g(0xF0450),
+        eye: g(0xF0208),
+        eyeOff: g(0xF0209),
+        star: g(0xF04CE),
+        starOutline: g(0xF04D2),
+        trash: g(0xF0A7A),
+        close: g(0xF0156),
+        check: g(0xF012C),
         muted: g(0xF6A9),
         headphone: g(0xF025),
         volume: [g(0xF026), g(0xF027), g(0xF028)],

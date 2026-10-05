@@ -2,8 +2,8 @@ import QtQuick
 import Quickshell.Io
 import qs
 
-// NetworkManager status via nmcli. Click toggles the interface/IP view
-// (waybar's format-alt).
+// NetworkManager status via nmcli. Click opens the network panel, right
+// click toggles the interface/IP view (waybar's format-alt).
 Pill {
     id: root
 
@@ -16,8 +16,16 @@ Pill {
     property bool alt: false
 
     clickable: true
-    onClicked: alt = !alt
-    tooltip: device ? `${device} via ${gateway}` : ""
+    onClicked: mouse => {
+        if (mouse.button === Qt.RightButton) alt = !alt
+        else panel.toggle()
+    }
+    tooltip: device && !panel.shown ? `${device} via ${gateway}` : ""
+
+    WifiPanel {
+        id: panel
+        anchor.item: root
+    }
 
     Process {
         id: poll

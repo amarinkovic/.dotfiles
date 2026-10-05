@@ -59,7 +59,7 @@ PanelWindow {
         Volume {}
         Tray {}
         Hardware {}
-        BluetoothStatus {}
+        BluetoothStatus { monitor: bar.monitor }
         Network {}
         Clock {}
         IconButton {
