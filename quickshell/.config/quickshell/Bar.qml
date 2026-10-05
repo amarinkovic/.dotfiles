@@ -59,6 +59,7 @@ PanelWindow {
         Volume {}
         Tray {}
         Hardware {}
+        BluetoothStatus {}
         Network {}
         Clock {}
         IconButton {

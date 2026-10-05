@@ -39,6 +39,8 @@ Singleton {
         wifi: [g(0xF092F), g(0xF091F), g(0xF0922), g(0xF0925), g(0xF0928)],
         ethernet: g(0xF0200),
         bluetooth: g(0xF294),
+        btOff: g(0xF00B2),
+        btConnected: g(0xF00B1),
         muted: g(0xF6A9),
         headphone: g(0xF025),
         volume: [g(0xF026), g(0xF027), g(0xF028)],
