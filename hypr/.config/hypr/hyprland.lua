@@ -121,6 +121,7 @@ hl.config({
 
         follow_mouse       = 1,
         sensitivity        = 0,
+        accel_profile      = "flat",
         numlock_by_default = true,
 
         touchpad = {
@@ -130,6 +131,7 @@ hl.config({
 
     cursor = {
         no_hardware_cursors = false,
+        use_cpu_buffer      = true,  -- required for HW cursors on NVIDIA
     },
 })
 
