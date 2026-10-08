@@ -64,7 +64,7 @@ PanelWindow {
         Clock {}
         IconButton {
             text: Theme.icons.power
-            command: "wlogout --protocol layer-shell"
+            command: "qs ipc call powermenu toggle"
         }
     }
 }

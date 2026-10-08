@@ -150,7 +150,7 @@ hl.bind(mainMod .. " + Return",  hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q",       hl.dsp.window.close())
 hl.bind(mainMod .. " + M",       hl.dsp.exit())
 hl.bind(mainMod .. " + L",       hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("wlogout --protocol layer-shell"))
+hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("qs ipc call powermenu toggle"))
 hl.bind(mainMod .. " + E",       hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",       hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SPACE",   hl.dsp.exec_cmd(menu))
@@ -239,9 +239,10 @@ hl.window_rule({ match = { class = "Spotify" },  workspace = 4 })
 ---- LAYER RULES ----
 ---------------------
 
--- wlogout registers its overlay under the namespace "logout_dialog".
+-- The quickshell power menu (modules/PowerMenu.qml) registers its overlay
+-- under the namespace "logout_dialog", inherited from wlogout.
 hl.layer_rule({
-    name  = "blur-wlogout",
+    name  = "blur-powermenu",
     match = { namespace = "^logout_dialog$" },
     blur  = true,
 })

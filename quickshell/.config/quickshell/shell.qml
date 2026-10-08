@@ -1,8 +1,11 @@
 //@ pragma UseQApplication
 import QtQuick
 import Quickshell
+import qs.modules
 
 ShellRoot {
+    PowerMenu {}
+
     Variants {
         model: Quickshell.screens
 
