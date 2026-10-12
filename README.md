@@ -12,6 +12,7 @@ Everything else in this repo is laid out to be used with [GNU Stow](https://www.
 - Git: `stow git`
 - Neovim: `stow nvim`
 - Tmux: `stow tmux`
+- WirePlumber: `stow wireplumber`
 
 ## `tmux` setup
 
