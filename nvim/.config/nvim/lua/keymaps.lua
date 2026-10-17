@@ -4,6 +4,7 @@
 -- <leader>p        paste over selection without yanking
 -- <leader>s        substitute word under cursor (global, case-sensitive)
 -- <leader>nn       dismiss Noice notifications
+-- <leader>,        group number digits with _ (1234567 -> 1_234_567)
 -- <Esc>            clear search highlights + dismiss diagnostic float
 --
 -- Navigation
@@ -135,5 +136,25 @@ vim.keymap.set("n", "<leader>qt", function()
     end
   end)
 end, { desc = "TODO comments to quick-list" })
+
+-----------------------------------------------------------------------------------------------
+
+-- Group the digits of the number under (or after) the cursor with underscores,
+-- e.g. 1234567890 -> 1_234_567_890. Existing underscores are stripped first,
+-- so it's safe to re-run after editing the number.
+vim.keymap.set("n", "<leader>,", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.fn.col(".")
+
+  -- like <C-a>: use the number under the cursor, or the next one on the line
+  for s, num, e in line:gmatch("()([%d_]*%d[%d_]*)()") do
+    if e > col then
+      local grouped = num:gsub("_", ""):reverse():gsub("(%d%d%d)", "%1_"):reverse():gsub("^_", "")
+      vim.api.nvim_set_current_line(line:sub(1, s - 1) .. grouped .. line:sub(e))
+      vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), s - 1 })
+      return
+    end
+  end
+end, { desc = "Group number digits with _" })
 
 -----------------------------------------------------------------------------------------------
