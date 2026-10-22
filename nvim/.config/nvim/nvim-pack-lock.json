@@ -26,7 +26,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "9c8b172570105d31ff707cb0d62897f79c2ddb1f",
+      "rev": "9d23575513f1d934c28b9f933b9dd680c0dcd9e3",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -34,7 +34,7 @@
       "src": "https://github.com/vyfor/cord.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
+      "rev": "683137003522aebd6948358334164a6ba2ca7cd5",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lazygit.nvim": {
@@ -88,7 +88,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-view": {
-      "rev": "e766b3d8acef97e7e8b29f7f421aa4977b9978e1",
+      "rev": "b4486a6e83c45db4712849c09a76ef95b41a2133",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-dap-virtual-text": {
@@ -100,7 +100,7 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lspconfig": {
-      "rev": "a9bb4d5f4276aa5cddc015faa3ecc5a7b5a26b14",
+      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-metals": {
@@ -116,7 +116,7 @@
       "src": "https://github.com/rcarriga/nvim-notify"
     },
     "nvim-web-devicons": {
-      "rev": "58447c1fca354bbf184425e4a8d01deecbd6f3c4",
+      "rev": "ec309a0eaff6ea967e58c275996155ab5c16938d",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -124,7 +124,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "640a3ec6d538bad17c328be373c7cad0293d9589",
+      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
@@ -133,7 +133,7 @@
       "version": "9.0.0 - 10.0.0"
     },
     "smear-cursor.nvim": {
-      "rev": "9f42dd38bea7f00cee52544b168a81dc2fbf57c3",
+      "rev": "f6cb57c342268177f719acc3968b9d8de3ecc969",
       "src": "https://github.com/sphamba/smear-cursor.nvim"
     },
     "telescope-fzf-native.nvim": {
@@ -157,11 +157,11 @@
       "src": "https://github.com/folke/todo-comments.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "d93782393d7d4b48ddbdbcb0fdff6f8cb8d7043a",
+      "rev": "06c90a3af8eb471f4a4ff979d681312284a8583a",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "triforce.nvim": {
-      "rev": "cceab84938557c9869cb56727ff4f4a8a9c05159",
+      "rev": "1c4ad4f7a56543b65bf1bd1f24dc2fc7d99ed870",
       "src": "https://github.com/DrKJeff16/triforce.nvim"
     },
     "vim-sleuth": {
