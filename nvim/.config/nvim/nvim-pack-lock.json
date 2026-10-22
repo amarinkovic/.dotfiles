@@ -162,7 +162,7 @@
     },
     "triforce.nvim": {
       "rev": "cceab84938557c9869cb56727ff4f4a8a9c05159",
-      "src": "https://github.com/gisketch/triforce.nvim"
+      "src": "https://github.com/DrKJeff16/triforce.nvim"
     },
     "vim-sleuth": {
       "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
