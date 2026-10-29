@@ -42,6 +42,12 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
   vim.pack.update(#opts.fargs > 0 and opts.fargs or nil)
 end, { nargs = "*", desc = "Update plugins (vim.pack)" })
 
+-- On secondary machines: after `git pull` + :restart, move plugins to the
+-- committed lockfile revisions instead of fetching newer ones
+vim.api.nvim_create_user_command("PackSync", function(opts)
+  vim.pack.update(#opts.fargs > 0 and opts.fargs or nil, { target = "lockfile" })
+end, { nargs = "*", desc = "Sync plugins to lockfile revisions (vim.pack)" })
+
 vim.api.nvim_create_user_command("PackClean", function()
   local inactive = vim
     .iter(vim.pack.get())
