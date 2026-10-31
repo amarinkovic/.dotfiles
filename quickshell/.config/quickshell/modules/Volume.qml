@@ -1,5 +1,4 @@
 import QtQuick
-import Quickshell
 import Quickshell.Services.Pipewire
 import qs
 
@@ -12,18 +11,21 @@ Pill {
     readonly property bool bluetooth: (sink?.name ?? "").startsWith("bluez")
 
     clickable: true
-    tooltip: sink?.description ?? ""
+    tooltip: panel.shown ? "" : sink?.description ?? ""
 
     onClicked: mouse => {
         if (mouse.button === Qt.RightButton) {
             if (sink?.audio) sink.audio.muted = !sink.audio.muted
-        } else {
-            Quickshell.execDetached(["pavucontrol"])
-        }
+        } else panel.toggle()
     }
     onScrolled: delta => {
         if (!sink?.audio) return
         sink.audio.volume = Math.max(0, Math.min(1.5, volume + (delta > 0 ? 0.05 : -0.05)))
+    }
+
+    VolumePanel {
+        id: panel
+        anchor.item: root
     }
 
     // Volume/mute are only populated on tracked nodes.

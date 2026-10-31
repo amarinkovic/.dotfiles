@@ -56,11 +56,11 @@ PanelWindow {
         Dnd {}
         Privacy {}
         Media {}
-        Volume {}
         Tray {}
         Hardware {}
         BluetoothStatus { monitor: bar.monitor }
         Network {}
+        Volume {}
         Clock {}
         IconButton {
             text: Theme.icons.power

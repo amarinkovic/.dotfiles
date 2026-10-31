@@ -71,6 +71,9 @@ Singleton {
         playing: g(0xF1BC),
         paused: g(0xF28B),
         mic: g(0xF036C),
+        chevronDown: g(0xF0140),
+        chevronUp: g(0xF0143),
+        openExternal: g(0xF03CC),
         screen: g(0xF0379)
     })
 }
