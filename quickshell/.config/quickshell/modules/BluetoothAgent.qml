@@ -38,12 +38,22 @@ Singleton {
         id: proc
 
         property string buf
+        // Briefly forced false after an exit so the binding flips back to
+        // true and respawns bluetoothctl (e.g. after it crashes on resume).
+        property bool cooling
 
-        running: Bluetooth.defaultAdapter !== null
+        running: Bluetooth.defaultAdapter !== null && !cooling
         command: ["bluetoothctl"]
         stdinEnabled: true
         onStarted: write("agent KeyboardDisplay\ndefault-agent\n")
-        onExited: root.clear()
+        onExited: {
+            root.clear()
+            buf = ""
+            // Start the timer first: if it's already gone (config teardown
+            // on reload) this throws before cooling can get stuck true.
+            respawn.start()
+            cooling = true
+        }
 
         stdout: SplitParser {
             splitMarker: ""
@@ -68,5 +78,11 @@ Singleton {
             }
             buf = buf.slice(end)
         }
+    }
+
+    Timer {
+        id: respawn
+        interval: 2000
+        onTriggered: proc.cooling = false
     }
 }
