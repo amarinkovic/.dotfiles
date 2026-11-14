@@ -10,7 +10,7 @@ Pill {
     property string type      // "wifi" | "ethernet" | ""
     property string device
     property string ssid
-    property int signal
+    property int strength  // 0..100
     property string ip
     property string gateway
     property bool alt: false
@@ -35,7 +35,10 @@ Pill {
             iface=\${dev#*:}
             echo "type=\${dev%%:*}"
             echo "device=$iface"
-            nmcli -t -f ACTIVE,SSID,SIGNAL dev wifi 2>/dev/null | awk -F: '$1=="yes" {print "ssid="$2; print "signal="$3; exit}'
+            # --rescan no: the default rescans whenever the list is over 30s old.
+            # SSID goes last and unescaped so one containing ":" survives.
+            nmcli -t --escape no -f ACTIVE,SIGNAL,SSID dev wifi list --rescan no 2>/dev/null |
+                awk -F: '$1=="yes" {print "signal="$2; sub(/^[^:]*:[^:]*:/, ""); print "ssid="$0; exit}'
             [ -n "$iface" ] && ip -4 -o addr show dev "$iface" | awk '{print "ip="$4; exit}'
             ip route show default | awk '{print "gateway="$3; exit}'
         `]
@@ -49,7 +52,7 @@ Pill {
                 root.type = kv.device ? kv.type : ""
                 root.device = kv.device ?? ""
                 root.ssid = kv.ssid ?? ""
-                root.signal = parseInt(kv.signal) || 0
+                root.strength = parseInt(kv.signal) || 0
                 root.ip = kv.ip ?? ""
                 root.gateway = kv.gateway ?? ""
             }
@@ -67,10 +70,10 @@ Pill {
         text: {
             if (!root.type) return "⚠ Disconnected"
             const icon = root.type === "wifi"
-                ? Theme.icons.wifi[Math.min(4, Math.floor(root.signal / 20))]
+                ? Theme.icons.wifi[Math.min(4, Math.floor(root.strength / 20))]
                 : Theme.icons.ethernet
             if (root.alt) return `${icon} ${root.device}: ${root.ip || "(No IP)"}`
-            return root.type === "wifi" ? `${icon} ${root.ssid} ${root.signal}%` : `${icon} ${root.device}`
+            return root.type === "wifi" ? `${icon} ${root.ssid} ${root.strength}%` : `${icon} ${root.device}`
         }
     }
 }

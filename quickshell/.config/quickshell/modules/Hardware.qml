@@ -73,6 +73,8 @@ Pill {
     }
 
     component Stat: Pill {
+        id: stat
+
         property alias text: label.text
         property bool critical: false
         // 0..1 usage drawn as a thin bar under the text; < 0 hides it.
@@ -82,7 +84,7 @@ Pill {
         padding: 0
 
         underlay: Rectangle {
-            visible: level >= 0
+            visible: stat.level >= 0
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
@@ -94,8 +96,8 @@ Pill {
             Rectangle {
                 height: parent.height
                 radius: 1
-                width: parent.width * Math.max(0, Math.min(1, level))
-                color: level >= 0.8 ? Theme.red : Theme.magenta
+                width: parent.width * Math.max(0, Math.min(1, stat.level))
+                color: stat.level >= 0.8 ? Theme.red : Theme.magenta
                 Behavior on width { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
                 Behavior on color { ColorAnimation { duration: 300 } }
             }
@@ -107,7 +109,7 @@ Pill {
 
             // waybar's `blink` keyframes: alternate between red and text colour.
             SequentialAnimation on color {
-                running: critical
+                running: stat.critical
                 loops: Animation.Infinite
                 onRunningChanged: if (!running) label.color = Theme.text
                 ColorAnimation { from: Theme.red; to: Theme.text; duration: 2500 }
@@ -142,7 +144,7 @@ Pill {
     Stat {
         visible: root.hasBattery
         readonly property var icons: Theme.icons.battery
-        readonly property real pct: root.battery?.percentage * 100 ?? 0
+        readonly property real pct: (root.battery?.percentage ?? 0) * 100
         readonly property bool charging: root.battery?.state === UPowerDeviceState.Charging
         text: `${icons[Math.min(4, Math.floor(pct / 20))]} ${Math.round(pct)}%${charging ? Theme.icons.charging : ""}`
         critical: pct <= 20 && !charging

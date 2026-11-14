@@ -18,7 +18,11 @@ Rectangle {
     implicitHeight: 30
     radius: 10
     color: Qt.rgba(0, 0, 0, 0.4)
-    onVisibleChanged: revealed = false
+    // Don't carry a half-typed secret over to the next prompt.
+    onVisibleChanged: {
+        revealed = false
+        if (!visible) text = ""
+    }
 
     TextInput {
         id: input

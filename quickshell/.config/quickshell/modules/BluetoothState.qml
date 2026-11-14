@@ -20,12 +20,19 @@ Singleton {
     property var labels: ({})
 
     readonly property BluetoothAdapter adapter:
-        adapters.find(a => addressOf(a) === saved.preferred)
+        preferredAdapter()
         ?? adapters.find(a => a.enabled)
         ?? Bluetooth.defaultAdapter
 
     function addressOf(a) { return addresses[a?.name] ?? "" }
     function labelOf(a) { return labels[a?.adapterId] || a?.name || "" }
+
+    // The saved choice, if any. Without the empty check, "no choice yet"
+    // would match every adapter whose address isn't known (yet).
+    function preferredAdapter() {
+        const address = saved.preferred
+        return address ? adapters.find(a => addressOf(a) === address) ?? null : null
+    }
 
     function select(a) {
         saved.preferred = addressOf(a)
@@ -34,7 +41,7 @@ Singleton {
     }
 
     function enforce() {
-        const chosen = adapters.find(a => addressOf(a) === saved.preferred)
+        const chosen = preferredAdapter()
         if (!chosen) return
         for (const a of adapters)
             if (a !== chosen && a.enabled) a.enabled = false

@@ -4,6 +4,8 @@ import qs
 
 // Bold text with waybar's red text-shadow glow.
 Text {
+    id: root
+
     property bool glow: true
     property color glowColor: Theme.red
 
@@ -16,7 +18,7 @@ Text {
     layer.enabled: glow
     layer.effect: MultiEffect {
         shadowEnabled: true
-        shadowColor: glowColor
+        shadowColor: root.glowColor
         shadowBlur: 0.5
         shadowHorizontalOffset: 0
         shadowVerticalOffset: 0

@@ -11,7 +11,8 @@ Pill {
 
     property HyprlandMonitor monitor
     readonly property BluetoothAdapter adapter: BluetoothState.adapter
-    readonly property bool enabled: adapter?.enabled ?? false
+    // Not `enabled`: that would shadow Item.enabled.
+    readonly property bool powered: adapter?.enabled ?? false
     readonly property var connected: (adapter?.devices.values ?? []).filter(d => d.connected)
 
     visible: adapter !== null
@@ -23,7 +24,7 @@ Pill {
     }
     tooltip: {
         if (!adapter || panel.shown) return ""
-        if (!enabled) return `${adapter.name}: off`
+        if (!powered) return `${adapter.name}: off`
         if (connected.length === 0) return `${adapter.name}: no devices connected`
         return connected.map(d => d.batteryAvailable
             ? `${d.name}  ${Math.round(d.battery * 100)}%`
@@ -46,7 +47,7 @@ Pill {
 
     Label {
         text: {
-            if (!root.enabled) return Theme.icons.btOff
+            if (!root.powered) return Theme.icons.btOff
             const n = root.connected.length
             if (n === 0) return Theme.icons.bluetooth
             if (n > 1) return `${Theme.icons.btConnected} ${n}`
